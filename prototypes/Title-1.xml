@@ -1,0 +1,22 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Title 1]]></name>
+  <icon><![CDATA[images/prototypes/block-text.gif]]></icon>
+  <description><![CDATA[Title 1.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Title">
+    <strings jsxname="title-1"
+        riaTitleText="[title]"
+        riaTitleSize="1">
+    </strings>
+  </object>
+</serialization>
+

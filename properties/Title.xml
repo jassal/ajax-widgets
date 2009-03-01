@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<data jsxid="jsxroot">
+  <record include="master.xml" group="object"/>
+    
+  <record jsxid="riaTitle" group="1" jsxtext="Title">
+    <record jsxid="riaTitleText" 
+        jsxtext="Text/HTML"
+        eval="0"
+        jsxtip="Sets the text/HTML content for the title."
+        docgetter="getTitleText" 
+        docsetter="setTitleText"
+        docdefault="Empty"
+        jsxexecute="objJSX.setTitleText(vntValue, true);"
+        jsxmask="jsxtextarea"/>
+    <record jsxid="riaTitleSize" 
+        jsxtext="Size"
+        eval="0"
+        jsxtip="Sets the title size (H1 is largest, H6 is smallest)."
+        docgetter="getTitleSize" 
+        docsetter="setTitleSize"
+        docdefault="H2 (&lt;code&gt;com.intalio.ria.Title.TWO&lt;/code&gt;)"
+        jsxexecute="objJSX.setTitleSize(vntValue, true);"
+        jsxmask="jsxselect">
+      <enum jsxid="com.intalio.ria.Title.ONE" jsxtext="H1"/>
+      <enum jsxid="com.intalio.ria.Title.TWO" jsxtext="H2"/>
+      <enum jsxid="com.intalio.ria.Title.THREE" jsxtext="H3"/>
+      <enum jsxid="com.intalio.ria.Title.FOUR" jsxtext="H4"/>
+      <enum jsxid="com.intalio.ria.Title.FIVE" jsxtext="H5"/>
+      <enum jsxid="com.intalio.ria.Title.SIX" jsxtext="H6"/>
+    </record>     
+  </record>
+  
+  <record include="ria-master.xml" group="riaCss"/>
+</data>
+

@@ -1,0 +1,125 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<data jsxid="jsxroot">
+  <record jsxid="riaLabel" group="1" jsxtext="Label">
+    <record jsxid="riaLabelText" 
+        jsxtext="Label Text"
+        eval="0"
+        jsxtip="Sets the text/HTML content for the label."
+        docgetter="getLabelText" 
+        docsetter="setLabelText"
+        docdefault="Empty"
+        jsxexecute="objJSX.setLabelText(vntValue, true);"
+        jsxmask="jsxtextarea"/>
+  </record>
+  
+  <record jsxid="riaHelpImage" group="1" jsxtext="Help Image">
+    <record jsxid="riaHelpImageSrc" 
+        jsxtext="Image Path"
+        jsxtip="Sets the path of the help image file. The path is relative to the project root."
+        docgetter="getHelpImageSrc" 
+        docsetter="setHelpImageSrc"
+        eval="0"
+        jsxexecute="objJSX.setHelpImageSrc(vntValue, true);"
+        jsxmask="jsxpath"/>
+    <record jsxid="riaHelpImageTip" 
+        jsxtext="Tooltip"
+        eval="0"
+        jsxtip="Sets the text displayed when hovered over this object (text only)."
+        docgetter="getHelpImageTip" 
+        docsetter="setHelpImageTip"
+        docdefault="Empty"
+        jsxexecute="objJSX.setHelpImageTip(vntValue, true);"
+        jsxmask="jsxtextarea"/>                
+  </record>
+    
+  <record jsxid="riaValidation" group="1" jsxtext="Validation">
+    <record jsxid="riaShowValidation" 
+        jsxtext="Show"
+        eval="0"
+        jsxtip="Sets whether validation should be shown for this field or not."
+        docgetter="getShowValidation" 
+        docsetter="setShowValidation"
+        docdefault="Yes"
+        jsxexecute="objJSX.setShowValidation(vntValue, true);"
+        jsxmask="jsxselect">
+      <enum jsxid="com.intalio.ria.Field.SHOW_VALIDATION_YES" jsxtext="Yes"/>
+      <enum jsxid="com.intalio.ria.Field.SHOW_VALIDATION_NO" jsxtext="No"/>
+    </record>  
+    <record jsxid="riaErrorImageSrc" 
+        jsxtext="Image Path"
+        jsxtip="Sets the path of the error image file. The path is relative to the project root."
+        docgetter="getErrorImageSrc" 
+        docsetter="setErrorImageSrc"
+        eval="0"
+        jsxexecute="objJSX.setErrorImageSrc(vntValue, true);"
+        jsxmask="jsxpath"/>
+    <record jsxid="riaErrorMessageText" 
+        jsxtext="Text/HTML"
+        eval="0"
+        jsxtip="Sets the text/HTML content for the error message."
+        docgetter="getErrorMessageText" 
+        docsetter="setErrorMessageText"
+        docdefault="Empty"
+        jsxexecute="objJSX.setErrorMessageText(vntValue, true);"
+        jsxmask="jsxtextarea"/>        
+  </record>
+
+  <record jsxid="riaLayout" group="1" jsxtext="Layout">
+    <record jsxid="riaLayoutDirection" 
+        jsxtext="Direction"
+        eval="0"
+        jsxtip="Sets the layout direction when more than one input control is added to this field."
+        docgetter="getLayoutDirection" 
+        docsetter="setLayoutDirection"
+        docdefault="Horizontal"
+        jsxexecute="objJSX.setLayoutDirection(vntValue, true);"
+        jsxmask="jsxselect">
+      <enum jsxid="com.intalio.ria.Field.LAYOUT_HORIZONTAL" jsxtext="Horizontal"/>
+      <enum jsxid="com.intalio.ria.Field.LAYOUT_VERTICAL" jsxtext="Vertical"/>
+    </record>        
+  </record>
+  
+  <record jsxid="riaSection" group="1" jsxtext="Section">
+    <record jsxid="riaTitleText" 
+        jsxtext="Title"
+        eval="0"
+        jsxtip="Sets the text content for the section title."
+        docgetter="getTitleText" 
+        docsetter="setTitleText"
+        docdefault="Empty"
+        jsxexecute="objJSX.setTitleText(vntValue, true);"
+        jsxmask="jsxtextarea"/>
+    <record include="ria-master.xml" path="/data/record[@jsxid='riaCss']/record[@jsxid='riaCssClass']"/>        
+  </record>
+  
+  <record jsxid="riaCss" group="1" jsxtext="CSS">
+    <record jsxid="riaCssClass"
+        jsxtext="CSS Class"
+        eval="0"
+        jsxtip="Sets the CSS class to use. Multiple classes may be specified, delimited with a space."
+        docgetter="getCssClass" 
+        docsetter="setCssClass"
+        disallow="[\u0022\u003C\u003E\u0027\u0026]"
+        jsxexecute="objJSX.setCssClass(vntValue, true);"
+        jsxmask="jsxtext"/>  
+    <record jsxid="riaDisplay" jsxtext="Display"
+        eval="0"
+        jsxtip="Sets the CSS display property. When set to None, content is hidden AND the container collapses."
+        docgetter="getDisplay" 
+        docsetter="setDisplay"
+        docdefault="Block (&lt;code&gt;com.intalio.ria.Field.DISPLAYBLOCK&lt;/code&gt;)"
+        jsxexecute="objJSX.setDisplay(vntValue, true);"
+        jsxmask="jsxselect">
+      <enum jsxid="com.intalio.ria.Field.DISPLAYBLOCK" jsxtext="Block"/>
+      <enum jsxid="com.intalio.ria.Field.DISPLAYNONE" jsxtext="None"/>
+    </record>        
+  </record>
+</data>
+

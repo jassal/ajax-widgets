@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Slider]]></name>
+  <icon><![CDATA[images/prototypes/slider.gif]]></icon>
+  <description><![CDATA[Slider field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <variants/>
+    <strings jsxname="slider-field"
+        riaLabelText="[Slider label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.Slider">
+      <variants jsxvalue="0" jsxrelativeposition="1" jsxorientation="0"/>
+      <strings jsxname="slider" jsxlength="200"/>
+      <events jsxchange="com.intalio.ria.setValue(this, fpVALUE);" 
+              jsxincchange="com.intalio.ria.setValue(this, fpVALUE);"/>      
+    </object>
+  </object>  
+</serialization>
+

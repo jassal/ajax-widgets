@@ -1,0 +1,30 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Time Picker]]></name>
+  <icon><![CDATA[images/prototypes/timepicker.gif]]></icon>
+  <description><![CDATA[Time picker field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <variants/>
+    <strings jsxname="timepicker-field"
+        riaLabelText="[Time picker label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.TimePicker">
+      <dynamics/>
+      <variants jsxrelativeposition="1" jsxheight="18" jsxhours="0" jsxminutes="0" jsxseconds="0" jsxmillis="0"/>
+      <strings jsxname="timePicker" jsxmargin="0 4 0 0"/>
+    </object>
+  </object>
+</serialization>
+

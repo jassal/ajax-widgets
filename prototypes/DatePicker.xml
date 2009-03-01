@@ -1,0 +1,30 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Date Picker]]></name>
+  <icon><![CDATA[images/prototypes/datepicker.gif]]></icon>
+  <description><![CDATA[Date picker field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <variants/>
+    <strings jsxname="datepicker-field"
+        riaLabelText="[Data picker label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.DatePicker">
+      <variants jsxwidth="100" jsxrelativeposition="1" jsxheight="18"/>
+      <strings jsxname="datePicker" jsxmargin="0 4 0 0"/>
+      <events jsxhide="com.intalio.ria.validate(this);"/>      
+    </object>
+  </object>
+</serialization>
+

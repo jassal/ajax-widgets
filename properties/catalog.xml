@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<data jsxid="jsxroot">
+  <record jsxid="com.intalio.ria.Section" jsxtext="properties/Section.xml"/>
+  <record jsxid="com.intalio.ria.Field" jsxtext="properties/Field.xml"/>
+  <record jsxid="com.intalio.ria.Title" jsxtext="properties/Title.xml"/>
+  <record jsxid="com.intalio.ria.HorizontalRule" jsxtext="properties/HorizontalRule.xml"/>
+</data>

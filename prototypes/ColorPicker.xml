@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Color Picker]]></name>
+  <icon><![CDATA[images/prototypes/colorpicker.gif]]></icon>
+  <description><![CDATA[Color picker field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <variants/>
+    <strings jsxname="colorpicker-field"
+        riaLabelText="[Color picker label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.ColorPicker">
+      <dynamics jsxborder="@Outset"/>
+      <variants jsxrgb="0xFF0000" jsxwidth="125" jsxheight="100"/>
+      <strings jsxname="colorPicker"/>
+      <events jsxchange="com.intalio.ria.setValue(this, intRGB);"/>
+    </object>
+  </object>
+</serialization>
+

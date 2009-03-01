@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Radio Button]]></name>
+  <icon><![CDATA[images/prototypes/radio.gif]]></icon>
+  <description><![CDATA[Radio button field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <variants/>
+    <strings jsxname="radio-field"
+        riaLabelText="[Radio group label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        riaLayoutDirection="vertical"
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.RadioButton">
+      <variants jsxheight="18" jsxdefaultselected="1" jsxselected="0" jsxrelativeposition="1"/>
+      <strings jsxname="radio" jsxtext="[radio button text]" jsxvalue="radio-1" jsxgroupname="group1" jsxmargin="0 4 0 0"/>
+      <events jsxselect="com.intalio.ria.validate(this, objEVENT);"/>
+    </object>
+    <object type="jsx3.gui.RadioButton">
+      <variants jsxheight="18" jsxdefaultselected="1" jsxselected="0" jsxrelativeposition="1"/>
+      <strings jsxname="radio" jsxtext="[radio button text]" jsxvalue="radio-2" jsxgroupname="group1" jsxmargin="0 4 0 0"/>
+      <events jsxselect="com.intalio.ria.validate(this, objEVENT);"/>
+    </object>    
+  </object>
+</serialization>
+

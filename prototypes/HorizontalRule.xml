@@ -1,0 +1,20 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Horizontal Rule]]></name>
+  <icon><![CDATA[images/prototypes/block-text.gif]]></icon>
+  <description><![CDATA[Horizontal rule HTML element.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.HorizontalRule">
+    <strings jsxname="horizontal-rule">
+    </strings>
+  </object>
+</serialization>
+

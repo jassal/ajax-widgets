@@ -1,0 +1,51 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Multiselect]]></name>
+  <icon><![CDATA[images/prototypes/matrix-column.gif]]></icon>
+  <description><![CDATA[Multiselect field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <strings jsxname="multiselect-field"
+        riaLabelText="[Multiselect label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.Block">
+      <variants jsxwidth="150" jsxheight="150" jsxoverflow="2"/>
+      <strings jsxname="multi1" jsxmargin="0 4 0 0" jsxbgcolor="#FFFFFF"/>
+      <dynamics jsxborder="@Inset"/>
+      <object type="jsx3.gui.Block">
+        <variants jsxoverflow="3"/>
+        <strings jsxname="block" jsxwidth="100%" jsxheight="100%"/>
+        <object type="jsx3.gui.Matrix">
+          <variants jsxselectionmodel="2" jsxscalewidth="1" jsxjsxxmlasync="1" jsxheaderheight="0"/>
+          <strings jsxname="matrix" jsxfocusstyle="." jsxxml="
+              &lt;data jsxid=&quot;jsxroot&quot;&gt;
+                &lt;record jsxid=&quot;Automobile&quot; jsxtext=&quot;Automobile&quot;/&gt; 
+                &lt;record jsxid=&quot;Boat&quot; jsxtext=&quot;Boat&quot;/&gt; 
+                &lt;record jsxid=&quot;Bus&quot; jsxtext=&quot;Bus&quot;/&gt; 
+                &lt;record jsxid=&quot;Helicopter&quot; jsxtext=&quot;Helicopter&quot;/&gt; 
+                &lt;record jsxid=&quot;Motorcycle&quot; jsxtext=&quot;Motorcycle&quot;/&gt; 
+                &lt;record jsxid=&quot;Plane&quot; jsxtext=&quot;Plane&quot;/&gt; 
+                &lt;record jsxid=&quot;Spaceship&quot; jsxtext=&quot;Spaceship&quot;/&gt; 
+                &lt;record jsxid=&quot;Train&quot; jsxtext=&quot;Train&quot;/&gt; 
+              &lt;/data&gt;
+          "/>
+          <object type="jsx3.gui.Matrix.Column">
+            <strings jsxname="column-map" jsxcellpadding="2" jsxpath="jsxtext"/>
+          </object>
+        </object>
+      </object>
+    </object>    
+  </object>
+</serialization>
+

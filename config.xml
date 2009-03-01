@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<data jsxid="jsxroot">
+  <record jsxid="id" type="string">com.intalio.ria</record>
+  <record jsxid="name" type="string">IntalioWidgets</record>
+  <record jsxid="description" type="string">Intalio Widgets</record>
+  <record jsxid="long_description" type="string">Intalio Widgets</record>
+  <record jsxid="addin" type="string">com.intalio.ria.ADDIN</record>
+  <record jsxid="version" type="string">1.0</record>
+  <record jsxid="jsxversion" type="string">3.4</record>
+  <record jsxid="classpath" type="string">js/:com.intalio.ria.*</record>
+ 
+  <record jsxid="includes" type="array">
+    <record jsxid="0" type="map">
+      <record jsxid="load" type="number">1</record>
+      <record jsxid="type" type="string">script</record>
+      <record jsxid="src" type="string">js/com/intalio/ria/package.js</record>
+    </record>
+  </record>
+</data>
