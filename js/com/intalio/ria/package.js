@@ -147,36 +147,46 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
       var intalioProtoPath = "jsxaddin://intalioajax-addins/prototypes/";
       var giProtoPath = "GI_Builder/prototypes/";
       var giFormElementsPath = giProtoPath + "Form%20Elements/";
+      var giBlockPath = giProtoPath + "Block/";
       var giMatrixColumnsPath = giProtoPath + "Matrix/Columns/"
       
       if (myPath.indexOf(intalioProtoPath) == 0 && myPath.length > intalioProtoPath.length) {
         var baseName = myPath.substr(intalioProtoPath.length);
         // is the user dropping an intalio Field object?
+        // we have to look at the baseName b/c the object isn't created yet,
+        // so we cant use instanceof
         if (baseName == "CheckBox.xml" || baseName == "ColorPicker.xml" ||
             baseName == "Combo.xml"    || baseName == "DatePicker.xml"  ||
             baseName == "Password.xml" || baseName == "Radio.xml"       ||
             baseName == "Select.xml"   || baseName == "Slider.xml"      ||
             baseName == "TextArea.xml" || baseName == "TextBox.xml"     ||
-            baseName == "TimePicker.xml") {
+            baseName == "TimePicker.xml" || baseName == "TextOutput.xml") {
         
           var objGui = (bInsertBefore ? objJSXParent.getParent() : objJSXParent);
           
           // check to see if its within another Field object
           if (objGui.instanceOf(com.intalio.ria.Field) || objGui.getAncestorOfType(com.intalio.ria.Field)) {
-            myPath = giFormElementsPath + baseName;
-          }
+            if (baseName == "TextOutput.xml") {
+              myPath = giBlockPath + "Label.xml";
+            } else {
+              myPath = giFormElementsPath + baseName;
+            }
+          }              
           
-          // are they dropping it onto a matrix?
+          // the path might change if they are dropping it onto a matrix?
           if (objJSXParent.instanceOf(jsx3.gui.Matrix)) {
             // slider and color picker dont work for matrix columns
             // password is not fully functional either (password text is displayed normally)
-            if (baseName != "Slider.xml" && baseName != "ColorPicker.xml" && baseName != "Password.xml") { 
-              if (baseName == "Radio.xml") {
+            if (baseName != "Slider.xml" && baseName != "ColorPicker.xml" && baseName != "Password.xml") {
+              if (baseName == "TextOutput.xml") {
+                baseName = "Text.xml";
+              } else if (baseName == "Radio.xml") {
                 baseName = "RadioButton.xml";
-              }
+              } 
+                
               myPath = giMatrixColumnsPath + baseName;
             }
-          }
+          } 
         }
       }
         
@@ -280,7 +290,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         var matrix = objChild.getParent();
         var path = objChild.getPath();
         
-        // need to make the path is unique, so we append an incremented int,
+        // need to make sure the path is unique, so we append an incremented int,
         // but first need to find the highest current value
         if (matrix != null && path != null) {
           var columns = matrix.getChildren();
@@ -298,7 +308,19 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
           
           objChild.setPath(baseStr + (++max));
         }
+        
+        if (objChild.getName() == "textColumn" && objChild.getFirstChild() == null) {
+          objChild.setName("text-output-map");
+        }        
       }
+      // output label (block should be last to check b/c a lot of objects are based on block)
+      else if (objChild.instanceOf(jsx3.gui.Block)) {
+        if (objChild.getName() == "label" && objChild.getText() == "[label]") {
+          objChild.setName("text-output-map");
+          objChild.setText("[text output]");
+        }
+      }      
+      
     };
     
     /**
