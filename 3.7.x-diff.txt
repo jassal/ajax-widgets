@@ -1,0 +1,139 @@
+Index: build/build.properties
+===================================================================
+--- build/build.properties	(revision 28285)
++++ build/build.properties	(working copy)
+@@ -40,13 +40,13 @@
+ # The following properties control whether to obfuscate source files. Obfuscation removes comments and whitespace
+ # from source files and renames local variables, method parameters, and private and obfuscated methods.
+ # Whether to obfuscate the script files in JSX/
+-build.gi.obfuscate.jsx = true
++#build.gi.obfuscate.jsx = true
+ # Whether to obfuscate the script files in JSX/addins/charting
+-build.gi.obfuscate.charting = true
++#build.gi.obfuscate.charting = true
+ # Whether to obfuscate the script files in JSX/addins/amp
+-build.gi.obfuscate.amp = true
++#build.gi.obfuscate.amp = true
+ # Whether to obfuscate the script files in GI_Builder
+-build.gi.obfuscate.ide = true
++#build.gi.obfuscate.ide = true
+ # The following properties control whether to merge JavaScript source files. Merged files generally load faster
+ # than unmerged files.
+ # Whether to merge the script files in JSX/
+Index: JSX/js/JSX30.js
+===================================================================
+--- JSX/js/JSX30.js	(revision 28285)
++++ JSX/js/JSX30.js	(working copy)
+@@ -26,6 +26,15 @@
+       this.fx3 = vers >= 3 && vers < 4;
+       this.fx4 = vers >= 4;
+     }
++    // prevent the browser warning with xulrunner
++    else if (this.gk) {
++        // Xulrunner gives this kind of agt: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko
++        if (agt.indexOf('rv:1.8') > 0) {//xulrunner 1.8 is ff2
++            this.fx2 = true;
++        } else if (agt.indexOf('rv:1.9') > 0) {//xulrunner 1.9 is ff3
++            this.fx3 = true;
++        }      
++    }
+ 
+     // Apple WebKit (Safari) v3-4
+     this.sf = agt.indexOf('applewebkit') >= 0;
+Index: JSX/js/jsx3/app/Model.js
+===================================================================
+--- JSX/js/jsx3/app/Model.js	(revision 28285)
++++ JSX/js/jsx3/app/Model.js	(working copy)
+@@ -1466,6 +1466,13 @@
+ 
+         if (attachedServer != null)
+           objJSX.onAfterAttach();
++      
++        // customize properties for an object
++        if (jsx3.IDE) {
++          if (jsx3.ide.customProperties) {
++            jsx3.ide.customProperties(objJSX);
++          }          
++        }
+       }
+     }
+ 
+Index: JSX/js/jsx3/gui/Form.js
+===================================================================
+--- JSX/js/jsx3/gui/Form.js	(revision 28285)
++++ JSX/js/jsx3/gui/Form.js	(working copy)
+@@ -288,6 +288,13 @@
+    */
+   Form_prototype.setRequired = function(required) {
+     this.jsxrequired = required;
++    
++    if (jsx3.IDE) {
++      if (jsx3.ide.customSetRequired) {
++        jsx3.ide.customSetRequired(this);
++      }
++    }
++    
+     return this;
+   };
+ 
+Index: GI_Builder/plugins/jsx3.ide.palette.properties/templates/master.xml
+===================================================================
+--- GI_Builder/plugins/jsx3.ide.palette.properties/templates/master.xml	(revision 28285)
++++ GI_Builder/plugins/jsx3.ide.palette.properties/templates/master.xml	(working copy)
+@@ -779,6 +779,7 @@
+         jsxtip="Determines if the form input field is required."
+         docgetter="getRequired" docsetter="setRequired"
+         docdefault="Optional (&lt;code&gt;jsx3.gui.Form.OPTIONAL&lt;/code&gt;)"
++        jsxexecute="objJSX.setRequired(vntValue);"
+         jsxmask="jsxselect">
+       <enum jsxid="jsx3.gui.Form.REQUIRED" jsxtext="Required"/>
+       <enum jsxid="jsx3.gui.Form.OPTIONAL" jsxtext="Optional"/>
+Index: GI_Builder/plugins/jsx3.ide.editor.component/ComponentEditor.js
+===================================================================
+--- GI_Builder/plugins/jsx3.ide.editor.component/ComponentEditor.js	(revision 28285)
++++ GI_Builder/plugins/jsx3.ide.editor.component/ComponentEditor.js	(working copy)
+@@ -502,6 +502,14 @@
+ 
+         //get the path for this object
+         var myPath = objRecord.path;
++        
++        // custom DnD handler
++        if (jsx3.IDE) {
++          if (jsx3.ide.customPrototypePath) {
++            myPath = jsx3.ide.customPrototypePath(myPath, objJSXParent, bInsertBefore);
++          }
++        }        
++        
+         var objResolver = jsx3.net.URIResolver.getResolver(myPath);
+ 
+         // do not allow ref persistence if this is a parent of ROOT
+Index: GI_Builder/plugins/jsx3.io.browser/FileDialog.js
+===================================================================
+--- GI_Builder/plugins/jsx3.io.browser/FileDialog.js	(revision 28285)
++++ GI_Builder/plugins/jsx3.io.browser/FileDialog.js	(working copy)
+@@ -102,7 +102,8 @@
+     
+     // prevent UI lock out
+     if (this._base != null && ! this._current.isDescendantOf(this._base))
+-      this._base = this._current;
++      //this._base = this._current;
++      this._base = jsx3.ide.getActiveProjectDirectory();
+     
+ 		var bOpen = this._type & FileDialog.MODE_OPEN;
+ 		var bMultiple = bOpen && (this._type & FileDialog.CHOOSE_FILES);
+Index: GI_Builder/plugins/jsx3.io/File.js
+===================================================================
+--- GI_Builder/plugins/jsx3.io/File.js	(revision 28285)
++++ GI_Builder/plugins/jsx3.io/File.js	(working copy)
+@@ -91,8 +91,9 @@
+    */
+   File_prototype.resolve = function(strPath) {
+     strPath = jsx3.net.URI.valueOf(strPath);
+-    if (strPath.isAbsolute())
+-      throw new jsx3.Exception("May not resolve an absolute path: " + strPath);
++    // our workspace is within the .plugins folder so this causes a problem
++    //if (strPath.isAbsolute())
++    //  throw new jsx3.Exception("May not resolve an absolute path: " + strPath);
+     return this._fs.getFile(this.toURI().resolve(strPath));
+   };
+   
