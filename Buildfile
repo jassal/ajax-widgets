@@ -24,6 +24,6 @@ define "intalioajax-addins" do
   resources.from(_('.')).exclude('Buildfile').exclude('prototypes/simple/**').exclude('installaddins.rb')
 
   #Zip things up
-  package(:zip).include 'target/classes', :as=>'intalioajax-addins'
+  package(:zip).include resources.target, :as=>'intalioajax-addins'
 end
 
