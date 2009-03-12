@@ -1,11 +1,11 @@
 <!--
-  ~ Copyright (c) 2001-2009, TIBCO Software Inc.
+  ~ Copyright (C) 2009, Intalio Inc.
   ~ 
   ~ The program(s) herein may be used and/or copied only with the
   ~ written permission of Intalio Inc. or in accordance with the terms
   ~ and conditions stipulated in the agreement/contract under which the
   ~ program(s) have been supplied.
-  -->  
+  -->
 <data jsxid="jsxroot">
   <record jsxid="object" group="1" jsxtext="Object">
     <record jsxid="jsxinstanceof" jsxtext="Object Type"
@@ -20,7 +20,8 @@
         eval="0" uneditable="1"/>
     <record jsxid="jsxname" jsxtext="Name"
         jsxtip="Sets the name assigned by the developer to identify this object."
-        jsxexecute="objJSX.setName(vntValue);jsx3.ide.onDomChangeSleep();"
+        jsxexecute="objJSX.setName(vntValue);"
+        domchanged="true"
         docgetter="getName" docsetter="setName"
         eval="0"
         disallow="[\[\]\u0022\u003C\u003E\u0027\u0026\\]"
@@ -150,6 +151,14 @@
     <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxzindex']"/>
   </record>
 
+  <record jsxid="position_fixedwidth" group="1" jsxtext="Positioning">
+    <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxrelativeposition']"/>
+    <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxleft']"/>
+    <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxtop']"/>
+    <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxheight']"/>
+    <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxzindex']"/>
+  </record>
+
   <record jsxid="position_widthonly" group="1" jsxtext="Size">
     <record include="master.xml" path="/data/record[@jsxid='position']/record[@jsxid='jsxwidth']"/>
   </record>
@@ -160,7 +169,7 @@
         jsxtip="Convenience method for extending this object. CSS properties affecting layout, including &lt;code&gt;border-width, padding, margin, width, and height&lt;/code&gt; are strongly discouraged, as they may interfere with the framework's internal box models. Since some controls are composited from multiple HTML elements, some styles may not cascade to nested elements.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Instance Properties&lt;/b&gt; are the preferred method for applying styles."
         docgetter="getCSSOverride" docsetter="setCSSOverride"
         disallow="'"
-        jsxexecute="objJSX.setCSSOverride(vntValue,true);"
+        jsxexecute="objJSX.setCSSOverride(vntValue);objJSX.repaint();"
         jsxmask="jsxtextarea"/>
     <record jsxid="jsxclassname" jsxtext="CSS Rule Name"
         eval="0"
@@ -210,7 +219,6 @@
         docgetter="getFontName" docsetter="setFontName"
         docdefault="&lt;code&gt;jsx3.gui.Block.DEFAULTFONTNAME&lt;/code&gt;"
         disallow="'"
-        jsxexecute="objJSX.setFontName(vntValue,true);"
         jsxmask="jsxtext"/>
     <record jsxid="jsxfontsize" jsxtext="Font Size"
         eval="1"
@@ -218,14 +226,12 @@
         docgetter="getFontSize" docsetter="setFontSize"
         docdefault="&lt;code&gt;jsx3.gui.Block.DEFAULTFONTSIZE&lt;/code&gt;"
         disallow="[^0-9]"
-        jsxexecute="objJSX.setFontSize(vntValue,true);"
         jsxmask="jsxtext"/>
     <record jsxid="jsxfontweight" jsxtext="Font Weight"
         eval="0"
         jsxtip="Sets the weight of the font, such as bold or normal."
         docgetter="getFontWeight" docsetter="setFontWeight"
         docdefault="Normal (&lt;code&gt;jsx3.gui.Block.FONTNORMAL&lt;/code&gt;)"
-        jsxexecute="objJSX.setFontWeight(vntValue,true);"
         jsxmask="jsxselect">
       <enum jsxid="jsx3.gui.Block.FONTBOLD" jsxtext="Bold"/>
       <enum jsxid="jsx3.gui.Block.FONTNORMAL" jsxtext="Normal"/>
@@ -254,7 +260,7 @@
         jsxtip="Sets the CSS background definition, such as &lt;code&gt;background-image:url(abc.gif);background-repeat:repeat-x;&lt;/code&gt;."
         docgetter="getBackground" docsetter="setBackground"
         docdefault="Empty"
-        jsxexecute="objJSX.setBackground(vntValue,true);"
+        jsxexecute="objJSX.setBackground(vntValue);objJSX.repaint();"
         jsxmask="jsxtext"/>
     <record jsxid="jsxpadding" jsxtext="Padding"
         eval="0"
@@ -279,7 +285,7 @@
         docdefault="Empty"
         disallow="'"
         jsxmask="jsxtext"
-        jsxexecute="objJSX.setBorder(vntValue,true);"/>
+        jsxexecute="objJSX.setBorder(vntValue);objJSX.repaint();"/>
     <record jsxid="jsxtextalign" jsxtext="Text Align"
         eval="0"
         jsxtip="Sets the alignment of any contained object or text."
@@ -456,7 +462,8 @@
         jsxtip="Sets the text/HTML content of this object."
         docgetter="getText" docsetter="setText"
         docdefault="Empty"
-        jsxexecute="jsx3.ide.onPropsSetText(objJSX, vntValue);"
+        validatehtml="true"
+        jsxexecute="objJSX.setText(vntValue, true);"
         jsxmask="jsxtextarea"/>
     <!-- record include="master.xml" path="/data/record[@jsxid='cdfmapping']/record"/ -->
   </record>
