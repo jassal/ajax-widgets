@@ -21,7 +21,7 @@
         riaCssClass="field">
     </strings>
     <object type="jsx3.gui.Block">
-      <variants jsxwidth="350" jsxheight="100" jsxoverflow="1"/>
+      <variants jsxwidth="350" jsxheight="110" jsxoverflow="1"/>
       <strings jsxname="matrix-block" jsxrelativeposition="1"/>
       <object type="jsx3.gui.Matrix">
         <variants jsxpagingmodel="1" jsxselectionmodel="0" jsxjsxxmlasync="1" jsxautorow="1"/>

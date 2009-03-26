@@ -1,0 +1,40 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Matrix Tree]]></name>
+  <icon><![CDATA[images/prototypes/matrix.gif]]></icon>
+  <description><![CDATA[Matrix tree field.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="com.intalio.ria.Field">
+    <variants></variants>
+    <strings jsxname="matrix-tree-field" 
+        riaLabelText="[Matrix tree label]" 
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif" 
+        riaCssClass="field">
+    </strings>
+    <object type="jsx3.gui.Block">
+      <variants jsxwidth="350" jsxheight="110" jsxoverflow="1"/>
+      <strings jsxname="tree-block" jsxrelativeposition="1"/>
+      <object type="jsx3.gui.Matrix">
+        <variants jsxheaderheight="0" jsxjsxxmlasync="1"/>
+        <strings jsxname="matrix1" jsxrenderingmodel="hierarchical" jsxpagingmodel="4" jsxdrag="1" jsxdrop="1" jsxselectionmodel="2" 
+          jsxxml=" &lt;data jsxid=&quot;jsxroot&quot;&gt; &lt;record jsxid=&quot;1&quot; jsxtext=&quot;rootnode&quot; jsxopen=&quot;1&quot; jsximg=&quot;jsx:/images/tree/folder.gif&quot;&gt; &lt;record jsxid=&quot;2&quot; jsxtext=&quot;node a&quot; jsxopen=&quot;1&quot; jsximg=&quot;jsx:/images/tree/folder.gif&quot;&gt; &lt;record jsxid=&quot;3&quot; jsxtext=&quot;node b&quot; jsximg=&quot;jsx:/images/tree/folder.gif&quot;&gt; &lt;record jsxid=&quot;4&quot; jsxtext=&quot;node c&quot; jsximg=&quot;jsx:/images/tree/folder.gif&quot;&gt; &lt;record jsxid=&quot;5&quot; jsxtext=&quot;node d&quot; jsximg=&quot;jsx:/images/tree/file.gif&quot;/&gt; &lt;/record&gt; &lt;/record&gt; &lt;record jsxid=&quot;6&quot; jsxtext=&quot;node e&quot; jsximg=&quot;jsx:/images/tree/folder.gif&quot;&gt; &lt;record jsxid=&quot;7&quot; jsxtext=&quot;node f with a lot of text to see what the impact&quot; jsximg=&quot;jsx:/images/tree/folder.gif&quot;&gt; &lt;record jsxid=&quot;8&quot; jsxtext=&quot;node g&quot; jsximg=&quot;jsx:/images/tree/file.gif&quot;/&gt; &lt;/record&gt; &lt;/record&gt; &lt;/record&gt; &lt;/record&gt; &lt;/data&gt; "/>
+        <dynamics jsxbgcolor="@Solid Light"/>
+        <object type="jsx3.gui.Matrix.Column">
+          <variants/>
+          <strings jsxname="mc1" jsxwidth="*" jsxcellpadding="2" jsxpath="jsxtext"/>
+          <dynamics jsxborder="@Outset" jsxbg="@Bevel TopDown" jsxbgcolor="@Solid Disabled"/>
+        </object>
+      </object>
+    </object>    
+  </object>  
+</serialization>
+
