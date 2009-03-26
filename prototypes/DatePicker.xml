@@ -22,7 +22,7 @@
     </strings>
     <object type="jsx3.gui.DatePicker">
       <variants jsxwidth="100" jsxrelativeposition="1" jsxheight="18"/>
-      <strings jsxname="datePicker" jsxmargin="0 4 0 0"/>
+      <strings jsxname="datePicker" jsxmargin="0 4 0 0" jsxformat="yyyy-MM-dd"/>
       <events jsxhide="com.intalio.ria.validate(this);"/>      
     </object>
   </object>
