@@ -15,7 +15,7 @@
   <object type="com.intalio.ria.Field">
     <variants/>
     <strings jsxname="text-output-field"
-        riaLabelText="[text output label]"
+        riaLabelText="[Text output label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
         riaCssClass="field">
