@@ -30,7 +30,7 @@
         <dynamics jsxbgcolor="@Solid Light"/>
         <object type="jsx3.gui.Matrix.Column">
           <variants/>
-          <strings jsxname="mc1" jsxwidth="*" jsxcellpadding="2" jsxpath="jsxtext"/>
+          <strings jsxname="column-map" jsxwidth="*" jsxcellpadding="2" jsxpath="jsxtext"/>
           <dynamics jsxborder="@Outset" jsxbg="@Bevel TopDown" jsxbgcolor="@Solid Disabled"/>
         </object>
       </object>
