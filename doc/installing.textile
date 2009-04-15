@@ -1,0 +1,14 @@
+h2(#installing). Installing
+
+Copy the ajax-widgets directory into your GI workspace addins directory.  If you don't know your GI workspace location, you can find it by looking in your GI Builder settings by choosing Tools > IDE Settings... then select Paths.
+
+For example, if your GI workspace is the following:
+
+C:\Documents and Settings\User\My Documents\TibcoGI
+
+Then copy the ajax-widgets to the following directory:
+
+C:\Documents and Settings\Mark\My Documents\TibcoGI\addins
+
+You will need to restart GI builder if it's currently open.  
+
