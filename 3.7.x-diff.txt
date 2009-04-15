@@ -111,13 +111,14 @@ Index: GI_Builder/plugins/jsx3.io.browser/FileDialog.js
 ===================================================================
 --- GI_Builder/plugins/jsx3.io.browser/FileDialog.js	(revision 28285)
 +++ GI_Builder/plugins/jsx3.io.browser/FileDialog.js	(working copy)
-@@ -102,7 +102,8 @@
+@@ -102,7 +102,9 @@
      
      // prevent UI lock out
      if (this._base != null && ! this._current.isDescendantOf(this._base))
 -      this._base = this._current;
 +      //this._base = this._current;
-+      this._base = jsx3.ide.getActiveProjectDirectory();
++      //this._base = jsx3.ide.getActiveProjectDirectory();
++      this._base = this._current.getRootDirectory();
      
  		var bOpen = this._type & FileDialog.MODE_OPEN;
  		var bMultiple = bOpen && (this._type & FileDialog.CHOOSE_FILES);
