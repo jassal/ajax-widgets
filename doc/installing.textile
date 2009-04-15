@@ -4,7 +4,7 @@ Copy the *intalio-ajax-widgets* directory into your GI workspace *addins* direct
 If you don't know your GI workspace location, you can find it by looking at your 
 GI Builder settings, choose *Tools > IDE Settings...* then select *Paths*.
 
-!doc/images/workspace-path.png!
+!images/workspace-path.png!
 
 For example, if your GI workspace is the following:
 
@@ -15,5 +15,3 @@ Copy *intalio-ajax-widgets* to the following directory:
 *C:\Documents and Settings\Mark\My Documents\TibcoGI\addins*
 
 You will then need to restart GI builder if it's currently open.  
-
-Test
