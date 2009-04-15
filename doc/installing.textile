@@ -16,3 +16,4 @@ Copy *intalio-ajax-widgets* to the following directory:
 
 You will then need to restart GI builder if it's currently open.  
 
+Test
