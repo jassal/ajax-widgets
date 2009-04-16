@@ -27,6 +27,10 @@ Copy *intalio-ajax-widgets* to the following directory:
 
 @C:\Documents and Settings\Mark\My Documents\TibcoGI\addins@
 
+Once copied the widgets should reside in the following directory:
+
+@C:\Documents and Settings\Mark\My Documents\TibcoGI\addins\intalio-ajax-widgets@
+
 You will need to close GI Builder if it's currently open.
 
 h2. Enabling the Widgets
