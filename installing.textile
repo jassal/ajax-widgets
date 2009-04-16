@@ -7,7 +7,7 @@ The Intalio|Ajax Widgets are designed to be used within Tibco's General
 Interface Builder.  If you don't have GI Builder you can download it from 
 "their website":http://www.tibco.com/devnet/gi/.
 
-h2. Installing the widgets
+h2. Installing the Widgets
 
 After you download and unzip the widgets you will have a directory named 
 *intalio-ajax-widgets*.  To install the widgets you simply copy the 
