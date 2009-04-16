@@ -5,29 +5,27 @@ layout: default
 
 The Intalio|Ajax Widgets are designed to be used within Tibco's General 
 Interface Builder.  If you don't have GI Builder you can download it from 
-their website.
-
-http://www.tibco.com/devnet/gi/
+"their website":http://www.tibco.com/devnet/gi/.
 
 h2. Installing the widgets
 
 After you download and unzip the widgets you will have a directory named 
-something like *intalio-ajax-widgets*.  To install the widgets you simply need 
-to copy the *intalio-ajax-widgets* directory into your GI workspace *addins* 
+*intalio-ajax-widgets*.  To install the widgets you simply copy the 
+*intalio-ajax-widgets* directory into your GI workspace *addins* 
 directory.
 
-If you don't know your GI workspace location, you can find it by looking at 
+If you don't know your GI workspace directory, you can find it by looking at 
 your GI Builder settings, choose *Tools > IDE Settings...* then select *Paths*.
 
 !screenshots/workspace-path.png!
 
 For example, if your GI workspace is the following:
 
-*C:\Documents and Settings\User\My Documents\TibcoGI*
+@C:\Documents and Settings\User\My Documents\TibcoGI@
 
 Copy *intalio-ajax-widgets* to the following directory:
 
-*C:\Documents and Settings\Mark\My Documents\TibcoGI\addins*
+@C:\Documents and Settings\Mark\My Documents\TibcoGI\addins@
 
 You will need to close GI Builder if it's currently open.
 
@@ -40,7 +38,7 @@ row, then click *Save*.
 You will need to restart GI Builder for the change to take effect.
 
 After restarting GI Builder, the Intalio|AJAX Widgets should be available under 
-the Addins node in the *Component Libraries* pallet.
+the *Addins* node in the *Component Libraries* pallet.
 
 !screenshots/addins.png!
 
