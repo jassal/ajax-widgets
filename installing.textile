@@ -10,8 +10,8 @@ Interface Builder.  If you don't have GI Builder you can download it from
 h2. Installing the Widgets
 
 After you download and unzip the widgets you will have a directory named 
-*intalio-ajax-widgets*.  To install the widgets you simply copy the 
-*intalio-ajax-widgets* directory into your GI workspace *addins* 
+@intalio-ajax-widgets@.  To install the widgets you simply copy the 
+@intalio-ajax-widgets@ directory into your GI workspace @addins@ 
 directory.
 
 If you don't know your GI workspace directory, you can find it by looking at 
@@ -21,19 +21,20 @@ your GI Builder settings, choose *Tools > IDE Settings...* then select *Paths*.
 
 For example, if your GI workspace is the following:
 
-@C:\Documents and Settings\User\My Documents\TibcoGI@
+@C:\TibcoGI@
 
-Copy *intalio-ajax-widgets* to the following directory:
+Copy *intalio-ajax-widgets* into the following directory:
 
-@C:\Documents and Settings\Mark\My Documents\TibcoGI\addins@
+@C:\TibcoGI\addins@
 
-Once copied the widgets should reside in the following directory:
+Once copied the widgets would reside in the following directory:
 
-@C:\Documents and Settings\Mark\My Documents\TibcoGI\addins\intalio-ajax-widgets@
-
-You will need to close GI Builder if it's currently open.
+@C:\TibcoGI\addins\intalio-ajax-widgets@
 
 h2. Enabling the Widgets
+
+If you just installed the widgets and GI builder is currently open, then close 
+GI Builder first.
 
 Launch GI Builder then open the project menu, *Project > Project Settings...* 
 then select *Add-ins*.  Check the checkbox to the left of the *Intalio Widgets* 
