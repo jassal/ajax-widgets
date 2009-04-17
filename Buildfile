@@ -3,7 +3,7 @@
 gem "buildr", ">=1.2.4"
 
 # Keep this structure to allow the build system to update version numbers.
-VERSION_NUMBER = "6.0.0.14-SNAPSHOT"
+VERSION_NUMBER = "6.0.0.14"
 NEXT_VERSION = "6.0.0.013"
 
 require "find"
@@ -21,7 +21,7 @@ define "intalioajax-addins" do
   project.version = VERSION_NUMBER
   project.group = "com.intalio.bpms.ajax"
 
-  resources.from(_('.')).exclude('Buildfile').exclude('prototypes/simple/**').exclude('installaddins.rb')
+  resources.from('widgets')
 
   #Zip things up
   package(:zip).include resources.target, :as=>'intalioajax-addins'
