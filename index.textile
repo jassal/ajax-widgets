@@ -15,5 +15,7 @@ h2. Key Features
 * Integrated 'required' indicator.
 * Intelligent drag and drop.
 
+h2. Screenshot
+
 !screenshots/demo.png!
 
