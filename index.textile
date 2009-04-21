@@ -9,11 +9,11 @@ within a business process.
 
 h2. Key Features
 
-Fieldset object for easy form section creation.
-Integrated help image with tooltip.
-Integrated error image and text message.
-Integrated 'required' indicator.
-Intelligent drag and drop.
+* Fieldset object for easy form section creation.
+* Integrated help image with tooltip.
+* Integrated error image and text message.
+* Integrated 'required' indicator.
+* Intelligent drag and drop.
 
 !screenshots/demo.png!
 
