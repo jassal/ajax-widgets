@@ -22,7 +22,7 @@ img {
 
 pre, code {
   font-family: "DejaVu Sans Mono", "Courier New", "Courier";
-  /* font-size: 11pt; */
+  font-size: 11pt;
 }
 pre {
   margin: 0.3em 0 0.3em 0.9em;
@@ -414,11 +414,11 @@ ul#login-state li.first {
   text-decoration:    none;
 }
 
-code#xsd-form-gen {
-  font-size: 8pt;   
-  line-height: 1em;
+pre.xsd-form-gen {
+  font-size: 8pt;
 }
 
-img#black-border {
+img.black-border {
   border: 1px solid black;   
 }
+
