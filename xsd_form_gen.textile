@@ -3,15 +3,14 @@ title: XSD Based Form Generation
 layout: default
 ---
 
-Intalio Designer can use an exiting XSD to automatically generate an Ajac form.  
-The generated form will be a "best try".  It may not always generate the 
-perfect form you had in mind.  But most of the time it will be a good starting 
+Intalio Designer can use an exiting XSD to automatically generate an Ajax form.  
+The generated form will be a _*best try*_.  It may not always generate the 
+perfect form you had in mind, but most of the time it will be a good starting 
 point.
 
-Simple XSD snippit:
+Here's a simple XSD snippit and the resulting form.
 
 <pre class="xsd-form-gen">
-@
 <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
@@ -24,10 +23,9 @@ Simple XSD snippit:
     </xs:sequence>
   </xs:complexType>
 </xs:element>
-@
 </pre>
 
-This generates the following form:
-
 !screenshots/simple-xsd-form-gen.png!
+
+The @<annotation>@ element is optional and is used to render the form label.
 
