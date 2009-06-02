@@ -10,7 +10,7 @@ be a good starting point.
 
 Here's a simple XSD snippit and the resulting form.
 
-bc. <xs:element name="Name">
+bc.[xsd-form-gen] <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
       <xs:element type="xs:string" name="first-name" minOccurs="0">
