@@ -27,5 +27,12 @@ Here's a simple XSD snippit and the resulting form.
 
 !screenshots/simple-xsd-form-gen.png!
 
-The @<annotation>@ element is optional and is used to render the form label.
+The @<annotation>@ element is optional and is used to render the form label.  
+As you can see the rest of the XSD is typical.
+
+In order to generate the form from an existing schema, first, open up the 
+schema in the process explorer.  Then right click the schema element that you
+would like to use as the basis as your form, and choose New :: AJAX Form.
+
+!screenshots/right-click-xsd.png!
 
