@@ -8,9 +8,10 @@ The generated form will be a "best try".  It may not always generate the
 perfect form you had in mind.  But most of the time it will be a good starting 
 point.
 
-Here's a simple XSD snippit:
+Simple XSD snippit:
 
 <pre class="xsd-form-gen">
+<code>
 <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
@@ -23,8 +24,10 @@ Here's a simple XSD snippit:
     </xs:sequence>
   </xs:complexType>
 </xs:element>
+</code>
 </pre>
 
-This will generate the following form:
+This generates the following form:
 
+!screenshots/simple-xsd-form-gen.png!
 
