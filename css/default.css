@@ -414,7 +414,7 @@ ul#login-state li.first {
   text-decoration:    none;
 }
 
-pre.xsd-form-gen {
+pre.xsd-form-gen, code.xsd-form-gen {
   font-size: 8pt;
 }
 
