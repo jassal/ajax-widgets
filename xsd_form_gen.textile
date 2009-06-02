@@ -23,7 +23,7 @@ bc(#xsd-form-gen). <xs:element name="Name">
   </xs:complexType>
 </xs:element>
 
-!screenshots/simple-xsd-form-gen.png!{border: 1px solid black}
+!screenshots/simple-xsd-form-gen.png{border: 1px solid black}!
 
 The @<annotation>@ element is optional and is used to render the form label.  
 As you can see the rest of the schema is typical.
