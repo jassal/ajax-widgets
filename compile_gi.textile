@@ -3,3 +3,9 @@ title: Compile GI Builder
 layout: default
 ---
 
+The Intalio Ajax widgets require a slightly modified version of General Interface.  The first thing that needs to be done is to create this custom GI build.  In order to do this, you'll first need to 
+
+You can check out GI from their svn:
+
+svn co http://gi.tibco.com/svn/tags/gi/3.7.0
+
