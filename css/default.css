@@ -22,7 +22,7 @@ img {
 
 pre, code {
   font-family: "DejaVu Sans Mono", "Courier New", "Courier";
-  font-size: 8pt;
+  font-size: 11pt;
 }
 pre {
   margin: 0.3em 0 0.3em 0.9em;
@@ -32,6 +32,10 @@ pre {
   white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
 }
 pre br { display: none; }
+
+pre#xsd-form-gen {
+  font-size: 24pt;   
+}
 
 h1, h2, h3 {
   padding: 0;
