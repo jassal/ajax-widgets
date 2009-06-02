@@ -6,9 +6,9 @@ layout: default
 If you have an existing XSD, Intalio Designer can use this XSD to automatically
 generate a form.  The generated form will be a "best try".  It may not always 
 generate the perfect form you had in mind. But most of the time it will be a 
-good starting point.
+good starting point. ok.
 
-<pre>  
+<pre>
 <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
