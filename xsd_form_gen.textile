@@ -10,7 +10,7 @@ be a good starting point.
 
 Here's a simple XSD snippit and the resulting form.
 
-bc.[xsd-form-gen] <xs:element name="Name">
+bc(#xsd-form-gen). <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
       <xs:element type="xs:string" name="first-name" minOccurs="0">
@@ -23,7 +23,7 @@ bc.[xsd-form-gen] <xs:element name="Name">
   </xs:complexType>
 </xs:element>
 
-!screenshots/simple-xsd-form-gen.png!
+!screenshots/simple-xsd-form-gen.png!{border: 1px solid black}
 
 The @<annotation>@ element is optional and is used to render the form label.  
 As you can see the rest of the schema is typical.
