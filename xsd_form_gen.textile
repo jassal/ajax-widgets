@@ -11,7 +11,7 @@ point.
 Simple XSD snippit:
 
 <pre class="xsd-form-gen">
-<code>
+@
 <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
@@ -24,7 +24,7 @@ Simple XSD snippit:
     </xs:sequence>
   </xs:complexType>
 </xs:element>
-</code>
+@
 </pre>
 
 This generates the following form:
