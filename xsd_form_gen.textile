@@ -1,5 +1,5 @@
 ---
-title: One Minute Form
+title: XSD Based Form Generation
 layout: default
 ---
 
@@ -8,7 +8,7 @@ generate a form.  The generated form will be a "best try".  It may not always
 generate the perfect form you had in mind. But most of the time it will be a 
 good starting point.
 
-<code>
+<pre>
 <?xml version='1.0' encoding='UTF-8'?>
 <xs:schema 
   elementFormDefault="unqualified"
@@ -30,4 +30,5 @@ good starting point.
   </xs:element>
   
 </xs:schema>
-</code>
+</pre>
+
