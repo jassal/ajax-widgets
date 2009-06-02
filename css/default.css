@@ -33,7 +33,7 @@ pre {
 }
 pre br { display: none; }
 
-pre#xsd-form-gen {
+pre.xsd-form-gen {
   font-size: 24pt;   
 }
 

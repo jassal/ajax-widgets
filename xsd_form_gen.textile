@@ -8,7 +8,7 @@ generate a form.  The generated form will be a "best try".  It may not always
 generate the perfect form you had in mind. But most of the time it will be a 
 good starting point.
 
-<pre>
+<pre class="xsd-form-gen">
 <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
