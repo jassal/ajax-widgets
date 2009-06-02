@@ -414,11 +414,11 @@ ul#login-state li.first {
   text-decoration:    none;
 }
 
-pre.xsd-form-gen, code.xsd-form-gen {
+pre.small-format, code.small-format {
   font-size: 8pt;
 }
 
-img.black-border {
+img.border {
   border: 1px solid black;   
 }
 
