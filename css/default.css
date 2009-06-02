@@ -22,12 +22,12 @@ img {
 
 pre, code {
   font-family: "DejaVu Sans Mono", "Courier New", "Courier";
-  font-size: 11pt;
+  font-size: 10pt;
 }
 pre {
   margin: 0.3em 0 0.3em 0.9em;
   padding: 0;
-  line-height: 1.8em;
+  /* line-height: 1.8em; */
   white-space: pre-wrap;       /* css-3 */
   white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
 }
@@ -413,5 +413,4 @@ ul#login-state li.first {
   background-color:   #1994d8;
   text-decoration:    none;
 }
-
 
