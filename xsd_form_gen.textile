@@ -5,7 +5,7 @@ layout: default
 
 Intalio Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not always generate the perfect form you had in mind, but most of the time it will be a good starting point.
 
-Here's a simple XSD snippet and the resulting form.  (Full XSD "here (Name.xsd)":files/Name.xsd.)
+Here's a simple XSD snippet and the resulting form.  Download the XSD "here (Name.xsd)":files/Name.xsd.
 
 pre(small-format). <xs:element name="Name">
   <xs:complexType>
@@ -24,6 +24,8 @@ pre(small-format). <xs:element name="Name">
 
 The @(small-format)<annotation>@ element is optional and is used to render the form label.  As you can see the rest of the schema is typical.
 
+h2. Creating a Form From An Existing Schema
+
 In order to generate the form from an existing schema, first, open up the schema in the *Process Explorer*.  Then right click the schema element that you would like to use as the basis as your form, then choose *New :: AJAX Form*. 
 
 !(shot-border)screenshots/right-click-xsd.png!
@@ -36,4 +38,6 @@ If you wish you can choose a separate input and output schema.  If this option i
 
 h2. GI Mappings
 
-When the form is auto-generated from the schema
+When the form is auto-generated from the schema, the initial GI mappings will be generated and saved as @(small-format)rules/UserSchemaMapping.xml@.  You can double-click this file to edit the mappings if you wish.
+
+*{color: red}Note:* If you alter the form then typically you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is creating from a schema.
