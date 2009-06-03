@@ -7,7 +7,9 @@ Intalio Designer can use an existing XSD to automatically generate an Intalio|Aj
 
 Here's a simple XSD snippet and the resulting form.  Download the XSD "here (Name.xsd)":files/Name.xsd.
 
-pre(small-format). <xs:element name="Name">
+<div id="code-block">
+pre(small-format).. 
+<xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
       <xs:element type="xs:string" name="first-name" minOccurs="0">
@@ -19,6 +21,7 @@ pre(small-format). <xs:element name="Name">
     </xs:sequence>
   </xs:complexType>
 </xs:element>
+</div>
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
