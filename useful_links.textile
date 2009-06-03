@@ -1,0 +1,7 @@
+---
+title: Useful Links
+layout: default
+---
+
+"3.6 GI Api Docs":http://developer.tibco.com/resources/gi/3_6/api/html/index.html
+
