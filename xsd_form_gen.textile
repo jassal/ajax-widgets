@@ -40,4 +40,7 @@ h2. GI Mappings
 
 When the form is auto-generated from the schema, the initial GI mappings will be generated and saved as @(small-format)rules/UserSchemaMapping.xml@.  You can double-click this file to edit the mappings if you wish.
 
-*{color: red}Note:* If you alter the form then typically you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is creating from a schema.
+!(shot-border)screenshots/xsd-mapping-file.png!
+
+*{color: red}Note:* If you add or remove fields to the form or renamed fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is created from a schema.
+
