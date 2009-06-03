@@ -1,0 +1,20 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema elementFormDefault="unqualified"
+  targetNamespace="http://www.intalio.com/gi/Name"
+  xmlns:us="http://www.intalio.com/UserSchema"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+  <xs:element name="Name">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="first-name" minOccurs="0">
+          <xs:annotation us:label="First name"/>
+        </xs:element>
+        <xs:element type="xs:string" name="last-name" minOccurs="0">
+          <xs:annotation us:label="Last name"/>
+        </xs:element>        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
