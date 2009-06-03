@@ -3,13 +3,11 @@ title: XSD Based Form Generation
 layout: default
 ---
 
-Intalio Designer can use an existing XSD to automatically generate an 
-Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not 
+Intalio Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not 
 always generate the perfect form you had in mind, but most of the time it will 
 be a good starting point.
 
-Here's a simple XSD snippet and the resulting form.  (Full XSD 
-"here (Name.xsd)":files/Name.xsd.)
+Here's a simple XSD snippet and the resulting form.  (Full XSD "here (Name.xsd)":files/Name.xsd.)
 
 pre(small-format). <xs:element name="Name">
   <xs:complexType>
