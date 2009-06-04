@@ -21,6 +21,10 @@ If you wish to create a new radio button Field then simply drop the radio button
 
 The key to remember is this.  If you drop an Intalio|AJAX input widget into an existing field then it will add the core input object by itself.  If you drop it onto an empty part of the canvas then it will create a Field object, which will contain the core input oject you are dropping.
 
+You can also mix input types within the same Field object.  For instance, you can drop a *Date Picker* to create the initial Field object, then drop *Time Picker* onto the same Field to create the following.
+
+!screenshots/dnd-mixed.png!
+
 h2. Adding Matrix Columns
 
 Matrix columns work in a similar fashion.  To demonstrate this feature, first drop a Intalio|AJAX *Matrix Table* object to the canvas.  
@@ -32,4 +36,8 @@ Next, drop a Intalio|AJAX *Text Input* object onto the matrix.  It will automati
 !screenshots/dnd-matrix-more.png!
 
 *{color: red}Note:* Certain input objects cannot be easily added to a matrix, such as the *Color Picker* and *Slider*.  Also be aware that the default width of the matrix may need to be expanded if you add several columns.
+
+h2. Layout Direction
+
+
 
