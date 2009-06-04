@@ -1,0 +1,13 @@
+---
+title: Using the Custom Widgets
+layout: default
+---
+
+The best way to learn about the widgets is to jump right in and experiment with them.  Creating a new Intalio|AJAX form within Designer is simple.  
+
+First, create a new project if you haven't already.  To do this, right click in the *Process Explorer* and choose *New :: Intalio|Designer Business Process Project*.  Enter your project name and click *Finish*.
+
+Next, right click your new project in the *Process Explorer* and choose *New :: AJAX Form*.  Enter your form name and click *Finish*.  This will generate a new empty form for you to experiment with.  The form will actually not be completely empty.  It will have a default header along the top and an empty fieldset.  A fieldset is basically a form section.
+
+!(shot-border)screenshots/new-empty-form.png!
+
