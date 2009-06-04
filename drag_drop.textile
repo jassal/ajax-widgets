@@ -41,8 +41,9 @@ h2. Layout Direction
 
 By default when more than one input object is within the same field, the layout is generally horizontal.  That is, they will be added going across.  If you prefer vertical layout, then select the field object and choose *Vertical* for the *Layout :: Direction* property.
 
-!screenshots/dnd-layout-example.png!
+!screenshots/dnd-layout-direction.png!
 
 *{color: red}Note:* Radio buttons and checkboxes have their layout direction automatically set to vertical by default.  But this can be easily changed in the same manner by adjusting the layout property.
 
+!screenshots/dnd-layout-example.png!
 
