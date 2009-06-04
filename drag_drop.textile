@@ -31,5 +31,5 @@ Next, drop a Intalio|AJAX *Text Input* object onto the matrix.  It will automati
 
 !screenshots/dnd-matrix-more.png!
 
-Note that certain objects cannot be added to a matrix, such as the color picker.  Also be aware that the default width of the matrix may need to be expanded if you add several columns.
+*{color: red}Note:* Certain input objects cannot be easily added to a matrix, such as the *Color Picker* and *Slider*.  Also be aware that the default width of the matrix may need to be expanded if you add several columns.
 
