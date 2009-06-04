@@ -21,5 +21,5 @@ Lets add some input elements.  Drag and Drop a *Text Input* object from the *Com
 
 It's probably good to rename the field labels.  The easiest way is to select the object in the *Component Hierarchy*, then change the *Label Test* property in the *Properties Editor* pallet.  For example, we could rename the text input label to *Name*.
 
-!(shot-border)screenshots/one-minute-hierachy.png! !(shot-border)screenshots/one-minute-rename.png!
+!(shot-border)screenshots/one-minute-hierarchy.png! !(shot-border)screenshots/one-minute-rename.png!
 
