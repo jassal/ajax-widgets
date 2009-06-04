@@ -15,7 +15,11 @@ The Intalio|AJAX custom widgets are implimented as a set of GI addins.  They wil
 
 !(shot-border)screenshots/addins-widgets.png!
 
-Lets add some input elements.  Drag and Drop a *Text Input* object from the Component Library to the canvas.  Drop it inside the fieldset.  Do the same thing with a *Date Picker* and then a *Select* object.  Your form should now look like this.
+Lets add some input elements.  Drag and Drop a *Text Input* object from the *Component Library* to the canvas.  Drop it inside the fieldset.  Do the same thing with a *Date Picker* and then a *Select* object.  Your form should now look like this.
 
 !(shot-border)screenshots/one-minute-initial.png!
+
+It's probably good to rename the field labels.  The easiest way is to select the object in the *Component Hierarchy*, then change the *Label Test* property in the *Properties Editor* pallet.  For example, we could rename the text input label to *Name*.
+
+!(shot-border)screenshots/one-minute-hierachy.png! !(shot-border)screenshots/one-minute-rename.png!
 
