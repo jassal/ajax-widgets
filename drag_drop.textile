@@ -1,0 +1,35 @@
+---
+title: Intelligent Drag and Drop
+layout: default
+---
+
+For all of these examples, please use the Intalio|AJAX widgets and not the core General Interface widgets.  The Intalio|AJAX widgets are located in the *Component Libraries* pallet under *Addins :: IntalioWidgets*.
+
+When an Intalio|AJAX widget is dropped onto the canvas, it determines what is actually placed on the canvas.  This is best descibed in detail with an example.  If you drag and drop an Intalio|AJAX *Radio Button* object onto a Fieldset object, it will look like this.
+
+!(shot-border)screenshots/dnd-radio-initial.png!
+
+This is what we call a Field object.  It contains a label and some other useful properties for the input object, which in this case is a radio group of 2 buttons.
+
+If you then drop another Intalio|AJAX *Radio Button* at this same location, it will simply add another radio button to this Field.
+
+!(shot-border)screenshots/dnd-radio-more.png!
+
+If you wish to create a new radio button Field then simply drop the radio button a little further down to an empty part of the canvas.
+
+!(shot-border)screenshots/dnd-radio-fields.png!
+
+The key to remember is this.  If you drop an Intalio|AJAX input widget into an existing field then it will add the core input object by itself.  If you drop it onto an empty part of the canvas then it will create a Field object, which will contain the core input oject you are dropping.
+
+h2. Adding Matrix Columns
+
+Matrix columns work in a similar fashion.  To demonstrate this feature, first drop a Matrix Table* object to the canvas.  
+
+!(shot-border)screenshots/dnd-matrix-initial.png!
+
+Next, drop a *Text Input* object onto the matrix.  It will automatically add a new columnm to the matrix as a text input column.
+
+!(shot-border)screenshots/dnd-matrix-more.png!
+
+Note that certain objects cannot be added to a matrix, such as the color picker.
+

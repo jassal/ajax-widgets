@@ -3,7 +3,7 @@ title: One Minute Form
 layout: default
 ---
 
-The best way to learn about the widgets is to jump right in and experiment.  Creating a new Intalio|AJAX form within Designer is fast and easy.  
+Creating a new Intalio|AJAX form within Designer is fast and easy.  The best way to learn about the widgets is to jump right in and experiment.
 
 First, create a new project if you haven't already.  To do this, right click in the *Process Explorer* and choose *New :: Intalio|Designer Business Process Project*.  Enter your project name and click *Finish*.
 
@@ -19,7 +19,13 @@ Lets add some input elements.  Drag and Drop a *Text Input* object from the *Com
 
 !(shot-border)screenshots/one-minute-initial.png!
 
-It's probably good to rename the field labels.  The easiest way is to select the object in the *Component Hierarchy*, then change the *Label Test* property in the *Properties Editor* pallet.  For example, we could rename the text input label to *Name*.
+It's probably good to rename the field labels.  The easiest way is to select the object in the *Component Hierarchy*, then change the *Label Text* property in the *Properties Editor* pallet.  For example, we could rename the *textinput-field* label to *Name*.
 
-!(shot-border)screenshots/one-minute-hierarchy.png! !(shot-border){vertical-align: middle}screenshots/one-minute-rename.png!
+!(shot-border)screenshots/one-minute-hierarchy.png! !(shot-border)screenshots/one-minute-rename.png!
+
+Next, change the *Label Text* property for the date picker to something like *Departure date* and the label for the select to *Vehicle*.  
+
+!(shot-border)screenshots/one-minute-final.png!
+
+This is a simple form but shows the basics of using the Intalio|AJAX custom widgets.
 

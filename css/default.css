@@ -420,5 +420,6 @@ pre.small-format, code.small-format {
 
 img.shot-border {
   border: 1px solid black;   
+  vertical-align: top;
 }
 
