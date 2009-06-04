@@ -19,4 +19,3 @@ Lets add some input elements.  Drag and Drop a *Text Input* object from the Comp
 
 !(shot-border)screenshots/one-minute-initial.png!
 
-
