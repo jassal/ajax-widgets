@@ -23,7 +23,7 @@ It's probably good to rename the field labels.  The easiest way is to select the
 
 !(shot-border)screenshots/one-minute-hierarchy.png! !(shot-border)screenshots/one-minute-rename.png!
 
-Next, change the *Label Text* property for the date picker to something like *Departure date* and the label for the select to *Vehicle*.  
+Next, change the *Label Text* property for the date picker to something like *Departure date* and the label for the select to *Vehicle*.  You can then continue to customize the form such as marking inputs as required, and setting the form header and fieldset labels to something more appropriate.
 
 !(shot-border)screenshots/one-minute-final.png!
 
