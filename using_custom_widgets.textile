@@ -11,3 +11,6 @@ Next, right click your new project in the *Process Explorer* and choose *New :: 
 
 !(shot-border)screenshots/new-empty-form.png!
 
+The Intalio|AJAX custom widgets are implimented as a set of GI addins.  They will appear in your GI *Component Libraries* pallet under *Addins :: IntalioWodgets*.
+
+!(shot-border)screenshots/addins-widgets.png!
