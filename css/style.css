@@ -8,8 +8,8 @@ img.shot-border {
 }
 
 pre.xml-format {
-  /*border: 1px solid rgb(100,100,100);*/ 
+  border: 1px solid rgb(200,200,200); 
   background-color: rgb(240,240,240);
-  padding-left: 1em;
+  padding: 1em;
 }
 
