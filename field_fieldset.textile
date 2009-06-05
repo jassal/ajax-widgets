@@ -35,3 +35,9 @@ If you wish to disable the validation image and text then set the *Validation ::
 
 The required indicator is s small red asterisk displayed between the label and the input object.  Its automatically displayed whenever a field has at least one required input object.
 
+h2. Using Field Objects
+
+Intalio|AJAX Field objects are used by simply dragging and dropping the Intalio|AJAX input widgets to the canvas.  The input widgets are objects such as Checkbox, Color Picker, Date Picker, Matrix Table, Radio Button, Select, Text Input, etc...  Be sure to use the Intalio version of these widgets and not the core GI input objects.
+
+Each time you drop one of these Intalio input widgets ointo the canvas, you are actually dropping a Field object.  Please see "Intelligent Drang and Drop":drag_drop.html for more information on this functionality.
+
