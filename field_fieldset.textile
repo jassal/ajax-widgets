@@ -7,7 +7,7 @@ An Intalio|AJAX Fieldset object is basically a section for your form.  It logica
 
 !screenshots/fieldset-example.png!
 
-You can also set the *CSS Class* property if you wish to change the look of the fieldset.  You can add your own CSS file or edit the existing file @css/style.css@.
+You can also set the *CSS Class* property if you wish to change the look of the fieldset.  You can add your own CSS file or edit the existing file @(small-format)css/style.css@.
 
 h2. Field Object
 
@@ -27,7 +27,7 @@ The help image is by default turned off.  To turn on the help image, simply set 
 The validation message works in the same manner.  If the *Validation :: Text/HTML* is set to a non-empty value then it will be displayed.
 
 !screenshots/field-validation.png!
-!screenshots/field-validation-properties.png!
+!screenshots/field-validation-props.png!
 
 The validation image and validation text will only be displayed if the core input object has its *Required* value set to *Required*.  As well, it must fail validation for the validation image and text to be displayed.  Once an input is valid the validation image and text will disappear.
 
