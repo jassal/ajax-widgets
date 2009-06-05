@@ -54,7 +54,8 @@ h2 {
 }
 
 h3 {
-  font-size: 0.8em;
+  font-size: 1.0em;
+  padding-bottom: 0.2em;
 }
 
 blockquote {
@@ -63,6 +64,10 @@ blockquote {
   margin-left: 0.3em;
   margin-right: 0;
   border-left: 1px solid #3c78b5;
+}
+
+.todo {
+  color: #333333;
 }
 
 ul { 
@@ -210,7 +215,6 @@ ol.toc li ol.toc {
   margin: 0;
   padding-left: 0.9em;
 }
-
 
 #content p.tip, #content p.note {
   margin: 0.9em 0 0 0;
@@ -414,12 +418,4 @@ ul#login-state li.first {
   text-decoration:    none;
 }
 
-pre.small-format, code.small-format {
-  font-size: 8pt;
-}
-
-img.shot-border {
-  border: 1px solid black;   
-  vertical-align: top;
-}
 

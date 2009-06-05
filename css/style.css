@@ -1,0 +1,9 @@
+pre.small-format, code.small-format {
+  font-size: 8pt;
+}
+
+img.shot-border {
+  border: 1px solid black;   
+  vertical-align: top;
+}
+
