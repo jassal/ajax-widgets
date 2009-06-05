@@ -1,9 +1,9 @@
 ---
-title: Field and Fieldset
+title: Fieldset and Field
 layout: default
 ---
 
-An Intalio|AJAX Fieldset object is basically a section for your form.  It logically groups together elements.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas.  It's rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.  
+An Intalio|AJAX Fieldset object is basically a section for your form.  It logically groups together elements.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas and then drop other Intalio|AJAX input widget inside.  It's rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.  
 
 !screenshots/fieldset-example.png!
 
@@ -27,11 +27,15 @@ The help image is by default turned off.  To turn on the help image, simply set 
 The validation message works in the same manner.  If the *Validation :: Text/HTML* is set to a non-empty value then it will be displayed.
 
 !screenshots/field-validation.png!
-!screenshots/field-validation-props.png!
+!(shot-border)screenshots/field-validation-props.png!
 
 The validation image and validation text will only be displayed if the core input object has its *Required* value set to *Required*.  As well, it must fail validation for the validation image and text to be displayed.  Once an input is valid the validation image and text will disappear.
 
 !screenshots/field-validation-valid.png!
+
+The validation is real-time.  For instance, for a text input the input is validated with each change to the input such as when a user enters a key stroke.  These are handled with events that are automatically added for you.
+
+!(shot-border)screenshots/field-validation-events.png!
 
 If you wish to disable the validation image and text then set the *Validation :: Show* property to *No* on the field properties.
 

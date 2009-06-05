@@ -5,8 +5,6 @@ layout: default
 
 Intalio|Ajax Widgets were primarily created to be used with Intalio's Designer application.  The widgets allow users to quickly create web based forms for use within a business process.
 
-For a quick introduction to using the widgets see the "One Minute Form":one_minute_form.html tutorial.
-
 h2. Key Features
 
 * Fieldset object for easy form section creation.
