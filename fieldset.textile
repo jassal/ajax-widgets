@@ -1,0 +1,34 @@
+---
+title: Field and Fieldset
+layout: default
+---
+
+The Fieldset object is basically a section for your form.  It logically groups together elements of your form.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas.  It is rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.
+
+!screenshots/fieldset-example.png!
+
+h2. Field Object
+
+The Intalio|AJAX Field object is a wrapper around the code GI input objects.  They are designed to be used within a Fieldset.  This is not required, however, and they work fine outside of a Fieldset, but you get some advanced functionality when used within a Fieldset.
+
+The Intalio|AJAX Field object is bascially 6 objects in 1.  
+
+# field label
+# help image
+# validation image
+# validation text
+# required indicator
+# core input object
+
+The help image is by default turned off.  To turn on the help image, simply set the *Help Image :: Tooltip* in the field properties.  Any non-empty value will cause the help image to be displayed.  When the user moves the mouse over the image, the text is displayed as a tooltip.
+
+You can change both images by setting their respective *Image Path* properties to another file.
+
+The validation message works in the same manner.  If the *Validation :: Text/HTML* is set to a non-empty value then it will be displayed.
+
+The validation image and validation text will only be displayed if the core input object has its *Required* value set to *Required*.  As well, it must fail validation for the validation image and text to be displayed.  Once an input is valid the validation image and text will disappear.
+
+If you wish to disable the validation image and text then set the *Validation :: Show* property to *No* on the field properties.
+
+The required indicator is s small red asterisk displayed between the label and the input object.  Its automatically displayed whenever a field has at least one required input object.
+
