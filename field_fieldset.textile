@@ -3,7 +3,7 @@ title: Fieldset and Field
 layout: default
 ---
 
-An Intalio|AJAX Fieldset object is basically a section for your form.  It logically groups together elements.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas and then drop other Intalio|AJAX input widget inside.  It's rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.  
+An Intalio|AJAX Fieldset is basically a section for your form.  It logically groups together elements.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas and then drop other Intalio|AJAX input widgets inside.  It's rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.  
 
 !screenshots/fieldset-example.png!
 
@@ -11,7 +11,7 @@ You can also set the *CSS Class* property if you wish to change the look of the 
 
 h2. Field Object
 
-The Intalio|AJAX Field object is a wrapper around the code GI input objects.  They are designed to be used within a Fieldset.  This is not required, however, and they work fine outside of a Fieldset, but you get some advanced functionality when used within a Fieldset.
+The Intalio|AJAX *Field* object is a wrapper around the core GI input objects.  They are designed to be used within a Fieldset.  This is not required, however, and they work fine outside of a Fieldset, but you get some advanced functionality when used within a Fieldset.
 
 The Intalio|AJAX Field object is bascially 6 objects in 1.  
 
@@ -33,7 +33,7 @@ The validation image and validation text will only be displayed if the core inpu
 
 !screenshots/field-validation-valid.png!
 
-The validation is real-time.  For instance, for a text input the input is validated with each change to the input such as when a user enters a key stroke.  These are handled with events that are automatically added for you.
+The validation is done in real-time.  For instance, for a text input the input is validated with each change to the input such as when a user enters a key stroke.  These are handled with events that are automatically added for you.
 
 !(shot-border)screenshots/field-validation-events.png!
 
@@ -43,7 +43,7 @@ The required indicator is a red asterisk displayed between the label and the inp
 
 h2. Using Field Objects
 
-Intalio|AJAX Field objects are used by simply dragging and dropping the Intalio|AJAX input widgets to the canvas.  The input widgets are objects such as Checkbox, Color Picker, Date Picker, Matrix Table, Radio Button, Select, Text Input, etc...  Be sure to use the Intalio version of these widgets and not the GI core input objects.
+Intalio|AJAX Field objects are used by simply dragging and dropping the Intalio|AJAX input widgets into a Fieldset.  The input widgets are objects such as Checkbox, Color Picker, Date Picker, Matrix Table, Radio Button, Select, Text Input, etc...  Be sure to use the Intalio version of these widgets and not the GI core input objects.
 
-Each time you drop one of these Intalio input widgets ointo the canvas, you are actually dropping a Field object.  Please see "Intelligent Drang and Drop":drag_drop.html for more information on this functionality.
+Each time you drop one of these Intalio|AJAX input widgets onto the canvas, you are actually dropping a Field object.  Please see "Intelligent Drag and Drop":drag_drop.html for more information on this functionality.
 

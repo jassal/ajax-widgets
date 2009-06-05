@@ -7,7 +7,7 @@ Intalio Designer can use an existing XSD to automatically generate an Intalio|Aj
 
 Here's a simple XSD snippet and the resulting form.  
 
-pre(small-format). <xs:element name="Name">
+pre(xml-format,small-format). <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
       <xs:element type="xs:string" name="first-name" minOccurs="0">

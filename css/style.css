@@ -7,3 +7,7 @@ img.shot-border {
   vertical-align: top;
 }
 
+pre.xml-format {
+  border: 1px solid rgb(50,50,50); 
+}
+
