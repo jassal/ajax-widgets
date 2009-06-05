@@ -3,9 +3,11 @@ title: Field and Fieldset
 layout: default
 ---
 
-An Intalio|AJAX Fieldset object is basically a section for your form.  It logically groups together elements.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas.  It's rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.  You can also set the *CSS Class* property if you wish to change the look of the fieldset.
+An Intalio|AJAX Fieldset object is basically a section for your form.  It logically groups together elements.  Using the Intalio|AJAX Fieldset is quite easy.  You simply drop it onto the canvas.  It's rendered with a light gray border and a default *[Fields]* caption.  You can easily change the caption by setting the fieldset *Title* property.  
 
 !screenshots/fieldset-example.png!
+
+You can also set the *CSS Class* property if you wish to change the look of the fieldset.  You can add your own CSS file or edit the existing file @css/style.css@.
 
 h2. Field Object
 
