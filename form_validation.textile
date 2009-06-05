@@ -1,0 +1,11 @@
+---
+title: Form Validation
+layout: default
+---
+
+There are 3 possible stages of validation.  The initial stage begins when the form designer sets an inputs Required property to Required.  This will typically cause the field to visually indicate to the user tha the field is not optional.  As the user edits an input the validation display may change to indicate the input is valid or not.
+
+If the user then tries to submit a form that is incomplete, the form will validate itself and notify the user with a javascript popup that fields are incomplete.  This happens automatically when any field is required on a form.  If no fields are required then no form validation will be done.
+
+The 3rd stage is server-side schema validation.  This is more of a security measure.  When data is received by the server its validated against the schema data types to ensure it contains the appropriate data.  Its possible to add restrictions and annotations to the schema so that the form data is further restricted and validated.
+

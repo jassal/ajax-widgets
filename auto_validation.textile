@@ -1,7 +1,0 @@
----
-title: Automatic Validation
-layout: default
----
-
-
-
