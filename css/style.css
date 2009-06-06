@@ -10,10 +10,9 @@ pre.xml-format {
 
 img {
   vertical-align: top;   
-  border: 1px solid rgb(200,200,200);
 }
 
 img.shot-border {
-  /* border: 1px solid rgb(200,200,200); */
+  border: 1px solid rgb(200,200,200);
 }
 

@@ -3,7 +3,11 @@ title: Miscellaneous
 layout: default
 ---
 
-When used with Intalio|Designer you have the option of preview and editing the Intalio|AJAX form with the browser of your choice.  By double-clicking the form it will be opened up for editing inside designer.  To use another browser, you can right click the form and select *Edit with...* or *Preview with...* and choose the browser of your choice.
+When used with Intalio|Designer you have the option of preview and editing the Intalio|AJAX form with the browser of your choice.  By double-clicking the form it will be opened up for editing inside designer.  This is the default.  To use another browser, you can right click the form and select *Edit with...* or *Preview with...* and choose the browser of your choice.
 
 !screenshots/edit-with.png!
+
+This list of browsers is determined from the Designer preferences.  You modify these prefs by selecting *Window :: Preferences* and then *General :: Web Browser*.
+
+!screenshots/browsers.png!
 
