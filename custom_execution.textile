@@ -3,9 +3,7 @@ title: Custom Code Execution
 layout: default
 ---
 
-Intalio|AJAX is based on General Interface, so any custom Javascript you create can easily be added to your application.  But once your application is deployed the form submit buttons are automatically added by the server.
-
-To allow you to add custom code before the form is submitted we have created the following hooks.
+Intalio|AJAX is based on General Interface, so any custom Javascript you create can easily be added to your application.  But once your application is deployed the form submit buttons are automatically added by the server.  To allow you to add custom code before the form is submitted we have created the following hooks.
 
 |_. Action|_. Function Name|
 |Start|@window.intalioPreStart@|
