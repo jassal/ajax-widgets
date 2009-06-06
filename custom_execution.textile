@@ -17,11 +17,11 @@ One use of this would be to call a webservice just before the form is submitted.
 
 As a simple example, the following would open an alert just before someone starts a process.
 
-!screenshots/code-alert.png!
+!(shot-border)screenshots/code-alert.png!
 
 If your function returns a non-null value then that value will be used to generate an error message and the form will not be submitted.  This allows you to conditionally cancel the form submission in case of a problem.
 
-!screenshots/code-error.png!
+!(shot-border)screenshots/code-error.png!
 
 When your function returns nothing or returns null, then the form will be submitted normally.
 

@@ -3,14 +3,14 @@ title: Welcome
 layout: default
 ---
 
-Intalio|Ajax Widgets were primarily created to be used with Intalio's Designer application.  The widgets allow users to quickly create web based forms for use within a business process.
+Intalio|Ajax Widgets were primarily created to be used within Intalio|Designer application.  The widgets allow users to quickly create web based forms for use within a business process.
 
 h2. Key Features
 
 * Fieldset object for easy form section creation.
 * Integrated help image with tooltip.
-* Integrated error image and text message.
-* Integrated 'required' indicator.
+* Integrated validation image and text message.
+* Automatic required indicator.
 * Intelligent drag and drop.
 
 h2. Screenshot
