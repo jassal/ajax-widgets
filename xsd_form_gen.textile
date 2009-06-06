@@ -5,8 +5,6 @@ layout: default
 
 Intalio Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not always generate the perfect form you had in mind, but it should be a good starting point.
 
-Here's a simple XSD snippet and the resulting form.  
-
 pre(small-format xml-format). <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
@@ -19,6 +17,8 @@ pre(small-format xml-format). <xs:element name="Name">
     </xs:sequence>
   </xs:complexType>
 </xs:element>
+
+The above XSD snippet will generate the following form.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
