@@ -1,15 +1,18 @@
-pre.small-format, code.small-format {
-  font-size: 8pt;
+pre {
+  font-size: 9pt;    
+}
+
+pre.xml-format {
+  margin: 0em;
+  border: 1px solid rgb(200,200,200); 
+  background-color: rgb(240,240,240);
+}
+
+img {
+  vertical-align: top;   
 }
 
 img.shot-border {
   border: 1px solid rgb(50,50,50);
-  vertical-align: top;
-}
-
-pre.xml-format {
-  border: 1px solid rgb(200,200,200); 
-  background-color: rgb(240,240,240);
-  margin: 0em;
 }
 

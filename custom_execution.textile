@@ -8,12 +8,12 @@ Intalio|AJAX is based on General Interface, so any custom Javascript you create 
 To allow you to add custom code before the form is submitted we have created the following hooks.
 
 |_. Action|_. Function Name|
-|Start|@window.intalioPreStart()@|
-|Save|@window.intalioPreSave()@|
-|Dismiss|@window.intalioPreDismiss()@|
-|Claim|@window.intalioPreClaim()@|
-|Revoke|@window.intalioPreRevoke()@|
-|Complete|@window.intalioPreComplete()@|
+|Start|@window.intalioPreStart@|
+|Save|@window.intalioPreSave@|
+|Dismiss|@window.intalioPreDismiss@|
+|Claim|@window.intalioPreClaim@|
+|Revoke|@window.intalioPreRevoke@|
+|Complete|@window.intalioPreComplete@|
 
 One use of this would be to call a webservice just before the form is submitted.  Then continue or cancel the form submition depending on the results of the web service call.
 
