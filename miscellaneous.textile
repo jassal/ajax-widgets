@@ -7,7 +7,13 @@ When used with Intalio|Designer you have the option of preview and editing the I
 
 !screenshots/edit-with.png!
 
-This list of browsers is determined from the Designer preferences.  You modify these prefs by selecting *Window :: Preferences* and then *General :: Web Browser*.
+This list of browsers is determined from the Designer preferences.  You can modify these prefs by selecting *Window :: Preferences* and then *General :: Web Browser*.
 
 !screenshots/browsers.png!
+
+h2. Form Height Limitations
+
+The root block of a form has a default height of *100%*.   This doesn't work well if the immediate children of the root block use *Absolute* positioning.  In absolute positioning you must define the exact XY location as well as the fixed height and width of an object.  If the root block's children use absolute positioning then you must also define the root block with the apporpriate fixed height instead of *100%*.
+
+As an example, let's say you have 2 blocks each absolutely positioned, and both with a height of 350.  You should set your root block height to *700*.  This will ensure they are rendered properly once deployed.
 
