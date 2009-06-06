@@ -18,13 +18,11 @@ pre(xml-format). <xs:element name="Name">
   </xs:complexType>
 </xs:element>
 
-The above XSD snippet will generate the following form.
+The above XSD snippet will generate the following form.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
 The @<annotation>@ element is optional and is used to render the form label.  As you can see the rest of the schema is typical.
-
-You can download the XSD "here (Name.xsd)":files/Name.xsd.
 
 h2. Creating a Form From An Existing Schema
 
