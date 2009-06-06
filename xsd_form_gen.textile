@@ -18,7 +18,7 @@ pre(xml-format). <xs:element name="Name">
   </xs:complexType>
 </xs:element>
 
-The above XSD snippet will generate the following form.  The @<annotation>@ element is optional and is used to render the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
+The above XSD snippet will generate the following form.  The @<annotation>@ elements are optional and is used to render the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
@@ -40,5 +40,5 @@ When the form is auto-generated from the schema, the initial GI mappings will be
 
 !(shot-border)screenshots/xsd-mapping-file.png!
 
-*{color: red}Note:* If you add or remove fields to the form or renamed fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is automatically created from a schema.
+*{color: red}Note:* If you add or remove fields to the form or rename fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is generated from a schema.
 
