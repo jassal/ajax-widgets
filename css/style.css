@@ -10,6 +10,7 @@ img.shot-border {
 pre.xml-format {
   border: 1px solid rgb(200,200,200); 
   background-color: rgb(240,240,240);
+  margin: 0em;
   padding: 1em;
 }
 
