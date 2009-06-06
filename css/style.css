@@ -5,7 +5,7 @@ pre, code {
 pre.xml-format {
   margin: 1em 0em;
   padding: 0em 1em;
-  border: 3px outset rgb(100,100,100); 
+  border: 2px inset rgb(100,100,100); 
   background-color: rgb(240,240,240);
 }
 
