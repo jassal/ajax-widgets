@@ -9,7 +9,7 @@ When an Intalio|AJAX widget is dropped onto the canvas, it determines what is ac
 
 !screenshots/dnd-radio-initial.png!
 
-This is what we call a Field object.  It contains a label and some other useful properties for the input object, which in this case is a radio group of 2 buttons.
+This is what we call a Field object.  Please see "Field and Fieldset":field_fieldset.html for more details on the Field object.  It contains a label and some other useful properties for the input object, which in this case is a radio group of 2 buttons.
 
 If you then drop another Intalio|AJAX *Radio Button* at this same location, it will simply add another radio button to this Field.
 
@@ -19,7 +19,7 @@ If you wish to create a new radio button Field then simply drop the radio button
 
 !screenshots/dnd-radio-fields.png!
 
-The key to remember is this.  If you drop an Intalio|AJAX input widget into an existing field then it will add the core input object by itself.  If you drop it onto an empty part of the canvas then it will create a Field object, which will contain the core input oject you are dropping.
+The key to remember is this.  If you drop an Intalio|AJAX input widget into an existing Field then it will add the core input object by itself.  If you drop it onto an empty part of the canvas then it will create a Field object, which will contain the core input object you are dropping.
 
 You can also mix input types within the same Field object.  For instance, you can drop a *Date Picker* to create the initial Field object, then drop *Time Picker* onto the same Field to create the following.
 
@@ -43,7 +43,7 @@ By default when more than one input object is within the same field, the layout 
 
 !screenshots/dnd-layout-direction.png!
 
-*{color: red}Note:* Radio buttons and checkboxes have their layout direction automatically set to vertical by default.  But this can be easily changed in the same manner by adjusting the layout property so they flow horizontally.
+*{color: red}Note:* Radio buttons and checkboxes have their layout direction automatically set to vertical by default.  This can be easily changed in the same manner by adjusting the layout property so they flow horizontally.
 
 !screenshots/dnd-layout-example.png!
 
