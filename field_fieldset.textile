@@ -7,7 +7,7 @@ An Intalio|AJAX Fieldset is basically a section for your form.  It logically gro
 
 !screenshots/fieldset-example.png!
 
-You can also set the *CSS Class* property if you wish to change the look of the fieldset.  You can add your own CSS file or edit the existing file @(small-format)css/style.css@.
+You can also set the *CSS Class* property if you wish to change the look of the fieldset.  You can add your own CSS file or edit the existing file @css/style.css@.
 
 h2. Field Object
 

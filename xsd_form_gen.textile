@@ -5,7 +5,7 @@ layout: default
 
 Intalio Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not always generate the perfect form you had in mind, but it should be a good starting point.
 
-pre(small-format xml-format). <xs:element name="Name">
+pre(xml-format). <xs:element name="Name">
   <xs:complexType>
     <xs:sequence>
       <xs:element type="xs:string" name="first-name" minOccurs="0">
@@ -22,7 +22,7 @@ The above XSD snippet will generate the following form.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
-The @(small-format)<annotation>@ element is optional and is used to render the form label.  As you can see the rest of the schema is typical.
+The @<annotation>@ element is optional and is used to render the form label.  As you can see the rest of the schema is typical.
 
 You can download the XSD "here (Name.xsd)":files/Name.xsd.
 
@@ -40,7 +40,7 @@ If you wish you can choose a separate input and output schema.  If this option i
 
 h2. GI Mappings
 
-When the form is auto-generated from the schema, the initial GI mappings will be generated and saved as @(small-format)rules/UserSchemaMapping.xml@.  You can double-click this file to edit the mappings if you wish.
+When the form is auto-generated from the schema, the initial GI mappings will be generated and saved as @rules/UserSchemaMapping.xml@.  You can double-click this file to edit the mappings if you wish.
 
 !(shot-border)screenshots/xsd-mapping-file.png!
 
