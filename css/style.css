@@ -3,8 +3,8 @@ pre, code {
 }
 
 pre.xml-format {
-  margin: 0em;
-  border: 2px inset rgb(200,200,200); 
+  margin: 1em 0em;
+  border: 3px inset rgb(100,100,100); 
   background-color: rgb(240,240,240);
 }
 
