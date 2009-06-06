@@ -4,7 +4,7 @@ pre, code {
 
 pre.xml-format {
   margin: 0em;
-  border: 1px solid rgb(200,200,200); 
+  border: 2px inset rgb(200,200,200); 
   background-color: rgb(240,240,240);
 }
 
