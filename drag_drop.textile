@@ -9,7 +9,7 @@ When an Intalio|AJAX widget is dropped onto the canvas, it determines what is ac
 
 !screenshots/dnd-radio-initial.png!
 
-This is what we call a Field object.  Please see "Field and Fieldset":fieldset_field.html for more details on the Field object.  It contains a label and some other useful properties for the input object, which in this case is a radio group of 2 buttons.
+This is what we call a Field object.  Please see "Fieldset and Field":fieldset_field.html for more details on the Field object.  It contains a label and some other useful properties for the input object, which in this case is a radio group of 2 buttons.
 
 If you then drop another Intalio|AJAX *Radio Button* at this same location, it will simply add another radio button to this Field.
 

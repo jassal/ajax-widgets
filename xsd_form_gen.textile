@@ -5,20 +5,27 @@ layout: default
 
 Intalio Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not always generate the perfect form you had in mind, but it should be a good starting point.
 
-pre(xml-format). <xs:element name="Name">
-  <xs:complexType>
-    <xs:sequence>
-      <xs:element type="xs:string" name="first-name" minOccurs="0">
-        <xs:annotation us:label="First name"/>
-      </xs:element>
-      <xs:element type="xs:string" name="last-name" minOccurs="0">
-        <xs:annotation us:label="Last name"/>
-      </xs:element>        
-    </xs:sequence>
-  </xs:complexType>
-</xs:element>
-
-The above XSD snippet will generate the following form.  The @<annotation>@ elements are optional and are used to render the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
+pre(xml-format). <?xml version='1.0' encoding='UTF-8'?>
+<xs:schema 
+    elementFormDefault="unqualified"
+    targetNamespace="http://www.intalio.com/gi/Name"
+    xmlns:us="http://www.intalio.com/UserSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Name">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="first-name">
+          <xs:annotation us:label="First name"/>
+        </xs:element>
+        <xs:element type="xs:string" name="last-name">
+          <xs:annotation us:label="Last name"/>
+        </xs:element>        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+  
+The above XSD will generate the following form.  The @<annotation>@ elements are optional and are used to set the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
@@ -34,7 +41,7 @@ This will open up the *New Ajax Form* wizard.  The defaults are typically good b
 
 If you wish you can choose a separate input and output schema.  If this option is chosen then the form will be generated based on the input schema.
 
-h2. Annotations, Enumerations, and XSD Data Types
+h2. Annotations
 
 The following XSD annotations are supported to assist in generating the form.
 
@@ -52,9 +59,9 @@ pre(xml-format). <xs:element name="password" type="xs:string">
   <xs:annotation us:label="Password" us:widgetType="password"/>
 </xs:element>
 
-You can also use enumerations to populate values for lists, radio buttons, and checkboxes.  Here are some examples.
+h2. Enumerations
 
-The following will generate a select field with the enumeration values as the select list.  
+You can use enumerations to populate values for lists, radio buttons, and checkboxes.  The following will generate a select field with the enumeration values as the select list.  
 
 pre(xml-format). <xs:element name="version">
   <xs:annotation us:label="Version"/>
@@ -68,7 +75,7 @@ pre(xml-format). <xs:element name="version">
   </xs:simpleType>
 </xs:element>     
 
-When an enumeration is given, then default input is a select object.  This can be changed with the widgetType annotation.  The following will generate a radio group with the 3 options given. 
+When an enumeration is given, then default input is a select object.  This can be changed with the *widgetType* annotation.  The following will generate a radio group with the 3 options given. 
 
 pre(xml-format). <xs:element name="operatingSystem">
   <xs:annotation us:label="Operating System" us:widgetType="radio"/>
@@ -83,14 +90,19 @@ pre(xml-format). <xs:element name="operatingSystem">
 
 h2. XSD Data Types
 
-Here are the default input fields created from the 
-Here's how the XSD data types are used to create input fields.  
+Here are the default input fields created from the given XSD data types. 
 
 |_. Data Type|_. Input Field|
-|xs:string|Text Input|
-|xs:date|Date Picker|
-|xs:time|Time Picker|
-|xs:boolean|Checkbox|
+|string|Text Input|
+|date|Date Picker|
+|time|Time Picker|
+|boolean|Checkbox|
+
+Again, these values can be overridden with the use of the *widgetType* annotation.  For instance, the following example uses a textarea instead of the default textinput.
+
+pre(xml-format). <xs:element name="instructions" type="xs:string">
+  <xs:annotation us:label="Instructions" us:widgetType="textarea"/>
+</xs:element>  
 
 h2. GI Mappings
 
@@ -98,5 +110,5 @@ When the form is auto-generated from the schema, the initial GI mappings will be
 
 !(shot-border)screenshots/xsd-mapping-file.png!
 
-*(note)Note:* If you add or remove fields to the form or rename fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is generated from a schema.
+*(note)Note:* If you add, remove, or rename form fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is generated from a schema.
 
