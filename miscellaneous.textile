@@ -17,6 +17,3 @@ The root block of a form has a default height of *100%*.   This doesn't work wel
 
 As an example, let's say you have 2 blocks each absolutely positioned, and both with a height of 350.  You should set your root block height to *700*.  This will ensure they are rendered properly once deployed.
 
-h2. CSS Limitations
-
-

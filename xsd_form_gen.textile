@@ -3,7 +3,7 @@ title: XSD Based Form Generation
 layout: default
 ---
 
-Intalio Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not always generate the perfect form you had in mind, but it should be a good starting point.
+Intalio|Designer can use an existing XSD to automatically generate an Intalio|Ajax form.  The generated form will be a _*best try*_.  It may not always generate the perfect form you had in mind, but it should be a good starting point.
 
 pre(xml-format). <?xml version='1.0' encoding='UTF-8'?>
 <xs:schema 

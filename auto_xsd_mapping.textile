@@ -1,6 +1,9 @@
 ---
-title: Automatic XSD Mapping
+title: Automatic XSD and GI Mapping
 layout: default
 ---
 
+The following does not apply to a form generated from an XSD.  When a form is generated from an XSD, then the user is responsible for the GI mappings.
+
+Other than that restriction, when a form is created, the schema and GI mappings will be automatically created by Intalio|Designer.  This is done at build time.
 
