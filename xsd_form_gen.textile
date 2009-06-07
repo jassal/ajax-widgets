@@ -18,11 +18,11 @@ pre(xml-format). <xs:element name="Name">
   </xs:complexType>
 </xs:element>
 
-The above XSD snippet will generate the following form.  The @<annotation>@ elements are optional and is used to render the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
+The above XSD snippet will generate the following form.  The @<annotation>@ elements are optional and are used to render the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
 
-h2. Creating a Form From An Existing Schema
+h2. Creating A Form From An Existing XSD
 
 In order to generate the form from an existing schema, first, open up the schema in the *Process Explorer*.  Then right click the schema element that you would like to use as the basis as your form, then choose *New :: AJAX Form*. 
 
@@ -33,6 +33,11 @@ This will open up the *New Ajax Form* wizard.  The defaults are typically good b
 !(shot-border)screenshots/xsd-form-wizard.png!
 
 If you wish you can choose a separate input and output schema.  If this option is chosen then the form will be generated based on the input schema.
+
+h2. Annotations
+
+|_. Annotation|_. Purpose|_. Example|
+|label|Sets the label for the widget.|@<xs:annotation us:label="Last name"/>@|
 
 h2. GI Mappings
 
