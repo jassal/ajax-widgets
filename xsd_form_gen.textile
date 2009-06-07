@@ -38,11 +38,13 @@ h2. Annotations
 
 The following XSD annotations are supported to assist in generating the form.
 
-<p>Annotation: label
-Purpose: Sets the label for the field.</p>
-pre(xml-format). <xs:element name="deliveryDate" type="xs:date">
+*{color: rgb(50,50,200)}Annotation:* label
+*{color: rgb(50,50,200)}Purpose:* Sets the label for the field.
+<pre id="xml-format">
+<xs:element name="deliveryDate" type="xs:date">
   <xs:annotation us:label="Date" />
 </xs:element>
+</pre>
 
 h2. GI Mappings
 
