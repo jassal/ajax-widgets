@@ -40,6 +40,7 @@ The following XSD annotations are supported to assist in generating the form.
 
 Annotation: label
 Purpose: Sets the label for the field.
+
 pre(xml-format). <xs:element name="deliveryDate" type="xs:date">
   <xs:annotation us:label="Date" />
 </xs:element>
