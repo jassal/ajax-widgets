@@ -51,5 +51,5 @@ When the form is auto-generated from the schema, the initial GI mappings will be
 
 !(shot-border)screenshots/xsd-mapping-file.png!
 
-*{color: red}Note:* If you add or remove fields to the form or rename fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is generated from a schema.
+*(note)Note:* If you add or remove fields to the form or rename fields, then you will need to make changes to the mapping file manually.  Currently Intalio|Ajax doesn't modify the mapping file automatically when the form is generated from a schema.
 

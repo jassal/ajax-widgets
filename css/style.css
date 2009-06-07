@@ -21,3 +21,7 @@ img.shot-border {
 .annotation {
   color: rgb(50,50,200);
 }
+
+.note {
+  color: rgb(200,50,50);   
+}
