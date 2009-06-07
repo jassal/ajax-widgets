@@ -40,13 +40,10 @@ The following XSD annotations are supported to assist in generating the form.
 
 *(annotation)Annotation:* label
 *(annotation)Purpose:* Sets the label for the field.
-<pre id="xml-format">
-<code>
-<xs:element name="deliveryDate" type="xs:date">
+
+pre(xml-format). <xs:element name="deliveryDate" type="xs:date">
   <xs:annotation us:label="Date" />
 </xs:element>
-</code>
-</pre>
 
 h2. GI Mappings
 
