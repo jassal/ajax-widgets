@@ -24,7 +24,7 @@ pre(xml-format). <?xml version='1.0' encoding='UTF-8'?>
     </xs:complexType>
   </xs:element>
 </xs:schema>
-  
+
 The above XSD will generate the following form.  The @<annotation>@ elements are optional and are used to set the form label.  As you can see the rest of the schema is typical.  You can download this XSD "here (Name.xsd)":files/Name.xsd.
 
 !(shot-border)screenshots/simple-xsd-form-gen.png!
