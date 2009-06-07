@@ -35,7 +35,7 @@ Next, drop a Intalio|AJAX *Text Input* object onto the matrix.  It will automati
 
 !screenshots/dnd-matrix-more.png!
 
-*{color: red}Note:* Certain input objects cannot be easily added to a matrix, such as the *Color Picker* and *Slider*.  Also be aware that the default width of the matrix may need to be expanded if you add several columns.
+*(note)Note:* Certain input objects cannot be easily added to a matrix, such as the *Color Picker* and *Slider*.  Also be aware that the default width of the matrix may need to be expanded if you add several columns.
 
 h2. Layout Direction
 
@@ -43,7 +43,7 @@ By default when more than one input object is within the same field, the layout 
 
 !(shot-border)screenshots/dnd-layout-direction.png!
 
-*{color: red}Note:* Radio buttons and checkboxes have their layout direction automatically set to vertical by default.  This can be easily changed in the same manner by adjusting the layout property so they flow horizontally.
+*(note)Note:* Radio buttons and checkboxes have their layout direction automatically set to vertical by default.  This can be easily changed in the same manner by adjusting the layout property so they flow horizontally.
 
 !screenshots/dnd-layout-example.png!
 
