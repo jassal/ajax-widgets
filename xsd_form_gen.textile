@@ -34,7 +34,7 @@ This will open up the *New Ajax Form* wizard.  The defaults are typically good b
 
 If you wish you can choose a separate input and output schema.  If this option is chosen then the form will be generated based on the input schema.
 
-h2. Annotations
+h2. Annotations, Enumerations, and XSD Data Types
 
 The following XSD annotations are supported to assist in generating the form.
 
@@ -42,8 +42,55 @@ The following XSD annotations are supported to assist in generating the form.
 *(annotation)Purpose:* Sets the label for the field.
 
 pre(xml-format). <xs:element name="deliveryDate" type="xs:date">
-  <xs:annotation us:label="Date" />
+  <xs:annotation us:label="Date"/>
 </xs:element>
+
+*(annotation)Annotation:* widgetType
+*(annotation)Purpose:* Sets the input type for the field.
+
+pre(xml-format). <xs:element name="password" type="xs:string">
+  <xs:annotation us:label="Password" us:widgetType="password"/>
+</xs:element>
+
+You can also use enumerations to populate values for lists, radio buttons, and checkboxes.  Here are some examples.
+
+The following will generate a select field with the enumeration values as the select list.  
+
+pre(xml-format). <xs:element name="version">
+  <xs:annotation us:label="Version"/>
+  <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1.0"/>
+      <xs:enumeration value="1.1"/>
+      <xs:enumeration value="2.1"/>
+      <xs:enumeration value="3.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>     
+
+When an enumeration is given, then default input is a select object.  This can be changed with the widgetType annotation.  The following will generate a radio group with the 3 options given. 
+
+pre(xml-format). <xs:element name="operatingSystem">
+  <xs:annotation us:label="Operating System" us:widgetType="radio"/>
+  <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Linux"/>
+      <xs:enumeration value="Mac"/>
+      <xs:enumeration value="Windows"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>
+
+h2. XSD Data Types
+
+Here are the default input fields created from the 
+Here's how the XSD data types are used to create input fields.  
+
+|_. Data Type|_. Input Field|
+|xs:string|Text Input|
+|xs:date|Date Picker|
+|xs:time|Time Picker|
+|xs:boolean|Checkbox|
 
 h2. GI Mappings
 
