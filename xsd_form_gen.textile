@@ -38,8 +38,8 @@ h2. Annotations
 
 The following XSD annotations are supported to assist in generating the form.
 
-p.. Annotation: label
-Purpose: Sets the label for the field.
+<p>Annotation: label
+Purpose: Sets the label for the field.</p>
 pre(xml-format). <xs:element name="deliveryDate" type="xs:date">
   <xs:annotation us:label="Date" />
 </xs:element>
