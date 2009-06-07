@@ -36,8 +36,13 @@ If you wish you can choose a separate input and output schema.  If this option i
 
 h2. Annotations
 
-|_. Annotation|_. Purpose|_. Example|
-|label|Sets the label for the widget.|@<xs:annotation us:label="Last name"/>@|
+The following XSD annotations are supported to assist in generating the form.
+
+Annotation: label
+Purpose: Sets the label for the field.
+pre(xml-format). <xs:element name="deliveryDate" type="xs:date">
+  <xs:annotation us:label="Date" />
+</xs:element>
 
 h2. GI Mappings
 
