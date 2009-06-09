@@ -309,9 +309,19 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
           objChild.setPath(baseStr + (++max));
         }
         
-        if (objChild.getName() == "textColumn" && objChild.getFirstChild() == null) {
+        var grandChild = objChild.getFirstChild();
+        
+        if (objChild.getName() == "textColumn" && grandChild == null) {
           objChild.setName("text-output-map");
         }        
+        
+        if (grandChild != null) {
+          // datepicker needs to have format set
+          if (grandChild.instanceOf(jsx3.gui.DatePicker)) {
+            grandChild.setFormat("yyyy-MM-dd");                
+            objChild.setFormatHandler("@date, yyyy-MM-dd");
+          }
+        }
       }
       // output label (block should be last to check b/c a lot of objects are based on block)
       else if (objChild.instanceOf(jsx3.gui.Block)) {
