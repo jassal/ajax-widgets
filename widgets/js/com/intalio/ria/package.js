@@ -171,7 +171,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
             } else {
               myPath = giFormElementsPath + baseName;
             }
-          }              
+          }
           
           // the path might change if they are dropping it onto a matrix?
           if (objJSXParent.instanceOf(jsx3.gui.Matrix)) {
@@ -182,11 +182,11 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
                 baseName = "Text.xml";
               } else if (baseName == "Radio.xml") {
                 baseName = "RadioButton.xml";
-              } 
+              }
                 
               myPath = giMatrixColumnsPath + baseName;
             }
-          } 
+          }
         }
       }
         
@@ -199,7 +199,9 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
      * placed on the canvas.
      */    
     jsx3.ide.customProperties = function(objChild) {
-      if (objChild == null) return;
+      if (objChild == null) {
+        return;
+      }
       
       var inField = false;
       var parent = objChild.getParent();
@@ -323,14 +325,6 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
           }
         }
       }
-      // output label (block should be last to check b/c a lot of objects are based on block)
-      else if (objChild.instanceOf(jsx3.gui.Block)) {
-        if (objChild.getName() == "label" && objChild.getText() == "[label]") {
-          objChild.setName("text-output-map");
-          objChild.setText("[text output]");
-        }
-      }      
-      
     };
     
     /**
