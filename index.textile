@@ -3,7 +3,7 @@ title: Welcome
 layout: default
 ---
 
-Intalio Widgets are a set of "General Interface":http://developer.tibco.com/gi/getting_started.jsp extensions primarily created to be used within Intalio|Designer.  The widgets allow users to quickly create web based forms for use within a business process.
+Intalio Widgets are a set of "General Interface":http://developer.tibco.com/gi/ extensions primarily created to be used within Intalio|Designer.  The widgets allow users to quickly create web based forms for use within a business process.
 
 h2. Key Features
 
