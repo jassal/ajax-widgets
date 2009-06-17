@@ -3,10 +3,9 @@ title: Useful Links
 layout: default
 ---
 
-"Intalio|AJAX Wiki":http://wiki.intalio.com/Category:AJAX
-
 "3.6 General Interface API Reference":http://developer.tibco.com/resources/gi/3_6/api/html/index.html
 
 "General Interface Developer Website":http://developer.tibco.com/gi
 
+"Intalio|AJAX Wiki":http://wiki.intalio.com/Category:AJAX (Intalio Customers Only)
 
