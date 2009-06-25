@@ -15,7 +15,8 @@
   <object type="com.intalio.ria.Title">
     <strings jsxname="title-3"
         riaTitleText="[title]"
-        riaTitleSize="3">
+        riaTitleSize="3"
+        jsxstyleoverride="display: block;">
     </strings>
   </object>
 </serialization>

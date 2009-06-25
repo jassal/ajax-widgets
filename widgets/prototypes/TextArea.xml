@@ -18,7 +18,8 @@
         riaLabelText="[Textarea label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
-        riaCssClass="field">
+        jsxclassname="field"
+        jsxstyleoverride="display: block;">
     </strings>
     <object type="jsx3.gui.TextBox">
       <variants jsxtype="1"/>

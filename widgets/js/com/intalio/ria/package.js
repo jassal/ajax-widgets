@@ -8,12 +8,13 @@
  */  
 jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         
-  jsx3.require("com.intalio.ria.Field",  "jsx3.gui.Interactive", 
-               "jsx3.gui.Block",         "jsx3.gui.Matrix",      
-               "jsx3.gui.Matrix.Column", "jsx3.gui.CheckBox",     
-               "jsx3.gui.ColorPicker",   "jsx3.gui.DatePicker",    
-               "jsx3.gui.RadioButton",   "jsx3.gui.Select",        
-               "jsx3.gui.Slider",        "jsx3.gui.TextBox");        
+  jsx3.require("com.intalio.ria.Field", "com.intalio.ria.FileUpload",
+               "jsx3.gui.Interactive",  "jsx3.gui.Block",         
+               "jsx3.gui.Matrix",       "jsx3.gui.Matrix.Column", 
+               "jsx3.gui.CheckBox",     "jsx3.gui.ColorPicker",   
+               "jsx3.gui.DatePicker",   "jsx3.gui.RadioButton",   
+               "jsx3.gui.Select",       "jsx3.gui.Slider",        
+               "jsx3.gui.TextBox");        
   
   /**
    * Tries to set a CSS style value on the given object.
@@ -155,19 +156,20 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         // is the user dropping an intalio Field object?
         // we have to look at the baseName b/c the object isn't created yet,
         // so we cant use instanceof
-        if (baseName == "CheckBox.xml" || baseName == "ColorPicker.xml" ||
-            baseName == "Combo.xml"    || baseName == "DatePicker.xml"  ||
-            baseName == "Password.xml" || baseName == "Radio.xml"       ||
-            baseName == "Select.xml"   || baseName == "Slider.xml"      ||
-            baseName == "TextArea.xml" || baseName == "TextBox.xml"     ||
-            baseName == "TimePicker.xml" || baseName == "TextOutput.xml") {
+        if (baseName == "CheckBox.xml"   || baseName == "ColorPicker.xml" ||
+            baseName == "Combo.xml"      || baseName == "DatePicker.xml"  ||
+            baseName == "Password.xml"   || baseName == "Radio.xml"       ||
+            baseName == "Select.xml"     || baseName == "Slider.xml"      ||
+            baseName == "TextArea.xml"   || baseName == "TextBox.xml"     ||
+            baseName == "TimePicker.xml" || baseName == "TextOutput.xml"  ||
+            baseName == "FileUpload.xml") {
         
           var objGui = (bInsertBefore ? objJSXParent.getParent() : objJSXParent);
           
           // check to see if its within another Field object
           if (objGui.instanceOf(com.intalio.ria.Field) || objGui.getAncestorOfType(com.intalio.ria.Field)) {
             if (baseName == "TextOutput.xml") {
-              myPath = giBlockPath + "Label.xml";
+              myPath = giBlockPath + baseName;
             } else {
               myPath = giFormElementsPath + baseName;
             }
@@ -178,9 +180,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
             // slider and color picker dont work for matrix columns
             // password is not fully functional either (password text is displayed normally)
             if (baseName != "Slider.xml" && baseName != "ColorPicker.xml" && baseName != "Password.xml") {
-              if (baseName == "TextOutput.xml") {
-                baseName = "Text.xml";
-              } else if (baseName == "Radio.xml") {
+              if (baseName == "Radio.xml") {
                 baseName = "RadioButton.xml";
               }
                 
@@ -230,6 +230,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
       }       
       // date picker 
       else if (objChild.instanceOf(jsx3.gui.DatePicker)) {
+        objChild.setFormat("yyyy-MM-dd"); 
         if (inField) {
           objChild.setEvent('com.intalio.ria.validate(this);', jsx3.gui.Interactive.HIDE);          
         }
@@ -312,11 +313,6 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         }
         
         var grandChild = objChild.getFirstChild();
-        
-        if (objChild.getName() == "textColumn" && grandChild == null) {
-          objChild.setName("text-output-map");
-        }        
-        
         if (grandChild != null) {
           // datepicker needs to have format set
           if (grandChild.instanceOf(jsx3.gui.DatePicker)) {

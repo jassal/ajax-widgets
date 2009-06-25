@@ -18,7 +18,8 @@
         riaLabelText="[Text output label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
-        riaCssClass="field">
+        jsxclassname="field"
+        jsxstyleoverride="display: block;">
     </strings>
     <object type="jsx3.gui.Block">
       <variants jsxrelativeposition="1" jsxoverflow="3"/>

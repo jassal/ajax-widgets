@@ -6,15 +6,16 @@
  *  and conditions stipulated in the agreement/contract under which the
  *  program(s) have been supplied.
  */
-jsx3.require("jsx3.gui.Painted", "jsx3.gui.Form", "jsx3.gui.Event",
+jsx3.require("jsx3.gui.Block", "jsx3.gui.Painted", "jsx3.gui.Interactive",
+             "jsx3.gui.Form", "jsx3.gui.Event",
              "jsx3.gui.TextBox", "jsx3.gui.Slider", "jsx3.gui.ColorPicker", 
              "jsx3.gui.RadioButton", "jsx3.gui.CheckBox", "jsx3.gui.Matrix", 
              "com.intalio.ria.Section");
 
-jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Painted, [], function(Field,Field_prototype) {
+jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], function(Field,Field_prototype) {
 
-  Field.DISPLAYBLOCK = "";
-  Field.DISPLAYNONE = "none";        
+  var Event = jsx3.gui.Event;
+  var Interactive = jsx3.gui.Interactive;        
         
   Field.SHOW_VALIDATION_YES = "yes";
   Field.SHOW_VALIDATION_NO = "no";
@@ -25,26 +26,87 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Painted, [], funct
   /**
    * main method
    */
-  Field_prototype.init = function(strName) {
-    this.jsxsuper(strName);
+  Field_prototype.init = function(strName,vntLeft,vntTop,vntWidth,vntHeight) {
+    this.jsxsuper(strName,vntLeft,vntTop,vntWidth,vntHeight);
   };
 
   /**
    * paint
    */
   Field_prototype.paint = function() {
-    var html = '<div id="' + this.getId() + '"' + this.paintCssClass() + '>' + 
-                   '<table cellpadding="0" cellspacing="0" class="field">' +
-                   '<tr>' + 
-                       this.paintLabel() +
-                       this.paintRequired() +
-                       this.paintInput() +
-                   '</tr>' + 
-                   '</table>' + 
-               '</div>';
-    return html;
+    var html = '<table cellpadding="0" cellspacing="0" class="field">' +
+               '<tr>' + 
+                   this.paintLabelColumn() +
+                   this.paintRequired() +
+                   this.paintInput() +
+               '</tr>' + 
+               '</table>';
+    return this.paintBlock(html);
   };
   
+  /**
+   * Returns the DHTML, used for this object's on-screen view
+   * @param strData {String} Text/HTML markup that will replace value of getText() during paint&#8212;typically passed by subclass, JSXBlockX after it performs an XML/XSL merge to acquire its data; for memory management purposes, the data is not set via setText() and, instead, is passed as a temporary input parameter, as the object's model would contain the text for no reason
+   * @return {String} DHTML
+   */
+  Field_prototype.paintBlock = function(strData) {
+    //apply any dynamic properties that this instance has registered
+    //apply twice?  what to do with dp types that affect layout that should be applied during box profiling and those that apply to the "skinning/surfacing" of an object
+    this.applyDynamicProperties();
+
+    //if paint method called by subclass instance--an instance of JSXBlockX, use strData, not this.getText();
+    strData = (strData == null) ? this.paintText() : strData;
+
+    //determine CSS style attributes unique to this JSXBlock instance
+    var strId = this.getId();
+
+    //bind programmatic listeners for drag, drop, spy, key, and move operations; either or; not both due to incompatibilities (some of these share the mousedown and therefore can collide--hence the if statement)
+    //rules:  (Spyglass && (Move || Menu || Drag/Drop) && keydown)
+    var eventMap = {};
+    if (this.hasEvent(Interactive.JSXDOUBLECLICK))
+      eventMap[Event.DOUBLECLICK] = true;
+    if (this.hasEvent(Interactive.JSXCLICK))
+      eventMap[Event.CLICK] = true;
+    if (this.hasEvent(Interactive.JSXKEYDOWN))
+      eventMap[Event.KEYDOWN] = true;
+
+    var strSuppl = "";
+
+    if (this.getCanSpy() == 1) {
+      eventMap[Event.MOUSEOVER] = true;
+      eventMap[Event.MOUSEOUT] = true;
+    }
+
+    if (this.getCanMove() == 1) {
+      if (this.getCanMove() == 1) {
+        eventMap[Event.MOUSEDOWN] = "doBeginMove";
+      }
+    } else if (this.getMenu() != null) {
+      eventMap[Event.MOUSEUP] = true;
+    } else if (this.getCanDrop() == 1) {
+      eventMap[Event.MOUSEUP] = true;
+    }
+
+    if (eventMap[Event.MOUSEDOWN] == null && this.getCanDrag() == 1) {
+      eventMap[Event.MOUSEDOWN] = "doBeginDrag";
+      strSuppl += ' JSXDragId="' + strId + '" JSXDragType="JSX_GENERIC"';
+    }
+
+    //get custom 'view' properties(custom props to add to the rended HTML tag)
+    var strEvents = this.renderHandlers(eventMap, 0) + strSuppl;
+    var strAttributes = this.renderAttributes(null, true);
+
+    //render the outer-most box
+    var b1 = this.getBoxProfile(true);
+    b1.setAttributes(this.paintIndex() + this.paintTip() + strEvents + ' id="' + strId + '"' + this.paintLabel() + ' class="' + this.paintClassName() + '" ' + strAttributes);
+    b1.setStyles(this.paintFontSize() + this.paintBackgroundColor() + this.paintBackground() + this.paintColor() + this.paintOverflow() + this.paintFontName() + this.paintZIndex() + this.paintFontWeight() + this.paintTextAlign() + this.paintCursor() + this.paintVisibility() + this.paintBlockDisplay() + this.paintCSSOverride());
+
+    return b1.paint().join(strData);
+  };  
+  
+  /**
+   * validate after every paint
+   */
   Field_prototype.onAfterPaint = function() {
     this.validate();   
   };
@@ -251,28 +313,9 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Painted, [], funct
   };
   
   /**
-   * css class
-   */
-  Field_prototype.paintCssClass = function() {
-    return (this.riaCssClass == null ? '' : ' class="' + this.riaCssClass + '"');
-  };  
-  
-  Field_prototype.setCssClass = function(strCssClass, bUpdateView) {
-    this.riaCssClass = strCssClass;
-    if (bUpdateView) {
-      this.repaint();   
-    }        
-    return this;
-  };
-  
-  Field_prototype.getCssClass = function() {
-      return this.riaCssClass;
-  };
-  
-  /**
    * label
    */
-  Field_prototype.paintLabel = function(isRequired) {
+  Field_prototype.paintLabelColumn = function(isRequired) {
     var forStr = '';
     var child = this.getFirstChild();
     if (child != null && child.instanceOf(jsx3.gui.TextBox)) {
@@ -383,34 +426,6 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Painted, [], funct
   
   Field_prototype.getErrorMessageText = function() {
     return this.riaErrorMessageText;
-  };  
-  
-  Field_prototype.getDisplay = function() {
-    return this.riaDisplay;
-  };
-
-  Field_prototype.setDisplay = function(DISPLAY, bUpdateView) {
-    if (this.riaDisplay != DISPLAY) {
-      //update the model
-      this.riaDisplay = DISPLAY;
-
-      //immediately update the view if user passed true for bUpdateView
-      if (bUpdateView) {
-        if (DISPLAY == Field.DISPLAYNONE) {
-          jsx3.html.persistScrollPosition(this.getRendered());
-        }
-        
-        com.intalio.ria.setCssValue(this, "display", DISPLAY);
-        
-        if (DISPLAY != Field.DISPLAYNONE) {
-          // call method to tell any descendants that the view was restored
-          jsx3.gui.Painted._onAfterRestoreViewCascade(this,this.getRendered());
-          jsx3.html.restoreScrollPosition(this.getRendered());
-        }
-      }
-    }
-    
-    return this;
   };
   
   /**

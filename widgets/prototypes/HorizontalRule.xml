@@ -12,9 +12,9 @@
   <description><![CDATA[Horizontal rule HTML element.]]></description>
   <onBeforeDeserialize></onBeforeDeserialize>
   <onAfterDeserialize></onAfterDeserialize>
-  <object type="com.intalio.ria.HorizontalRule">
-    <strings jsxname="horizontal-rule">
-    </strings>
-  </object>
+  <object type="jsx3.gui.Block">
+    <variants jsxrelativeposition="1"/>
+    <strings jsxname="horizontal-rule" jsxtext="&lt;hr/&gt;" jsxstyleoverride="display: block;"/>
+  </object>  
 </serialization>
 

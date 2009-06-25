@@ -10,5 +10,7 @@
 <data jsxid="jsxroot">
 	<record include="master.xml" group="object"/>
     <record include="ria-master.xml" group="riaSection"/>
+    <record include="master.xml" group="position"/>
+    <record include="master.xml" group="css"/>
 </data>
 

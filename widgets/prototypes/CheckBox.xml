@@ -18,7 +18,8 @@
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
         riaLayoutDirection="vertical"
-        riaCssClass="field">
+        jsxclassname="field"
+        jsxstyleoverride="display: block;">
     </strings>
     <object type="jsx3.gui.CheckBox">
       <variants jsxheight="18"/>

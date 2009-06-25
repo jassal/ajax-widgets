@@ -19,7 +19,8 @@
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
         riaLayoutDirection="vertical"
-        riaCssClass="field">
+        jsxclassname="field"
+        jsxstyleoverride="display: block;">
     </strings>
     <object type="jsx3.gui.RadioButton">
       <variants jsxheight="18" jsxdefaultselected="1" jsxselected="0" jsxrelativeposition="1"/>

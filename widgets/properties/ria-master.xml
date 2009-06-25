@@ -98,28 +98,5 @@
         jsxmask="jsxtextarea"/>
     <record include="ria-master.xml" path="/data/record[@jsxid='riaCss']/record[@jsxid='riaCssClass']"/>        
   </record>
-  
-  <record jsxid="riaCss" group="1" jsxtext="CSS">
-    <record jsxid="riaCssClass"
-        jsxtext="CSS Class"
-        eval="0"
-        jsxtip="Sets the CSS class to use. Multiple classes may be specified, delimited with a space."
-        docgetter="getCssClass" 
-        docsetter="setCssClass"
-        disallow="[\u0022\u003C\u003E\u0027\u0026]"
-        jsxexecute="objJSX.setCssClass(vntValue, true);"
-        jsxmask="jsxtext"/>  
-    <record jsxid="riaDisplay" jsxtext="Display"
-        eval="0"
-        jsxtip="Sets the CSS display property. When set to None, content is hidden AND the container collapses."
-        docgetter="getDisplay" 
-        docsetter="setDisplay"
-        docdefault="Block (&lt;code&gt;com.intalio.ria.Field.DISPLAYBLOCK&lt;/code&gt;)"
-        jsxexecute="objJSX.setDisplay(vntValue, true);"
-        jsxmask="jsxselect">
-      <enum jsxid="com.intalio.ria.Field.DISPLAYBLOCK" jsxtext="Block"/>
-      <enum jsxid="com.intalio.ria.Field.DISPLAYNONE" jsxtext="None"/>
-    </record>        
-  </record>
 </data>
 

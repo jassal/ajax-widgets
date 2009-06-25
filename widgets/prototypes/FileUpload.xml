@@ -7,16 +7,24 @@
   ~ program(s) have been supplied.
   -->
 <serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
-  <name><![CDATA[Fieldset]]></name>
-  <icon><![CDATA[images/prototypes/block.gif]]></icon>
-  <description><![CDATA[Fieldset.]]></description>
+  <name><![CDATA[File Upload]]></name>
+  <icon><![CDATA[images/prototypes/textbox.gif]]></icon>
+  <description><![CDATA[File upload field.]]></description>
   <onBeforeDeserialize></onBeforeDeserialize>
   <onAfterDeserialize></onAfterDeserialize>
-  <object type="com.intalio.ria.Section">
-    <variants></variants>
-    <strings jsxname="fieldset"
-        riaTitleText="[Fields]"
+  <object type="com.intalio.ria.Field">
+    <variants/>
+    <strings jsxname="file-upload-field"
+        riaLabelText="[File upload label]"
+        riaHelpImageSrc="images/help.gif" 
+        riaErrorImageSrc="images/error.gif"
+        jsxclassname="field"
         jsxstyleoverride="display: block;">
     </strings>
+    <object type="com.intalio.ria.FileUpload">
+      <variants/>
+      <strings jsxname="file-upload"/>    
+    </object>
   </object>
 </serialization>
+

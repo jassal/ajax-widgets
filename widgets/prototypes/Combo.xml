@@ -18,7 +18,8 @@
         riaLabelText="[Combo label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
-        riaCssClass="field">
+        jsxclassname="field"
+        jsxstyleoverride="display: block;">
     </strings>
     <object type="jsx3.gui.Select">
       <variants jsxwidth="150" jsxheight="18" jsxtype="1" jsxxmlasync="1"/>
