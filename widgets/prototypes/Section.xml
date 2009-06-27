@@ -15,8 +15,8 @@
   <object type="com.intalio.ria.Section">
     <variants></variants>
     <strings jsxname="fieldset"
-        riaTitleText="[Fields]"
-        jsxstyleoverride="display: block;">
+        jsxclassname="fieldset"
+        riaTitleText="[Fields]">
     </strings>
   </object>
 </serialization>

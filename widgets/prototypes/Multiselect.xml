@@ -14,11 +14,10 @@
   <onAfterDeserialize></onAfterDeserialize>
   <object type="com.intalio.ria.Field">
     <strings jsxname="multiselect-field"
+        jsxclassname="field"
         riaLabelText="[Multiselect label]"
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.Block">
       <variants jsxwidth="150" jsxheight="150" jsxoverflow="2"/>

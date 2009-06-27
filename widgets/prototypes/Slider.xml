@@ -15,11 +15,10 @@
   <object type="com.intalio.ria.Field">
     <variants/>
     <strings jsxname="slider-field"
+        jsxclassname="field"
         riaLabelText="[Slider label]"
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.Slider">
       <variants jsxvalue="0" jsxrelativeposition="1" jsxorientation="0"/>

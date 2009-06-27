@@ -14,12 +14,11 @@
   <onAfterDeserialize></onAfterDeserialize>
   <object type="com.intalio.ria.Field">
     <variants></variants>
-    <strings jsxname="list-field" 
+    <strings jsxname="list-field"
+        jsxclassname="field"
         riaLabelText="[List label]" 
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif" 
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.Block">
       <variants jsxwidth="350" jsxheight="110" jsxoverflow="1"/>

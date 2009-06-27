@@ -14,7 +14,10 @@
   <onAfterDeserialize></onAfterDeserialize>
   <object type="jsx3.gui.Block">
     <variants jsxrelativeposition="1"/>
-    <strings jsxname="horizontal-rule" jsxtext="&lt;hr/&gt;" jsxstyleoverride="display: block;"/>
+    <strings jsxname="horizontal-rule"
+        jsxclassname="horizontal-rule"
+        jsxtext="&lt;hr/&gt;">
+    </strings>
   </object>  
 </serialization>
 

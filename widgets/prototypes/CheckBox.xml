@@ -14,12 +14,11 @@
   <onAfterDeserialize></onAfterDeserialize>
   <object type="com.intalio.ria.Field">
     <strings jsxname="checkbox-field"
+        jsxclassname="field"
         riaLabelText="[Checkbox label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
-        riaLayoutDirection="vertical"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaLayoutDirection="vertical">
     </strings>
     <object type="jsx3.gui.CheckBox">
       <variants jsxheight="18"/>

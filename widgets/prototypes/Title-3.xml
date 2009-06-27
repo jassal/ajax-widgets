@@ -14,9 +14,9 @@
   <onAfterDeserialize></onAfterDeserialize>
   <object type="com.intalio.ria.Title">
     <strings jsxname="title-3"
+        jsxclassname="title"
         riaTitleText="[title]"
-        riaTitleSize="3"
-        jsxstyleoverride="display: block;">
+        riaTitleSize="3">
     </strings>
   </object>
 </serialization>

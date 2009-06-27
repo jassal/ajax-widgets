@@ -15,12 +15,11 @@
   <object type="com.intalio.ria.Field">
     <variants/>
     <strings jsxname="radio-field"
+        jsxclassname="field"
         riaLabelText="[Radio group label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif"
-        riaLayoutDirection="vertical"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaLayoutDirection="vertical">
     </strings>
     <object type="jsx3.gui.RadioButton">
       <variants jsxheight="18" jsxdefaultselected="1" jsxselected="0" jsxrelativeposition="1"/>

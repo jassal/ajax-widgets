@@ -6,11 +6,10 @@
  *  and conditions stipulated in the agreement/contract under which the
  *  program(s) have been supplied.
  */
-jsx3.require("jsx3.gui.Block", "jsx3.gui.Painted", "jsx3.gui.Interactive",
-             "jsx3.gui.Form", "jsx3.gui.Event",
-             "jsx3.gui.TextBox", "jsx3.gui.Slider", "jsx3.gui.ColorPicker", 
-             "jsx3.gui.RadioButton", "jsx3.gui.CheckBox", "jsx3.gui.Matrix", 
-             "com.intalio.ria.Section");
+jsx3.require("jsx3.gui.Block",       "jsx3.gui.Painted",     "jsx3.gui.Interactive",
+             "jsx3.gui.Form",        "jsx3.gui.Event",       "jsx3.gui.TextBox", 
+             "jsx3.gui.Slider",      "jsx3.gui.ColorPicker", "jsx3.gui.RadioButton", 
+             "jsx3.gui.CheckBox",    "jsx3.gui.Matrix",      "com.intalio.ria.Section");
 
 jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], function(Field,Field_prototype) {
 
@@ -34,6 +33,12 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
    * paint
    */
   Field_prototype.paint = function() {
+    // this is needed for legacy reasons
+    if (this.riaCssClass != null) {
+        this.setClassName(this.riaCssClass);
+        this.riaCssClass = null;
+    }
+    
     var html = '<table cellpadding="0" cellspacing="0" class="field">' +
                '<tr>' + 
                    this.paintLabelColumn() +

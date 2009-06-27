@@ -15,11 +15,10 @@
   <object type="com.intalio.ria.Field">
     <variants/>
     <strings jsxname="combo-field"
+        jsxclassname="field"
         riaLabelText="[Combo label]"
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.Select">
       <variants jsxwidth="150" jsxheight="18" jsxtype="1" jsxxmlasync="1"/>

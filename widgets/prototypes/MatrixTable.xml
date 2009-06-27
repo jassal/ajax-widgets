@@ -14,12 +14,11 @@
   <onAfterDeserialize></onAfterDeserialize>
   <object type="com.intalio.ria.Field">
     <variants></variants>
-    <strings jsxname="matrix-table-field" 
+    <strings jsxname="matrix-table-field"
+        jsxclassname="field"
         riaLabelText="[Matrix table label]" 
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif" 
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.Block">
       <variants jsxwidth="350" jsxheight="110" jsxoverflow="1"/>

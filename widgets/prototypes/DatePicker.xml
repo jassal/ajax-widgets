@@ -15,11 +15,10 @@
   <object type="com.intalio.ria.Field">
     <variants/>
     <strings jsxname="datepicker-field"
+        jsxclassname="field"
         riaLabelText="[Data picker label]"
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.DatePicker">
       <variants jsxwidth="100" jsxrelativeposition="1" jsxheight="18"/>

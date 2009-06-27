@@ -15,11 +15,10 @@
   <object type="com.intalio.ria.Field">
     <variants/>
     <strings jsxname="timepicker-field"
+        jsxclassname="field"
         riaLabelText="[Time picker label]"
         riaHelpImageSrc="images/help.gif" 
-        riaErrorImageSrc="images/error.gif"
-        jsxclassname="field"
-        jsxstyleoverride="display: block;">
+        riaErrorImageSrc="images/error.gif">
     </strings>
     <object type="jsx3.gui.TimePicker">
       <dynamics/>
