@@ -37,6 +37,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     if (this.riaCssClass != null) {
         this.setClassName(this.riaCssClass);
         this.riaCssClass = null;
+        this.setWidth("100%");
     }
     
     var html = '<table cellpadding="0" cellspacing="0" class="field">' +
