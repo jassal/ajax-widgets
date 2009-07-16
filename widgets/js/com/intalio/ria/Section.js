@@ -24,6 +24,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Section", jsx3.gui.Block, [], funct
    * paint
    */
   Section_prototype.paint = function() {
+    this.applyDynamicProperties();
     var html = '<fieldset>' + 
                    this.paintTitle() +
                    '<div class="fieldset-padding">' + 
@@ -41,7 +42,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Section", jsx3.gui.Block, [], funct
   Section_prototype.paintBlock = function(strData) {
     //apply any dynamic properties that this instance has registered
     //apply twice?  what to do with dp types that affect layout that should be applied during box profiling and those that apply to the "skinning/surfacing" of an object
-    this.applyDynamicProperties();
+    //this.applyDynamicProperties();
 
     //if paint method called by subclass instance--an instance of JSXBlockX, use strData, not this.getText();
     strData = (strData == null) ? this.paintText() : strData;

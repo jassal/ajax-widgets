@@ -21,6 +21,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
    * paint override
    */
   FileUpload_prototype.paint = function() {
+    this.applyDynamicProperties();
     var id = this.getId();
     var html = '<form name="IntalioInternal_FileUploadForm_' + id + '" ' +
                    'target="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
