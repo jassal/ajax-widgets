@@ -3,7 +3,7 @@
 gem "buildr", ">=1.2.4"
 
 # Keep this structure to allow the build system to update version numbers.
-VERSION_NUMBER = "6.0.0.19"
+VERSION_NUMBER = "6.0.0.20-SNAPSHOT"
 NEXT_VERSION = "6.0.0.013"
 
 require "find"
