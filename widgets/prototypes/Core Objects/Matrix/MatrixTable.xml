@@ -1,0 +1,46 @@
+<!--
+  ~ Copyright (C) 2009, Intalio Inc.
+  ~ 
+  ~ The program(s) herein may be used and/or copied only with the
+  ~ written permission of Intalio Inc. or in accordance with the terms
+  ~ and conditions stipulated in the agreement/contract under which the
+  ~ program(s) have been supplied.
+  -->
+<serialization jsxversion="3.6" xmlns="urn:tibco.com/v3.0">
+  <name><![CDATA[Matrix Table]]></name>
+  <icon><![CDATA[images/prototypes/matrix.gif]]></icon>
+  <description><![CDATA[Matrix table.]]></description>
+  <onBeforeDeserialize></onBeforeDeserialize>
+  <onAfterDeserialize></onAfterDeserialize>
+  <object type="jsx3.gui.Block">
+    <variants jsxwidth="350" jsxheight="110" jsxoverflow="1"/>
+    <strings jsxname="matrix-block" jsxrelativeposition="1"/>
+    <object type="jsx3.gui.Matrix">
+      <variants jsxpagingmodel="1" jsxselectionmodel="0" jsxjsxxmlasync="1" jsxautorow="1"/>
+      <strings jsxname="matrix1" jsxbodyborder="1px solid #dfdfef" jsxheaderborder="1px solid #dfdfef" jsxbgcolor="#efefff"/>
+      <events jsxaftercommit="this.getParent().getParent().validate(this, objEVENT);"/>
+      <xslparameters jsx_rowbg1="#ffffff" jsx_rowbg2="#efefff"/>
+      <object type="jsx3.gui.Matrix.Column">
+        <variants jsxwidth="50"/>
+        <strings jsxname="deleteButtonColumn" jsxtext="Delete" jsxpadding="2" jsxcellpadding="1" jsxvaluetemplate="@empty" jsxtextalign="center" jsxcelltextalign="center"/>
+        <dynamics jsxborder="@Outset" jsxbg="@Bevel TopDown" jsxbgcolor="@Solid Disabled"/>
+        <object type="jsx3.gui.ImageButton">
+          <variants jsxwidth="16" jsxheight="16" jsxenabled="1" jsxstate="0" jsxprefetch="1" jsxtype="0"/>
+          <strings jsxname="deleteButtonMask" jsximage="jsx:///images/list/delete.gif"/>
+          <events jsxexecute="this.getParent().getParent().deleteRecord(this.emGetSession().recordId, true);this.getParent().getParent().getParent().getParent().validate(this, objEVENT);"/>
+        </object>
+      </object>
+      <object type="jsx3.gui.Matrix.Column">
+        <variants></variants>
+        <strings jsxname="textColumn" jsxwidth="*" jsxtext="Text" jsxpadding="2" jsxcellpadding="3" jsxpath="jsxtext"/>
+        <dynamics jsxborder="@Outset" jsxbg="@Bevel TopDown" jsxbgcolor="@Solid Disabled"/>
+        <object type="jsx3.gui.TextBox">
+          <variants jsxheight="18" jsxrelativeposition="0" jsxleft="46" jsxtop="0" jsxwidth="232" jsxzindex="10"/>
+          <strings jsxname="textbox" jsxmargin="0 4 0 0" jsxdisplay="none"/>
+          <events jsxkeydown="1;"/>
+        </object>
+      </object>
+    </object>
+  </object>
+</serialization>
+

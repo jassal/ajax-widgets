@@ -146,9 +146,11 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
       
       // check to see if it should use the core input object instead of Field
       var intalioProtoPath = "jsxaddin://intalioajax-addins/prototypes/";
+      var intalioCoreProtoPath = intalioProtoPath + "Core%20Objects/";
+      var intalioCoreProtoPathMatrix = intalioCoreProtoPath + "Matrix/";
+      var intalioCoreProtoPathColumns = intalioCoreProtoPathMatrix + "Columns/";
       var giProtoPath = "GI_Builder/prototypes/";
       var giFormElementsPath = giProtoPath + "Form%20Elements/";
-      var giBlockPath = giProtoPath + "Block/";
       var giMatrixColumnsPath = giProtoPath + "Matrix/Columns/"
       
       if (myPath.indexOf(intalioProtoPath) == 0 && myPath.length > intalioProtoPath.length) {
@@ -156,35 +158,43 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         // is the user dropping an intalio Field object?
         // we have to look at the baseName b/c the object isn't created yet,
         // so we cant use instanceof
-        if (baseName == "CheckBox.xml"   || baseName == "ColorPicker.xml" ||
-            baseName == "Combo.xml"      || baseName == "DatePicker.xml"  ||
-            baseName == "Password.xml"   || baseName == "Radio.xml"       ||
-            baseName == "Select.xml"     || baseName == "Slider.xml"      ||
-            baseName == "TextArea.xml"   || baseName == "TextBox.xml"     ||
-            baseName == "TimePicker.xml" || baseName == "TextOutput.xml"  ||
-            baseName == "FileUpload.xml") {
+        if (baseName == "CheckBox.xml"    || baseName == "ColorPicker.xml" ||
+            baseName == "Combo.xml"       || baseName == "DatePicker.xml"  ||
+            baseName == "Password.xml"    || baseName == "Radio.xml"       ||
+            baseName == "Select.xml"      || baseName == "Slider.xml"      ||
+            baseName == "TextArea.xml"    || baseName == "TextBox.xml"     ||
+            baseName == "TimePicker.xml"  || baseName == "TextOutput.xml"  ||
+            baseName == "FileUpload.xml"  || baseName == "List.xml"        ||
+            baseName == "MatrixTable.xml" || baseName == "MatrixTree.xml"  ||
+            baseName == "Multiselect.xml" || baseName == "PaginatedList.xml") {
         
           var objGui = (bInsertBefore ? objJSXParent.getParent() : objJSXParent);
           
           // check to see if its within another Field object
           if (objGui.instanceOf(com.intalio.ria.Field) || objGui.getAncestorOfType(com.intalio.ria.Field)) {
-            if (baseName == "TextOutput.xml") {
-              myPath = giBlockPath + baseName;
+            if (baseName == "List.xml"          || baseName == "MatrixTable.xml" || 
+                baseName == "MatrixTree.xml"    || baseName == "Multiselect.xml" ||
+                baseName == "PaginatedList.xml") {
+              myPath = intalioCoreProtoPathMatrix + baseName;
+            } else if (baseName == "TextOutput.xml" || baseName == "FileUpload.xml") {
+              myPath = intalioCoreProtoPath + baseName;
             } else {
               myPath = giFormElementsPath + baseName;
             }
           }
-          
+
           // the path might change if they are dropping it onto a matrix?
           if (objJSXParent.instanceOf(jsx3.gui.Matrix)) {
             // slider and color picker dont work for matrix columns
             // password is not fully functional either (password text is displayed normally)
             if (baseName != "Slider.xml" && baseName != "ColorPicker.xml" && baseName != "Password.xml") {
               if (baseName == "Radio.xml") {
-                baseName = "RadioButton.xml";
+                myPath = giMatrixColumnsPath + "RadioButton.xml";
+              } else if (baseName == "TextOutput.xml" || baseName == "FileUpload.xml") {
+                myPath = intalioCoreProtoPathColumns + baseName;
+              } else {                
+                myPath = giMatrixColumnsPath + baseName;
               }
-                
-              myPath = giMatrixColumnsPath + baseName;
             }
           }
         }
