@@ -335,7 +335,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
                    this.paintHelpImage() +
                '</span>' +
                '<label' + forStr + '>' + 
-                   this.riaLabelText + 
+                   this.getLabelText() + 
                '</label>' + 
            '</td>';
   };
@@ -348,8 +348,8 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     return this;
   };  
   
-  Field_prototype.getLabelText = function() {
-    return this.riaLabelText;
+  Field_prototype.getLabelText = function() {    
+    return (this.riaLabelText == null ? "" : this.riaLabelText);
   };
   
   /**
