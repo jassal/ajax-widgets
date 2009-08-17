@@ -95,8 +95,7 @@
         docsetter="setTitleText"
         docdefault="Empty"
         jsxexecute="objJSX.setTitleText(vntValue, true);"
-        jsxmask="jsxtextarea"/>
-    <record include="ria-master.xml" path="/data/record[@jsxid='riaCss']/record[@jsxid='riaCssClass']"/>        
+        jsxmask="jsxtextarea"/>       
   </record>
 </data>
 

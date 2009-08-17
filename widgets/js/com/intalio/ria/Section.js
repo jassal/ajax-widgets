@@ -25,7 +25,21 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Section", jsx3.gui.Block, [], funct
    */
   Section_prototype.paint = function() {
     this.applyDynamicProperties();
-    var html = '<fieldset>' + 
+    
+    // the fieldset needs to have its class and style applied here
+    var classStr = "";
+    var className = this.getClassName();
+    if (className != null && className != "") {
+        classStr = " class='" + className + "'";  
+    }   
+    
+    var styleStr = "";
+    var styles = this.getCSSOverride();
+    if (styles != null && styles != "") {
+        styleStr = " style='" + styles + "'";   
+    }
+    
+    var html = '<fieldset' + classStr + styleStr + '>' + 
                    this.paintTitle() +
                    '<div class="fieldset-padding">' + 
                        this.paintChildren() +
