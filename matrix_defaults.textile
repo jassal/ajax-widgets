@@ -1,0 +1,11 @@
+---
+title: Matrix Column Default Values
+layout: default
+---
+
+A *Default Value* property has been added to the jsx.gui.Matrix.Column property sheet.  When this property is set, it will cause that vaue to be used if a user does not enter a value for that column.
+
+Note that this only occurs when adding a new to a matrix.  
+
+h2. TimePicker
+
