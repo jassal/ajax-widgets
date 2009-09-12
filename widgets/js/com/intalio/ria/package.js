@@ -131,6 +131,82 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
   };  
   
   /**
+   * Custom function to fill out default values for empty data cells.
+   * This is only invoked on adding a new row to a matrix.
+   */
+  jsx3.gui.Matrix.customSetAutoRowDefaults = function(objMatrix, jis) {
+    var columns = objMatrix.getDescendantsOfType(jsx3.gui.Matrix.Column, true); // array
+      
+    for (var z = 0; z < columns.length; z++) {
+      var column = columns[z]; 
+      var id = column.getPath();
+        
+      if (id == null || id == undefined || id.trim() == "" || id.toLowerCase() == "jsxid") {
+        continue;    
+      }
+        
+      var mask = column.getEditMask();
+      if (mask == null) {
+        continue;   
+      }
+
+      var val = column.getDefaultValue();
+            
+      if (mask.instanceOf(jsx3.gui.TextBox)) {
+        if (val == null || val == undefined) val = "";
+      }
+      else if (mask.instanceOf(jsx3.gui.Select)) {
+        if (val == null || val == undefined) continue;
+      }
+      else if (mask.instanceOf(jsx3.gui.DatePicker)) {
+        if (val == null || val == undefined || val.trim() == "") continue;
+          
+        var format = mask.getFormat();
+        if (format == null || format == undefined || format.trim() == "") continue;
+          
+        // try to parse the date with the given format, then get the int value
+        try {
+          val = new jsx3.util.DateFormat(format).parse(val).valueOf();
+        } catch (e) {
+          try {
+            jsx3.log(jsx3.NativeError.wrap(e).printStackTrace());
+          } catch (ex) {;}
+            
+          continue;
+        }
+      }
+      else if (mask.instanceOf(jsx3.gui.TimePicker)) {
+        if (val == null || val == undefined || val.trim() == "") continue;
+          
+        // try to create a date with the given time, then get the int value
+        try {
+          val = new Date("1/1/1970 " + val).valueOf();
+        } catch (e) {
+          try {
+            jsx3.log(jsx3.NativeError.wrap(e).printStackTrace());
+          } catch (ex) {;}
+          
+          continue;
+        }        
+      }
+      else if (mask.instanceOf(jsx3.gui.CheckBox)) {
+        if (val == null || val == undefined || val.trim() == "") continue;
+          
+        if (Number(val) == jsx3.gui.CheckBox.CHECKED || val.trim().toLowerCase() == "true") {
+          val = jsx3.gui.CheckBox.CHECKED;
+        } else {
+          val = jsx3.gui.CheckBox.UNCHECKED;
+        }
+      }
+        
+      // if this column has no value then set the default
+      if (jis[id] == null) {
+          jis[id] = val;
+      }
+    }
+  };  
+  
+  /**
    * Customizations only used in the IDE.
    */
   if (jsx3.IDE) {

@@ -9,7 +9,8 @@
 jsx3.require("jsx3.gui.Block",       "jsx3.gui.Painted",     "jsx3.gui.Interactive",
              "jsx3.gui.Form",        "jsx3.gui.Event",       "jsx3.gui.TextBox", 
              "jsx3.gui.Slider",      "jsx3.gui.ColorPicker", "jsx3.gui.RadioButton", 
-             "jsx3.gui.CheckBox",    "jsx3.gui.Matrix",      "com.intalio.ria.Section");
+             "jsx3.gui.CheckBox",    "jsx3.gui.Matrix",      "jsx3.gui.Matrix.Column",
+             "com.intalio.ria.Section");
 
 jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], function(Field,Field_prototype) {
 
@@ -161,7 +162,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     
     return '<td class="required-column">' + 
                '<span class="required">' + (isRequired ? '*' : '') + '</span>' + 
-           '</td>';  
+           '</td>';
   };
   
   /**
@@ -235,9 +236,9 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     
     if (objGui != null) {
       // This is needed because a radio/checkbox click does not set its value 
-      // until after the event has completed.  This routine is called during
-      // the event, so it may seem like the radio/checkbox is invalid when in 
-      // fact it will be valid once the event completes.
+      // until after the event has completed.  This routine might be called 
+      // during the event, so it may seem like the radio/checkbox is invalid 
+      // when in fact it will be valid once the event completes.
       if (objGui.instanceOf(jsx3.gui.RadioButton)) {
         if (objEVENT != null && objEVENT.getType() == jsx3.gui.Event.CLICK) {
           radioGroupName = objGui.getGroupName();
@@ -246,10 +247,16 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     }
     
     var valid = true;
-    var children = this.getDescendantsOfType(jsx3.gui.Form);
+    var children = this.getDescendantsOfType(jsx3.gui.Form); // array
+    
+    CHILDREN_LOOP:
     for (var x = 0; x < children.length; x++) {
       var child = children[x];
-      if (child.instanceOf(jsx3.gui.RadioButton)) {
+      
+      if (child.getAncestorOfType(jsx3.gui.Matrix)) {
+        // matrix columns are validated separately
+        continue;
+      } else if (child.instanceOf(jsx3.gui.RadioButton)) {
         // no need to validate this radiogroup b/c it will always be valid
         if (child.getGroupName() == radioGroupName) {
           continue;
@@ -262,15 +269,19 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
           }
         }
       } else if (child.instanceOf(jsx3.gui.Matrix)) {
-          if (child.getXML().getChildNodes().getLength() > 0) {
-            continue;
-          }
+        if (!this.validateMatrix(child)) {
+          valid = false;
+          break CHILDREN_LOOP;
+        }
+        
+        continue;
       }
       
       // try/catch block is needed b/c some Form objects dont impliment the 
       // doValidate method, this is actually a GI bug I believe
       try {
         if (child.doValidate() == jsx3.gui.Form.STATEINVALID) {
+          jsx3.log("incomplete input: " + child);
           valid = false;
           break;
         }
@@ -281,6 +292,50 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     
     // this method should not return a value b/c its called from JS events,
     // if it returns false for instance then the event may not fire properly
+  };
+  
+  Field_prototype.validateMatrix = function(child) {
+    var columns = child.getDescendantsOfType(jsx3.gui.Matrix.Column); // array
+    var nodes = child.getXML().getChildNodes(); // list
+        
+    for (var y = 0; y < nodes.size(); y++) {
+      var node = nodes.get(y);
+          
+      for (var z = 0; z < columns.length; z++) {
+        var column = columns[z];        
+        var colChild = column.getFirstChild();
+        
+        if (colChild == null) {
+          continue;    
+        }
+            
+        if (!colChild.instanceOf(jsx3.gui.Form)) {
+          continue;
+        }
+            
+        if (!colChild.getRequired()) {
+          continue;   
+        }
+        
+        if (colChild.instanceOf(jsx3.gui.TextBox) || colChild.instanceOf(jsx3.gui.CheckBox)) {
+          continue;
+        }
+            
+        var attr = column.getPath();
+           
+        // if no attr name is set then its not in the schema, so skip
+        if (attr != null && attr.trim() != "") {
+          var val = node.getAttribute(attr);
+          // if no value is set for this attribute then form is incomplete
+          if (val == null || val.trim() == "") {
+            jsx3.log("incomplete matrix cell");
+            return false;
+          }
+        }
+      }
+    }      
+    
+    return true;
   };
   
   Field_prototype.displayValidation = function(valid) {
@@ -348,8 +403,12 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     return this;
   };  
   
-  Field_prototype.getLabelText = function() {    
-    return (this.riaLabelText == null ? "" : this.riaLabelText);
+  Field_prototype.getLabelText = function() {
+      if (this.riaLabelText == undefined || this.riaLabelText == null) { 
+        return ''; 
+      }
+      
+      return this.riaLabelText;
   };
   
   /**
