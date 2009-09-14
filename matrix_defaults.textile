@@ -11,7 +11,7 @@ Also, the *Att Name* property for a column should exist and be unique for defaul
 
 h2. TimePicker
 
-The default value for a time picker should be in the format *h:m:s* or *h:m*.  Milliseconds cannot be used.  The hour, minute, and optional seconds can be one or two digits.
+The default value for a time picker should be in the format *h:m:s* or *h:m*.  The hour, minute, and optional seconds can be one or two digits.  Milliseconds cannot be used.
 
 h2. DatePicker
 
