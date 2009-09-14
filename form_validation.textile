@@ -5,9 +5,9 @@ layout: default
 
 h2. Required Input Fields
 
-When an input field is marked as required, this will typically cause the field to visually indicate that the field is not optional.  As the user edits an input field the validation display may change to indicate the input is valid or not.
+When an input field is marked as required, this will cause the field to visually indicate that the field is not optional.  As the user edits an input field the validation display may change to indicate the input is valid or not.
 
-When a matrix column input is marked required, this causes 2 things to happen.  First, it forces an xml node to always be genereated for that data cell.  Second, some value must exist in the data cell or the form will not validate. 
+When a matrix column input is marked required, this causes two things to happen.  First, it forces an xml node to always be genereated for that data cell.  Second, some value must exist in the data cell or the form will not validate. 
 
 h2. Automatic Client Side Validation
 
@@ -16,4 +16,20 @@ If the user tries to submit a form that's incomplete, the form will notify the u
 h2. Server Side Validation
 
 Server side validation is done with the form's schema.  This is more of a security measure.  When data is received by the server, it's validated against the schema to ensure it contains the appropriate data.  It's possible to add restrictions and annotations to the schema so that the form data is further restricted and validated.
+
+Server side schema validation is turned off by default.  In order to turn on it on the user must edit the @web.xml@ file in the GI webapp.  The file location is 
+@SERVER/webapps/gi/WEB-INF/web.xml@ where SERVER is the location of the server installation.
+
+Simply change the @enableValidation@ @param-value@ from @false@ to @true@.  Like so:
+
+pre(xml-format). <servlet>
+  <display-name>Form Validation</display-name>
+  <servlet-name>Validation</servlet-name>
+  <servlet-class>com.intalio.bpms.gi.FormValidationServlet</servlet-class>
+  <init-param>
+    <description>Enable or disable the schema validation.</description>
+    <param-name>enableValidation</param-name>
+    <param-value>true</param-value>
+  </init-param>
+</servlet>
 
