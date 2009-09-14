@@ -15,7 +15,7 @@ The default value for a time picker should be in the format *h:m:s* or *h:m*.  T
 
 h2. DatePicker
 
-The default value for a date picker should be in the same format as the value in the format handler property.  A format handler must be specified.  For instance, the default format handler is *yyyy-MM-dd*.  For this a default value such as *2008-10-31* would be valid.
+The default value for a date picker should be in the same format as the value in the format handler property.  A format handler must be specified.  For instance, the default format handler is *yyyy-MM-dd*.  For this, a default value such as *2008-10-31* would be valid.
 
 h2. CheckBox
 
