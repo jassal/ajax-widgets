@@ -3,9 +3,21 @@ title: Matrix Column Default Values
 layout: default
 ---
 
-A *Default Value* property has been added to the jsx.gui.Matrix.Column property sheet.  When this property is set, it will cause that vaue to be used if a user does not enter a value for that column.
+A *Default Value* property has been added to the @jsx.gui.Matrix.Column@ property sheet.  When this property is set, it will cause that vaue to be used if a user does not enter a value for that column.
 
-Note that this only occurs when adding a new to a matrix.  
+Note: this only occurs when adding a new row to a matrix.  The user is responsible for any edits the make to the data beyond this point.
+
+Also, the *Att Name* property for a column should exist and be unique for default values to work.
 
 h2. TimePicker
+
+The default value for a time picker should be in the format *h:m:s* or *h:m*.  Milliseconds cannot be used.  The hour, minute, and optional seconds can be one or two digits.
+
+h2. DatePicker
+
+The default value for a date picker should be in the same format as the value in the format handler property.  A format handler must be specified.  For instance, the default format handler is *yyyy-MM-dd*.  For this a default value such as *2008-10-31* would be valid.
+
+h3. CheckBox
+
+The default value for a checkbox can be set with either @true/false@ or @1/0@.  Actually, any value that is not @true@ or @1@ will be considered false.
 
