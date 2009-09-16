@@ -14,7 +14,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
                "jsx3.gui.CheckBox",     "jsx3.gui.ColorPicker",   
                "jsx3.gui.DatePicker",   "jsx3.gui.RadioButton",   
                "jsx3.gui.Select",       "jsx3.gui.Slider",        
-               "jsx3.gui.TextBox");        
+               "jsx3.gui.TextBox",      "jsx3.gui.TimePicker");        
   
   /**
    * Tries to set a CSS style value on the given object.
