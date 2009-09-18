@@ -29,11 +29,12 @@ h2. Asynchronous onLoad Code Execution
 
 Sometimes code should not be executed until the data has been loaded from the server process.  Since Ajax is asynchronous, an event was created to notify when this has occured.  The event is @Intalio.Internal.Utilities.GET_TASK_SUCCESS@.  The following shows a simple example.
 
-function getTaskSubscribe() {
+pre. function getTaskSubscribe() {
     Intalio.Internal.Utilities.SERVER.subscribe(
         Intalio.Internal.Utilities.GET_TASK_SUCCESS, someFunction);
 };
-
+ 
 function someFunction() {
     alert("Here!");
 };
+
