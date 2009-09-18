@@ -21,6 +21,6 @@ h2. Using Logging In Your Application
 
 The simplest way to use logging is to use the @jsx3.log()@ method.
 
-pre(xml-format). var str = "ok";
+pre. var str = "ok";
 jsx3.log("str = " + str);
 
