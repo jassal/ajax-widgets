@@ -19,5 +19,5 @@ The default value for a date picker should be in the same format as the value in
 
 h2. CheckBox
 
-The default value for a checkbox can be set with either *true or false* or *1 or 0*.  Actually, any value that is not *true* or *1* will be considered false.
+The default value for a checkbox can be set with either *true* or *false* or *1* or *0*.  Actually, any value that is not *true* or *1* will be considered false.
 
