@@ -33,8 +33,8 @@ pre. function getTaskSubscribe() {
     Intalio.Internal.Utilities.SERVER.subscribe(
         Intalio.Internal.Utilities.GET_TASK_SUCCESS, someFunction);
 };
- 
-function someFunction() {
+
+pre. function someFunction() {
     alert("Here!");
 };
 
