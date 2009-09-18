@@ -5,13 +5,13 @@ layout: default
 
 General Interface provides built-in logging functionality.  When a form is loaded, a pop-up window is opened where all logging data will be sent.  This can be extremely helpful in debugging and testing, but is typically not used in production.  
 
-Logging is turned off by default.  To enable logging you or your administrator will need to modify the @logger.xml@ file.  This file is located within your server installation directory at this location:
+Logging is turned off by default.  To enable logging you or your administrator will need to modify the *@logger.xml@* file.  This file is located within your server installation directory at this location:
 
 @webapps/gi/files/logger.xml@
 
 h2. Important Notes
 
-Changes to @logger.xml@ are server-wide.  This file effects all Intalio|AJAX applications. 
+Changes to *@logger.xml@* are server-wide.  This file effects all Intalio|AJAX applications. 
 
 This file is cached by your web browser.  You will probably need to reload, refresh, or clear your browser's cache before the changes take effect.
 
@@ -21,6 +21,6 @@ h2. Using Logging In Your Application
 
 The simplest way to use logging is to use the @jsx3.log()@ method.
 
-var str = "ok";
+pre(xml-format). var str = "ok";
 jsx3.log("str = " + str);
 
