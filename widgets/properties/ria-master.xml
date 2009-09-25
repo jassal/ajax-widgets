@@ -97,5 +97,17 @@
         jsxexecute="objJSX.setTitleText(vntValue, true);"
         jsxmask="jsxtextarea"/>       
   </record>
+  
+  <record jsxid="riaRoles" group="1" jsxtext="Section">
+    <record jsxid="riaRoles"
+        jsxtext="Roles"
+        eval="0"
+        jsxtip="Sets the list of accepted roles for this field."
+        docgetter="getRoles" 
+        docsetter="setRoles"
+        docdefault="Empty"
+        jsxexecute="objJSX.setRoles(vntValue);"
+        jsxmask="jsxtextarea"/>   
+  </record>
 </data>
 

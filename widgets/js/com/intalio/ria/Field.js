@@ -500,5 +500,34 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   Field_prototype.setValue = function(objGui, value) {
     com.intalio.ria.setValue(objGui, value);
   };
+  
+  /**
+   * roles
+   */
+  Field_prototype.getRoles = function() {
+    if (this.riaRoles == undefined || this.riaRoles == null) {
+      return "";
+    }
+    
+    return this.riaRoles;
+  };
+  
+  Field_prototype.setRoles = function(strRoles) {
+    this.riaRoles = strRoles;  
+  }; 
+  
+  Field_prototype.isValidRole = function(strRole) {
+    var roles = this.getRoles();
+    if (roles == "") {
+      return true;
+    }
+    
+    var parts = roles.split(",");
+    for (var x = 0; x < parts.length; x++) {
+        if (parts[x] == strRole) return true;
+    }
+    
+    return false;
+  };
 });
 

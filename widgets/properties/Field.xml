@@ -13,6 +13,7 @@
   <record include="ria-master.xml" group="riaHelpImage"/>
   <record include="ria-master.xml" group="riaValidation"/>
   <record include="ria-master.xml" group="riaLayout"/>
+  <record include="ria-master.xml" group="riaRoles"/>  
   <record include="master.xml" group="position"/>
   <record include="master.xml" group="css"/>
 </data>
