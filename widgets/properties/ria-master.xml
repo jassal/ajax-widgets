@@ -99,7 +99,7 @@
   </record>
   
   <record jsxid="riaRoles" group="1" jsxtext="Section">
-    <record jsxid="riaRoles"
+    <record jsxid="riaRolesList"
         jsxtext="Roles"
         eval="0"
         jsxtip="Sets the list of accepted roles for this field."

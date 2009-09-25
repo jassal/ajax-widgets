@@ -505,15 +505,15 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
    * roles
    */
   Field_prototype.getRoles = function() {
-    if (this.riaRoles == undefined || this.riaRoles == null) {
+    if (this.riaRolesList == undefined || this.riaRolesList == null) {
       return "";
     }
     
-    return this.riaRoles;
+    return this.riaRolesList;
   };
   
   Field_prototype.setRoles = function(strRoles) {
-    this.riaRoles = strRoles;  
+    this.riaRolesList = strRoles;  
   }; 
   
   Field_prototype.isValidRole = function(strRole) {
