@@ -9,7 +9,7 @@ Here's an example of hiding a field based on role.
 
 pre. var role = "examples\employee";
 var valid = field.isValidRole(role);
-if (valid) {
+if (!valid) {
     field.setDisplay(jsx3.gui.Block.DISPLAYNONE, true);
 }
 
