@@ -1,0 +1,15 @@
+---
+title: Field Roles
+layout: default
+---
+
+A Field can be assigned a comma separated list of roles.  This can aid, for example, in determining if the given field should be visible or not based on a users role.
+
+Here's an example of hiding a field based on a role.
+
+pre. var role = "employee";
+var valid = field.isValidRole(role);
+if (valid) {
+    field.setDisplay(jsx3.gui.Block.DISPLAYNONE, true);
+}
+
