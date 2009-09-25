@@ -7,7 +7,7 @@ A Field can be assigned a comma separated list of roles.  This can aid, for exam
 
 Here's an example of hiding a field based on role.
 
-pre. var role = "examples\employee";
+pre. var role = "employee";
 var valid = field.isValidRole(role);
 if (!valid) {
     field.setDisplay(jsx3.gui.Block.DISPLAYNONE, true);
