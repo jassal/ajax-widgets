@@ -333,7 +333,12 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
           }
         }
       }
-    }      
+    }
+    
+    if (child.getRequired() == jsx3.gui.Form.REQUIRED && nodes.size() == 0) {
+      jsx3.log("matrix has no rows");
+      return false;   
+    }
     
     return true;
   };
