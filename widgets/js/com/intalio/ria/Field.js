@@ -296,14 +296,16 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   
   Field_prototype.validateMatrix = function(child) {
     var columns = child.getDescendantsOfType(jsx3.gui.Matrix.Column); // array
-    var nodes = child.getXML().getChildNodes(); // list
-        
+    var nodes = child.getXML().getChildNodes(); // list    
+    var radios = new Object(); // radio button state array
+    
     for (var y = 0; y < nodes.size(); y++) {
       var node = nodes.get(y);
           
       for (var z = 0; z < columns.length; z++) {
         var column = columns[z];        
         var colChild = column.getFirstChild();
+        var attr = column.getPath();
         
         if (colChild == null) {
           continue;    
@@ -320,8 +322,25 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
         if (colChild.instanceOf(jsx3.gui.TextBox) || colChild.instanceOf(jsx3.gui.CheckBox)) {
           continue;
         }
+        
+        // only 1 radio button per column needs to be selected
+        if (colChild.instanceOf(jsx3.gui.RadioButton)) {
+          var id = colChild.getId();
+          
+          if (attr != null && attr.trim() != "") {
+            var val = node.getAttribute(attr);
             
-        var attr = column.getPath();
+            if (id in radios) {
+              if (val == "1") {
+                  radios[id] = val;
+              }
+            } else {
+                radios[id] = val;    
+            }
+          }
+            
+          continue;
+        }
            
         // if no attr name is set then its not in the schema, so skip
         if (attr != null && attr.trim() != "") {
@@ -332,6 +351,15 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
             return false;
           }
         }
+      }
+    }
+    
+    // see if a radio button was selected per column
+    for (var id in radios) {
+      var val = radios[id];
+      if (val != "1") {
+        jsx3.log("incomplete matrix cell: radio button");
+        return false;
       }
     }
     
