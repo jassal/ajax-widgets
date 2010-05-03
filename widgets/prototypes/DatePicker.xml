@@ -16,7 +16,7 @@
     <variants/>
     <strings jsxname="datepicker-field"
         jsxclassname="field"
-        riaLabelText="[Data picker label]"
+        riaLabelText="[Date picker label]"
         riaHelpImageSrc="images/help.gif" 
         riaErrorImageSrc="images/error.gif">
     </strings>
