@@ -9,6 +9,8 @@ Logging is turned off by default.  To enable logging you or your administrator w
 
 @webapps/gi/files/logger.xml@
 
+"Here is an example file":files/logger.xml with the logging window turned on.
+
 h2. Important Notes
 
 Changes to *@logger.xml@* are server-wide.  This file effects all Intalio|AJAX applications. 
