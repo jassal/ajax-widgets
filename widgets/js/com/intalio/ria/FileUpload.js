@@ -10,6 +10,7 @@ jsx3.require("jsx3.gui.Form", "jsx3.gui.Block");
 
 jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.gui.Form], function(FileUpload,FileUpload_prototype) {
 
+  var fileName = "";
   /**
    * main method
    */
@@ -29,6 +30,8 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
                  '<input name="attachmentFile" type="file" ' + 
                      'id="IntalioInternal_FileUploadInput_' + id + '" ' + 
                      this.paintInputSize() + '/>' +
+                 '<label name="attachmentFileLabel" id="IntalioInternal_FileUploadInputLabel_' +
+                     id + '" ' + '>' + fileName + '</label>' +
                  '<input type="hidden" name="participantToken" value="" ' +
                      'id="IntalioInternal_FileUploadToken_' + id + '"/>' +
                '</form>' + 
@@ -85,13 +88,25 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
         }
       }
     }
-    
+
     return retval;
   };  
   
   /**
-   * disallow setting the value of the file input (security violation)
+   * disallow setting the value of the file input (security violation). set the value to the label instead.
    */
-  FileUpload_prototype.setValue = function(strValue) {};
+  FileUpload_prototype.setValue = function(strValue) {
+
+      var objGUI = this.getRendered();
+      if (objGUI != null) {
+	  var label = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInputLabel_" + this.getId());
+
+	  if (label != null) {
+	      // show only the file name without the path
+	      var labelValue = (strValue == null) ? "" : "" + strValue.substring(strValue.lastIndexOf('/')+1, strValue.length);
+	      fileName = labelValue;
+	  }
+      }
+  };
 });
 
