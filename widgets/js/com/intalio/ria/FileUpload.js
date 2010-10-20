@@ -64,6 +64,22 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
   };  
   
   /**
+  * validation
+  */
+  FileUpload_prototype.doValidate = function() {
+	this.setValidationState(1);
+	var objGUI = this.getRendered();
+    if (objGUI != null) {
+		if(this.getRequired()){
+			var inputElem = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInput_"+this.getId());
+			if(!inputElem.value) this.setValidationState(0);
+		}			
+	}
+	return this.getValidationState();
+  }
+  
+  
+  /**
    * gets the url value returned from the server 
    */
   FileUpload_prototype.getValue = function() {

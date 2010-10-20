@@ -12,4 +12,5 @@
   <record jsxid="com.intalio.ria.Field" jsxtext="properties/Field.xml"/>
   <record jsxid="com.intalio.ria.Title" jsxtext="properties/Title.xml"/>
   <record jsxid="com.intalio.ria.HorizontalRule" jsxtext="properties/HorizontalRule.xml"/>
+  <record jsxid="com.intalio.ria.FileUpload" jsxtext="properties/FileUpload.xml"/>
 </data>
