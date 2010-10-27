@@ -22,7 +22,7 @@
     </strings>
     <object type="jsx3.gui.TextBox">
       <variants/>
-      <strings jsxname="textbox" jsxmargin="0 4 0 0"/>
+      <strings jsxname="textbox" jsxmargin="0 4 0 0" jsxpadding="2 2 0 0" />
       <events jsxfocus='com.intalio.ria.highlightTextInput(this, false);'
           jsxblur='com.intalio.ria.highlightTextInput(this, true);'
           jsxchange="com.intalio.ria.validate(this, objEVENT);" 
