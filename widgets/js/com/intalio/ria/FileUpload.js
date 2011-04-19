@@ -213,15 +213,18 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
 		    var recordId = objEvent.context.strRECORDID;
 		    this._matrixCurrentRecord = recordId;
 
-		    var curForm;
+		    var curForm, parentDiv;
 		    var forms = this.__getDOMElements([{tagName: 'DIV'},{tagName: 'FORM'}]);
 		    
 		    if(forms){
 			for(var i=0; i<forms.length; i++){
 			    if(forms[i] && forms[i].element){
 				curForm = forms[i].element;
+				parentDiv = forms[i].parent;
+				parentDiv.style.display = "none";
 				curForm.style.display = "none";
 				if(curForm.getAttribute("name") == this._recordIdFormNameMap[recordId]){
+				    parentDiv.style.display = "block";
 				    curForm.style.display = "block";
 				}
 			    }
