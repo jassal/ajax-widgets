@@ -6,11 +6,13 @@
  *  and conditions stipulated in the agreement/contract under which the
  *  program(s) have been supplied.
  */
-jsx3.require("jsx3.gui.Form", "jsx3.gui.Block");
+jsx3.require("jsx3.gui.Form", "jsx3.gui.Block", "jsx3.gui.IFrame");
 
 jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.gui.Form], function(FileUpload,FileUpload_prototype) {
-
-  var fileName = "";
+  
+  var Event = jsx3.gui.Event;
+  var Interactive = jsx3.gui.Interactive;
+  
   /**
    * main method
    */
@@ -24,68 +26,138 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
   FileUpload_prototype.paint = function() {
     this.applyDynamicProperties();
     var id = this.getId();
-    var html = "";
-    var matrixParent = this.getAncestorOfType(jsx3.gui.Matrix);
-    if(matrixParent){
-	//construction of html suitable for matrix taking into consideration the
-	//the CDF records already present
-	this._recordIdFormNameMap = {};
-	this._recordIdIFrameNameMap = {};
-	var newId, recordId, recordIds = matrixParent.getRecordIds();
-	if(matrixParent.getAutoRow() == jsx3.Boolean.TRUE){
-	    recordId = 'jsxautorow';
-	    newId = this.getId()+"_"+recordId;
-	    html += '<div>' + this.__getMatrixFileUploadHTMLFragment(newId) + '</div>';
-	    this._recordIdFormNameMap[recordId] = 'IntalioInternal_FileUploadForm_' + newId;
-	    this._recordIdIFrameNameMap[recordId] = 'IntalioInternal_FileUploadHiddenIFrame_' + newId;
-	}
-	for(var i=0;i<recordIds.length;i++){
-	    recordId = recordIds[i];
-	    newId = this.getId()+"_"+recordId;
-	    html += '<div>' + this.__getMatrixFileUploadHTMLFragment(newId) + '</div>';
-	    this._recordIdFormNameMap[recordId] = 'IntalioInternal_FileUploadForm_' + newId;
-	    this._recordIdIFrameNameMap[recordId] = 'IntalioInternal_FileUploadHiddenIFrame_' + newId;
-	}
-    } else{
-     html = '<div><form name="IntalioInternal_FileUploadForm_' + id + '" ' +
-	   'target="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
-	   'action="/gi/fileupload" method="post" enctype="multipart/form-data">' +
+    var html = "<span></span>";
+    var parent = this.getParent();
+	this._initialize();
+    if(!parent.isType('jsx3.gui.Matrix.Column')){	
+     html = '<div class="markerClass">'+
+	 '<form name="IntalioInternal_FileUploadForm_' + id + '" ' +
+	   'id="IntalioInternal_FileUploadForm_' + id + '" ' +
+	   'target="' + com.intalio.ria.FileUpload.jsxiframe.getIFrameId() + '" ' +
+	   'action="/gi/fileupload" method="post" enctype="multipart/form-data" '+
+	   'style="padding:0;margin:0;">' +
 	 '<input name="attachmentFile" type="file" ' +
 	     'id="IntalioInternal_FileUploadInput_' + id + '" ' +
 	     this.paintInputSize() + '/>' +
 	 '<label name="attachmentFileLabel" id="IntalioInternal_FileUploadInputLabel_' +
-	     id + '" ' + '>' + fileName + '</label>' +
+	     id + '" ' + '>' + ((this.fileName)? this.fileName : "") + '</label>' +
 	 '<input type="hidden" name="participantToken" value="" ' +
 	     'id="IntalioInternal_FileUploadToken_' + id + '"/>' +
-       '</form>' +
-       '<iframe name="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
-	   'id="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
-	   'src="about:blank" style="display:none;">' +
-       '</iframe></div>';
+       '</form></div>';	   
     }
-    return this.jsxsuper(html);
+	
+	//added paint() logic in jsx3.gui.Block here instead of using this.jsxsuper() for performance reasons
+	var eventMap = {};
+    if (this.hasEvent(Interactive.JSXDOUBLECLICK))
+      eventMap[Event.DOUBLECLICK] = true;
+    if (this.hasEvent(Interactive.JSXCLICK))
+      eventMap[Event.CLICK] = true;
+    if (this.hasEvent(Interactive.JSXKEYDOWN))
+      eventMap[Event.KEYDOWN] = true;
+
+    var strSuppl = "";
+
+    if (this.getCanSpy() == 1) {
+      eventMap[Event.MOUSEOVER] = true;
+      eventMap[Event.MOUSEOUT] = true;
+    }
+
+    if (this.getCanMove() == 1) {
+      if (this.getCanMove() == 1) {
+        eventMap[Event.MOUSEDOWN] = "doBeginMove";
+      }
+    } else if (this.getMenu() != null) {
+      eventMap[Event.MOUSEUP] = true;
+    } else if (this.getCanDrop() == 1) {
+      eventMap[Event.MOUSEUP] = true;
+    }
+
+    if (eventMap[Event.MOUSEDOWN] == null && this.getCanDrag() == 1) {
+      eventMap[Event.MOUSEDOWN] = "doBeginDrag";
+      strSuppl += ' JSXDragId="' + id + '" JSXDragType="JSX_GENERIC"';
+    }
+
+    //get custom 'view' properties(custom props to add to the rended HTML tag)
+    var strEvents = this.renderHandlers(eventMap, 0) + strSuppl;
+    var strAttributes = this.renderAttributes(null, true);
+
+    //render the outer-most box
+    var b1 = this.getBoxProfile(true);
+    b1.setAttributes(this.paintIndex() + this.paintTip() + strEvents + ' id="' + id + '"' + this.paintLabel() + ' class="' + this.paintClassName() + '" ' + strAttributes);
+    b1.setStyles(this.paintFontSize() + this.paintBackgroundColor() + this.paintBackground() + this.paintColor() + this.paintOverflow() + this.paintFontName() + this.paintZIndex() + this.paintFontWeight() + this.paintTextAlign() + this.paintCursor() + this.paintVisibility() + this.paintBlockDisplay() + this.paintCSSOverride());
+    return b1.paint().join(html + this.paintChildren());
   };
+  
+  FileUpload_prototype.isCandidateForUpload = function(){
+  	var parent, column, matrix, recordId;
+	parent = this.getParent();
+  	if(parent.instanceOf(com.intalio.ria.FileUpload)){
+		column = parent.getParent();
+		if(column.isType('jsx3.gui.Matrix.Column')){
+			matrix = column.getParent();
+			recordId = this.getMatrixRecordId();
+			if(recordId && matrix.getRecordNode(recordId)){
+				return this.getFileInputFieldValue();
+			}else{
+				var node = this.getRendered();
+				if(node) jsx3.html.removeNode(node);
+				parent.removeChild(this);
+			}
+		}
+	} else {
+		return this.getFileInputFieldValue();
+	}
+  }
+  
+  FileUpload_prototype.getURL = function(){
+  	return (this.URL)? this.URL : null; 
+  }
+  
+  FileUpload_prototype.setURL = function(strURL){
+  	this.URL = strURL;
+	var matrix, parent;
+	parent = this.getParent();
+	if(parent.instanceOf(com.intalio.ria.FileUpload)){
+		column = parent.getParent();
+		if(column.isType('jsx3.gui.Matrix.Column')){
+			matrix = column.getParent();
+			recordId = this.getMatrixRecordId();
+			if(matrix.getRecordNode(recordId)){
+				column.setValueForRecord(recordId,strURL);
+		    }
+		}
+	}
+  }
+  
+  FileUpload_prototype.setMatrixRecordId = function(recordId){
+  	this.jsxmatrixrecordid = recordId;
+  }
+  
+  FileUpload_prototype.getMatrixRecordId = function(){
+  	return this.jsxmatrixrecordid;
+  }
+  
+  FileUpload_prototype.setParticipantToken = function(strToken){
+    var token = this._getElementById('IntalioInternal_FileUploadToken_' + this.getId());
+	if(token) token.value = strToken;
+  }
+  
+  FileUpload_prototype.submit = function(){
+    var form = this._getElementById('IntalioInternal_FileUploadForm_' + this.getId());
+	if(form) form.submit();
+  }
+  
+  FileUpload_prototype.getFileInputFieldValue = function(){
+  	var input = this._getElementById('IntalioInternal_FileUploadInput_' + this.getId());
+	return (input)? input.value : null;
+  }
   
   /**
    * paint input size
    */
   FileUpload_prototype.paintInputSize = function() {
-    var size = this.getInputSize();
-    if (isNaN(size)) {
-      size = 40;
-    } else {
-      size = parseInt(size);
-    }
-    
-    return ' size="' + size + '"';
+    return ' size="40"';
   };
-  
-  /**
-   * input size
-   */
-  FileUpload_prototype.getInputSize = function() {
-    return;
-  };  
   
   /**
   * validation
@@ -95,409 +167,205 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
 	var objGUI = this.getRendered();
     if (objGUI != null) {
 		if(this.getRequired()){
-			var inputElem = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInput_"+this.getId());
-			if(!inputElem.value) this.setValidationState(0);
-		}			
+			if(!this.getFileInputFieldValue()){
+				this.setValidationState(0);
+			}		
+		}
 	}
 	return this.getValidationState();
   };
-  
   
   /**
    * gets the url value returned from the server 
    */
   FileUpload_prototype.getValue = function() {
-    var retval = "";
-    
-    var objGUI = this.getRendered();
-    if (objGUI != null) {
-      var frame = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadHiddenIFrame_" + this.getId());
-      if (frame != null) {
-        // cross-browser method to access iframe document
-        var doc = frame.contentWindow || frame.contentDocument;
-        if (doc.document) {
-          doc = doc.document;
-        }          
- 
-        if (doc != null) {
-          var body = doc.body.innerHTML;
-          if (body.length > 4 && body.indexOf("OK: ") == 0) {
-            var url = body.substr(4);
-            retval = url.trim();
-          }
-        }
-      }
-    }
-
-    return retval;
+    return this.getURL();
   };  
   
   /**
    * disallow setting the value of the file input (security violation). set the value to the label instead.
    */
-  FileUpload_prototype.setValue = function(strValue) {
+  	FileUpload_prototype.setValue = function(strValue) {
+		var objGUI = this.getRendered();
+		if (objGUI != null) {
+			var label = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInputLabel_" + this.getId());
+			if (label != null) {
+			  // show only the file name without the path
+			  var labelValue = (strValue == null) ? "" : "" + strValue.substring(strValue.lastIndexOf('/')+1, strValue.length);
+			  this.fileName = labelValue;
+			}
+		}
+		if(strValue.indexOf('http://') === 0){
+			this.setURL(strValue);
+		}
+  	};
 
-      var objGUI = this.getRendered();
-      if (objGUI != null) {
-	  var label = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInputLabel_" + this.getId());
-
-	  if (label != null) {
-	      // show only the file name without the path
-	      var labelValue = (strValue == null) ? "" : "" + strValue.substring(strValue.lastIndexOf('/')+1, strValue.length);
-	      fileName = labelValue;
-	  }
-      }
-  };
-  
-    // retruns the fragment that needs to be added corresponding to each record in a matrix
-    FileUpload_prototype.__getMatrixFileUploadHTMLFragment = function(id) {
-	var html = '<form name="IntalioInternal_FileUploadForm_' + id + '" ' +
-			'target="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
-			'action="/gi/fileupload" method="post" enctype="multipart/form-data" style="display:none;">' +
-				'<input name="attachmentFile" type="file"  ' +
-				'id="IntalioInternal_FileUploadInput_' + id + '" ' +
-				this.paintInputSize() + '/>' +
-				'<input type="hidden" name="participantToken" value="" ' +
-				'id="IntalioInternal_FileUploadToken_' + id + '"/>' +
-			'</form>'+
-			'<iframe name="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
-			    'id="IntalioInternal_FileUploadHiddenIFrame_' + id + '" ' +
-			    'src="about:blank" style="display:none;">' +
-			'</iframe>';
-	return html;
-    };
-
-    //adds the new file uplaod fragment corresponding to a new record to the DOM
-    FileUpload_prototype.__addFileUploadForRecord = function(recordId){
-	var objGUI = this.getRendered();
-	var _newDiv = objGUI.ownerDocument.createElement('div');
-	var id = this.getId()+"_"+recordId;
-	objGUI.appendChild(_newDiv);
-	_newDiv.innerHTML = this.__getMatrixFileUploadHTMLFragment(id);
-	//this.__addCustomMethodToFrames();
-	return id;
-    };
-
-    FileUpload_prototype.__addCustomMethodToFrames = function(){
-	var __me = this, frame ,
-	frames = this.__getDOMElements([{tagName: 'DIV'},{tagName: 'IFRAME'}]);
-	for(var i = 0; i < frames.length; i++){
-	    frame = frames[i].element;
-	    frame.__updateMatrixRecordValues = function(){
-		__me.__syncMatrixRecordValues();
-	    }
-	}
-    }
-    
     //matrix event listener
-    FileUpload_prototype.matrixEventCallback = function(objEvent){	
-	try{
-	    switch(objEvent.subject){
-		case jsx3.gui.Interactive.BEFORE_APPEND: // before a record is added to the matrix
-		    var record = objEvent.context.objRECORD;
-		    var recordId = record.jsxid;
-		    var newId = this.__addFileUploadForRecord(recordId);
-
-		    var temp = this._recordIdFormNameMap['jsxautorow'];
-		    this._recordIdFormNameMap['jsxautorow'] = 'IntalioInternal_FileUploadForm_' + newId;
-		    this._recordIdFormNameMap[recordId] = temp;
-
-		    temp = this._recordIdIFrameNameMap['jsxautorow'];
-		    this._recordIdIFrameNameMap['jsxautorow'] = 'IntalioInternal_FileUploadHiddenIFrame_' + newId;
-		    this._recordIdIFrameNameMap[recordId] = temp;		    
-		    break;
-		case jsx3.gui.Interactive.AFTER_APPEND: //after a record is added to the matrix
+    FileUpload_prototype.matrixEventCallback = function(objEvent){
+		try{
+		    switch(objEvent.subject){
+				case jsx3.gui.Interactive.BEFORE_APPEND: // before a record is added to the matrix
+				    var record = objEvent.context.objRECORD;
+				    var recordId = record.jsxid;
+					this.jsxfileupload[recordId] = this.jsxfileupload['jsxautorow'];
+					this.jsxfileupload[recordId].setMatrixRecordId(recordId);
+					this.jsxfileupload['jsxautorow'] = null;
+					this._addControlForRecord('jsxautorow',true);
+				    break;
+				case jsx3.gui.Interactive.AFTER_APPEND: //after a record is added to the matrix
+				    //nothing to do
+				    break;
+				case jsx3.gui.Interactive.BEFORE_EDIT: // before a cell is opened in edit mode
+					if(this.getParent() == objEvent.context.objCOLUMN){
+						var child, children, recordId;
+						children = this.getChildren();
+						recordId = objEvent.context.strRECORDID;
+						if(!this.jsxfileupload[recordId]){
+							this._addControlForRecord(recordId,true);
+						}
+						for(i=0;i<children.length;i++){
+							child = children[i];
+							if(child.instanceOf(com.intalio.ria.FileUpload)){
+								if(this.jsxfileupload[recordId].getId() == child.getId()){
+									child.setDisplay(jsx3.gui.Block.DISPLAYBLOCK,true);						
+								} else{
+									child.setDisplay(jsx3.gui.Block.DISPLAYNONE,true);
+								}
+							}
+						}
+					}
+				    break;
+				case jsx3.gui.Interactive.AFTER_EDIT: //after completion of editing of a cell
+					//nothing to do
+				    break;		
+				case 'recordDeleted': //custom event, triggering mechanism added in the matrix table prototype xml					
+				    var recordId = objEvent.context.strRECORDID;
+					this._removeControlOfRecord(recordId,true);
+				    break;
+		    }
+		}catch(e){
 		    //nothing to do
-		    break;
-		case jsx3.gui.Interactive.BEFORE_EDIT: // before a cell is opened in edit mode
-		    var recordId = objEvent.context.strRECORDID;
-		    this._matrixCurrentRecord = recordId;
-
-		    var curForm, parentDiv;
-		    var forms = this.__getDOMElements([{tagName: 'DIV'},{tagName: 'FORM'}]);
-		    
-		    if(forms){
-			for(var i=0; i<forms.length; i++){
-			    if(forms[i] && forms[i].element){
-				curForm = forms[i].element;
-				parentDiv = forms[i].parent;
-				parentDiv.style.display = "none";
-				curForm.style.display = "none";
-				if(curForm.getAttribute("name") == this._recordIdFormNameMap[recordId]){
-				    parentDiv.style.display = "block";
-				    curForm.style.display = "block";
-				}
-			    }
-			}
-		    }
-		    break;
-		case jsx3.gui.Interactive.AFTER_EDIT: //after completion of editing of a cell
-		    var forms = this.__getDOMElements([{tagName: 'DIV'},{tagName: 'FORM'}]);
-		    if(forms){
-			for(var i=0; i<forms.length; i++){
-			    if(forms[i] && forms[i].element){
-				curForm = forms[i].element;
-				curForm.style.display = "none";
-			    }
-			}
-		    }
-
-		    break;		
-		case 'recordDeleted': //custom event, triggering mechanism added in the matrix table prototype xml
-		    var recordId = objEvent.context.strRECORDID;
-		    var _name = this._recordIdFormNameMap[recordId];
-		    var _form = this.__getDOMElement([{
-			tagName: 'DIV'
-		    },
-		    {
-			tagName: 'FORM',
-			attrName:'name',
-			attrValue:_name
-		    }]);
-		    
-		    var _div = _form.parent;
-		    _div.parentNode.removeChild(_div);
-		    delete this._recordIdFormNameMap[recordId];
-		    delete this._recordIdIFrameNameMap[recordId];
-		    break;
-	    }
-	    
-	    this.__addCustomMethodToFrames();
-
-	}catch(e){
-	    //nothing to do
-	}
-	return true;
+		}
+		return true;
     }
-
-    /** Start of methods inherited from jsx3.gui.Matrix.EditMask **/
+	
+	/** Start of methods inherited from jsx3.gui.Matrix.EditMask **/
     FileUpload_prototype.emInit = function(objColumn) {
-	this.jsxsupermix(objColumn);
-	var matrixParent = this.getAncestorOfType(jsx3.gui.Matrix);
-	if(matrixParent){
-	    //subscribing an event listener to all the events published by the matrix parent
-	    matrixParent.subscribe("*",this,"matrixEventCallback");
-	}
+		this.jsxsupermix(objColumn);
+		var matrixAncestor = objColumn.getParent();
+		if(matrixAncestor){
+		    //subscribing an event listener to all the events published by the matrix parent
+		    matrixAncestor.subscribe("*",this,"matrixEventCallback");
+		}		
     };
 
     FileUpload_prototype.emBeginEdit = function(strValue, objTdDim, objPaneDim, objMatrix, objColumn, strRecordId, objTD) {
 	    if (this.emGetType() == jsx3.gui.Matrix.EditMask.NORMAL) {
-		this.setRelativePosition(jsx3.gui.Block.ABSOLUTE, true);
-		this.emUpdateDisplay(objTdDim, objPaneDim);
-		this.setDisplay(jsx3.gui.Block.DISPLAYBLOCK, true);
-		this.setZIndex(10, true);
-		this.focus();
-		this.emFocus();
+			this.setRelativePosition(jsx3.gui.Block.ABSOLUTE, true);
+			this.emUpdateDisplay(objTdDim, objPaneDim);
+			this.setDisplay(jsx3.gui.Block.DISPLAYBLOCK, true);
+			this.setZIndex(10, true);
+			this.focus();
+			this.emFocus();
 	    }
-
-	//this.emSetValue(strValue);
-
+		this.emSetValue(strValue);
     };
 
     FileUpload_prototype.emEndEdit = function() {
-	if (this.emGetType() == jsx3.gui.Matrix.EditMask.NORMAL) {
-	    this.emRestoreDisplay();
-	}
-	return this.emGetValue();
+		if (this.emGetType() == jsx3.gui.Matrix.EditMask.NORMAL) {
+	    	this.emRestoreDisplay();
+		}
+		return this.emGetValue();
     };
 
-    FileUpload_prototype.emGetValue = function(){
-	return this.getMaskValue();
+    FileUpload_prototype.emGetValue = function(){		
+		return this.getMaskValue();
     }
+	
+	FileUpload_prototype.emSetValue = function(strValue){
+		if(strValue && strValue.indexOf('http://') === 0){
+			this.setURL(strValue);
+		}
+	}
 
-
-    FileUpload_prototype.getMaskValue = function(){
-	return this.__getValue()
+    FileUpload_prototype.getMaskValue = function(inRecordId){
+		var columnParent = this.getParent();
+		if(columnParent){
+		    var recordId = (inRecordId)? inRecordId : this.emGetSession().recordId;
+		    if (recordId) return this.jsxfileupload[recordId].getFileInputFieldValue();
+		    else return null;
+		}else{
+	    	return this.getFileInputFieldValue();
+	  	}
     }
+	
     /** End of methods inherited from jsx3.gui.Matrix.EditMask **/
 
     
-    //Returns the value of input field before the form submission
-    FileUpload_prototype.__getValue = function(/*optional*/inRecordId){
-	var matrixParent = this.getAncestorOfType(jsx3.gui.Matrix);
-	if(matrixParent){
-	    var recordId;
-	    if(inRecordId){
-		recordId = inRecordId;
-	    }else{
-		var es = this.emGetSession();
-		recordId = es.recordId;
-	    }
-	    if (recordId){
-		var formName = this._recordIdFormNameMap[recordId];
-		var fileInput = this.__getDOMElement([{
-		    tagName: 'DIV'
-		},
-		{
-		    tagName: 'FORM',
-		    attrName:'name',
-		    attrValue:formName
-		},
-		{
-		    tagName: 'INPUT',
-		    attrName:'type',
-		    attrValue:'file'
-		}]);
-		return ((fileInput) ? fileInput.element.value : null);
-	    }
-	    else{
-		return null;
-	    }
-	}else{
-	    var fileInput = this.__getDOMElement([
-		    {tagName: 'DIV'},
-		    {tagName: 'FORM'},
-		    {tagName: 'INPUT', attrName:'type', attrValue:'file'}]);
-
-	    return ((fileInput) ? fileInput.element.value : null);
-	  }
-    }
-
-    FileUpload_prototype.__getValueFromIframe = function(recordId) {
-	var retval = "";
-	var iFrameName = this._recordIdIFrameNameMap[recordId];
-	var frame = this.__getDOMElement([
-	{   tagName: 'DIV'  },
-	{
-	    tagName: 'IFRAME',
-	    attrName:'name',
-	    attrValue:iFrameName
-	}]);
-
-	frame = frame.element;
-	if (frame) {
-	    // cross-browser method to access iframe document
-	    var doc = frame.contentWindow || frame.contentDocument;
-	    if (doc.document) {
-		doc = doc.document;
-	    }
-
-	    if (doc != null) {
-		var body = doc.body.innerHTML;
-		if (body.length > 4 && body.indexOf("OK: ") == 0) {
-		    var url = body.substr(4);
-		    retval = url.trim();
-		}
-	    }
-	}
-	return retval;
-    };
-    
     //Used to remove the value of the file uplaod input field
     FileUpload_prototype.setEmptyValue = function(){
-	var objGUI = this.getRendered();
-	var fileInput = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInput_"+this.getId());
-	if(fileInput){
-	    fileInput.value = null;
-	}
-	return this;
+		var objGUI = this.getRendered();
+		var fileInput = objGUI.ownerDocument.getElementById("IntalioInternal_FileUploadInput_"+this.getId());
+		if(fileInput){
+		    fileInput.value = null;
+		}
     }
-
-    //Helper method used to sync the values of the records of the matrix
-    //with the values of the file upload controls
-    FileUpload_prototype.__syncMatrixRecordValues = function(){
-	if(!this._recordIdFormNameMap){
-	    return false;
-	}
-	var matrix = this.getAncestorOfType(jsx3.gui.Matrix);
-	for(var i in this._recordIdFormNameMap){
-	    //variable i will contain the record ID
-	    if(matrix.getRecordNode(i)){
-		//get the value from the corresponding iframe and put in the record
-		val = this.__getValueFromIframe(i);
-		//using the setValueForRecord of column to update the corresponding record
-		this.getParent().setValueForRecord(i,val);
-
-	    }else{
-		delete this._recordIdFormNameMap[i];
-		delete this._recordIdIFrameNameMap[i];
-	    }
-	}
-    };
-    
-    /************* Start of helper function used for DOM search *************/
-     FileUpload_prototype.__getDOMElement = function(/*array*/path,findInside){
-	var matches = this.__getDOMElements(path,findInside);
-	if(matches){
-	    return matches[0];
-	} else{
-	    return false;
-	}
-    };
-
-    FileUpload_prototype.__getDOMElements = function(/*array*/path,findInside){
-	if(!findInside) findInside = this.getRendered();
-	var elems, parents = [findInside];
-	for(var i=0; i < path.length; i++){
-	    elems = this.__getDOMMatches(path[i],parents);
-	    if(elems){
-		//change the parents array for the next iteration
-		parents = [];
-		for(j=0; j < elems.length; j++){
-		    if(elems[j].element){
-			parents.push(elems[j].element);
-		    }
+	
+	FileUpload_prototype._initialize = function(){
+		this.jsxfileupload = (this.jsxfileupload) ? this.jsxfileupload : {};
+		if(!com.intalio.ria.FileUpload.jsxiframe){
+			com.intalio.ria.FileUpload.jsxiframe = new jsx3.gui.IFrame("IntalioInternal_FileUploadHiddenIFrame");	
 		}
-	    }
-	    else{		
-		return false;
-	    }
-	}
-	return elems;
-    };
-
-    FileUpload_prototype.__getDOMMatches = function(pathItem,/*array*/findInside){
-	var elems = [],matches=false,j;
-	for(var i=0;i<findInside.length;i++){
-	    matches = this.__getDOMMatchesHelper(pathItem,findInside[i]);
-	    if(matches){
-		for(j=0;j<matches.length;j++){
-		    elems.push(matches[j]);
+		objColumn = this.getParent();
+		if(objColumn.isType('jsx3.gui.Matrix.Column')){
+			var matrixAncestor = objColumn.getParent();
+			recordIds = matrixAncestor.getRecordIds();
+			if(matrixAncestor.getAutoRow() == jsx3.Boolean.TRUE){
+				recordIds.push('jsxautorow');
+			}	
+			for(i=0;i<recordIds.length;i++){
+			    this._addControlForRecord(recordIds[i]);
+			}
 		}
-	    }
-	}
-	return elems;
-    };
-
-
-    /**
-   * Helper method used to get the elements in the File uplaod component
-   **/
-    FileUpload_prototype.__getDOMMatchesHelper = function(pathItem, parent){	
-	var outArr = [], foundTheOne, child;
-	if(parent && parent.childNodes){
-	    for(var i = 0 ; i < parent.childNodes.length ; i++){
-		child = parent.childNodes[i];
-		if(this.__isDOMMatch(pathItem,child)){
-		    foundTheOne = true;
-		    outArr.push({
-			element:child,
-			parent:parent,
-			index:i
-		    })
+		
+		if(!FileUpload.jsxiframe.getRendered()){
+			FileUpload.jsxiframe.setDisplay(jsx3.gui.Block.DISPLAYNONE);
+			var root = this.getServer().getRootBlock();
+			root.setChild(FileUpload.jsxiframe);
+			jsx3.html.insertAdjacentHTML(root.getRendered(), "beforeEnd", FileUpload.jsxiframe.paint());
 		}
-	    }
 	}
-
-	if(foundTheOne){
-	    return outArr;
+	
+	FileUpload_prototype._addControlForRecord = function(recordId,bRepaint){
+		if(!this.jsxfileupload) this.jsxfileupload = {};
+		if(!this.jsxfileupload[recordId]){
+			this.jsxfileupload[recordId] = new com.intalio.ria.FileUpload();
+			this.setChild(this.jsxfileupload[recordId]);
+			this.jsxfileupload[recordId].setDisplay(jsx3.gui.Block.DISPLAYNONE);
+			this.jsxfileupload[recordId].setMatrixRecordId(recordId);
+			if(bRepaint){
+				jsx3.html.insertAdjacentHTML(this.getRendered(), "beforeEnd", this.jsxfileupload[recordId].paint());
+			}
+		}
 	}
-	else{	    
-	    return false;
+	
+	FileUpload_prototype._removeControlOfRecord = function(recordId,bRepaint){
+		if(!this.jsxfileupload) this.jsxfileupload = {};
+		if (this.jsxfileupload[recordId]) {
+			if(bRepaint){
+				var node = this.jsxfileupload[recordId].getRendered();
+				if(node) jsx3.html.removeNode(node);
+		    	if(this.jsxfileupload[recordId]) delete this.jsxfileupload[recordId];	
+			}
+			this.removeChild(this.jsxfileupload[recordId]);
+		}
 	}
-    };
-
-    FileUpload_prototype.__isDOMMatch = function(pathItem,htmlelement){
-	var tagFound = (pathItem.tagName && (htmlelement.tagName.toUpperCase() == pathItem.tagName.toUpperCase())) || (!pathItem.tagName);
-	var attrFound = ( pathItem.attrName && (htmlelement.getAttribute(pathItem.attrName) == pathItem.attrValue)) || (!pathItem.attrName);
-	if(tagFound && attrFound){
-	    return true;
-	}
-	else{
-	    return false;
-	}
-    };
-    /************* End of helper function used for DOM search ****************/
-
+	
+	FileUpload_prototype._getElementById = function(strId){
+	  	var doc = this.ownerDocument || (this.getElementById ? this : null);
+	  	if (doc == null) doc = this.getDocument();
+		return (doc != null) ? doc.getElementById(strId) : null;
+  	}
+	
 });
 
