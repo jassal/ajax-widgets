@@ -6,11 +6,16 @@
  *  and conditions stipulated in the agreement/contract under which the
  *  program(s) have been supplied.
  */
+
+/**
+ * Replaced use of 
+ * 1) jsx3.app.Model's getAncestorOfType() with getAncestorOfTypeNew()
+ * 2) jsx3.app.Model's getDescendantsOfType() with getDescendantsOfTypeNew()
+ * 3) jsx3.lang.Object's instanceOf() with isType()
+ * to prevent fetching of unnecessary classes using jsx3.require()  
+ */
 jsx3.require("jsx3.gui.Block",       "jsx3.gui.Painted",     "jsx3.gui.Interactive",
-             "jsx3.gui.Form",        "jsx3.gui.Event",       "jsx3.gui.TextBox", 
-             "jsx3.gui.Slider",      "jsx3.gui.ColorPicker", "jsx3.gui.RadioButton", 
-             "jsx3.gui.CheckBox",    "jsx3.gui.Matrix",      "jsx3.gui.Matrix.Column",
-             "com.intalio.ria.Section");
+             "jsx3.gui.Form",        "jsx3.gui.Event");
 
 jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], function(Field,Field_prototype) {
 
@@ -123,7 +128,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
    * handle the adding of children, field and section are rejected
    */
   Field_prototype.onSetChild = function(objChild) {
-    if (objChild.instanceOf(com.intalio.ria.Section) || objChild.instanceOf(com.intalio.ria.Field)) {
+    if (objChild.isType("com.intalio.ria.Section") || objChild.isType("com.intalio.ria.Field")) {
       return false;
     }
     return true;
@@ -180,11 +185,11 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
       var value = null;
       
       // slider and color picker get a display value
-      if (child.instanceOf(jsx3.gui.Slider)) {
+      if (child.isType("jsx3.gui.Slider")) {
         value = com.intalio.ria.sliderValue(child);
       }
       
-      if (child.instanceOf(jsx3.gui.ColorPicker)) {
+      if (child.isType("jsx3.gui.ColorPicker")) {
         value = com.intalio.ria.colorPickerValue(child);
       }
       
@@ -239,7 +244,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
       // until after the event has completed.  This routine might be called 
       // during the event, so it may seem like the radio/checkbox is invalid 
       // when in fact it will be valid once the event completes.
-      if (objGui.instanceOf(jsx3.gui.RadioButton)) {
+      if (objGui.isType("jsx3.gui.RadioButton")) {
         if (objEVENT != null && objEVENT.getType() == jsx3.gui.Event.CLICK) {
           radioGroupName = objGui.getGroupName();
         }
@@ -253,22 +258,22 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     for (var x = 0; x < children.length; x++) {
       var child = children[x];
       
-      if (child.getAncestorOfType(jsx3.gui.Matrix)) {
+      if (child.getAncestorOfTypeNew("jsx3.gui.Matrix")) {
         // matrix columns are validated separately
         continue;
-      } else if (child.instanceOf(jsx3.gui.RadioButton)) {
+      } else if (child.isType("jsx3.gui.RadioButton")) {
         // no need to validate this radiogroup b/c it will always be valid
         if (child.getGroupName() == radioGroupName) {
           continue;
         }
-      } else if (child.instanceOf(jsx3.gui.CheckBox)) {
+      } else if (child.isType("jsx3.gui.CheckBox")) {
         // if child == objGui and its checked then no need to validate
         if (objGui != null && objGui.getId() == child.getId()) {
           if (intCHECKED == jsx3.gui.CheckBox.CHECKED) {
             continue;
           }
         }
-      } else if (child.instanceOf(jsx3.gui.Matrix)) {
+      } else if (child.isType("jsx3.gui.Matrix")) {
         if (!this.validateMatrix(child)) {
           valid = false;
           break CHILDREN_LOOP;
@@ -295,7 +300,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   };
   
   Field_prototype.validateMatrix = function(child) {
-    var columns = child.getDescendantsOfType(jsx3.gui.Matrix.Column); // array
+    var columns = child.getDescendantsOfTypeNew("jsx3.gui.Matrix.Column"); // array
     var nodes = child.getXML().getChildNodes(); // list    
     var radios = new Object(); // radio button state array
     
@@ -311,7 +316,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
           continue;    
         }
             
-        if (!colChild.instanceOf(jsx3.gui.Form)) {
+        if (!colChild.isType("jsx3.gui.Form")) {
           continue;
         }
             
@@ -319,12 +324,12 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
           continue;   
         }
         
-        if (colChild.instanceOf(jsx3.gui.TextBox) || colChild.instanceOf(jsx3.gui.CheckBox)) {
+        if (colChild.isType("jsx3.gui.TextBox") || colChild.isType("jsx3.gui.CheckBox")) {
           continue;
         }
         
         // only 1 radio button per column needs to be selected
-        if (colChild.instanceOf(jsx3.gui.RadioButton)) {
+        if (colChild.isType("jsx3.gui.RadioButton")) {
           var id = colChild.getId();
           
           if (attr != null && attr.trim() != "") {
@@ -413,7 +418,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   Field_prototype.paintLabelColumn = function(isRequired) {
     var forStr = '';
     var child = this.getFirstChild();
-    if (child != null && child.instanceOf(jsx3.gui.TextBox)) {
+    if (child != null && child.isType("jsx3.gui.TextBox")) {
       forStr = ' for="' + child.getId() + '"';
     }
     

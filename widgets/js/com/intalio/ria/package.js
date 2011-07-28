@@ -6,16 +6,19 @@
  *  and conditions stipulated in the agreement/contract under which the
  *  program(s) have been supplied.
  */  
+ 
+ /**
+ * Replaced use of 
+ * 1) jsx3.app.Model's getAncestorOfType() with getAncestorOfTypeNew()
+ * 2) jsx3.app.Model's getDescendantsOfType() with getDescendantsOfTypeNew()
+ * 3) jsx3.lang.Object's instanceOf() with isType()
+ * to prevent fetching of unnecessary classes using jsx3.require()  
+ */
 jsx3.Package.definePackage("com.intalio.ria", function(ria) {
-        
-  jsx3.require("com.intalio.ria.Field", "com.intalio.ria.FileUpload",
-               "jsx3.gui.Interactive",  "jsx3.gui.Block",         
-               "jsx3.gui.Matrix",       "jsx3.gui.Matrix.Column", 
-               "jsx3.gui.CheckBox",     "jsx3.gui.ColorPicker",   
-               "jsx3.gui.DatePicker",   "jsx3.gui.RadioButton",   
-               "jsx3.gui.Select",       "jsx3.gui.Slider",        
-               "jsx3.gui.TextBox",      "jsx3.gui.TimePicker");        
+	
+  jsx3.require("jsx3.gui.Interactive",  "jsx3.gui.Block");        
   
+
   /**
    * Tries to set a CSS style value on the given object.
    */
@@ -39,7 +42,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
     if (objGui == null) return;
     
     var parent = objGui.getParent();
-    if (parent != null && parent.instanceOf(jsx3.gui.Matrix.Column)) {
+	if (parent != null && parent.isType('jsx3.gui.Matrix.Column')) {
       return;   
     }
     
@@ -58,8 +61,8 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
       return;
     }
     
-    var parent = objGui.getParent();
-    if (parent != null && parent.instanceOf(com.intalio.ria.Field)) {
+    var parent = objGui.getParent();    
+	if (parent != null && parent.isType('com.intalio.ria.Field')) {
       parent.validate(objGui, objEVENT, intCHECKED);
     }
   };  
@@ -71,8 +74,8 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
   ria.setValue = function(objGui, value) {
     if (objGui == null) return;
     
-    var parent = objGui.getParent();
-    if (parent == null || !parent.instanceOf(com.intalio.ria.Field)) {
+    var parent = objGui.getParent();    
+	if(parent == null || !parent.isType('com.intalio.ria.Field')) {
       return;
     }
     
@@ -80,10 +83,10 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
     
     var newValue = null;
     
-    if (objGui.instanceOf(jsx3.gui.Slider)) {
-      newValue = com.intalio.ria.sliderValue(objGui, value);
-    } else if (objGui.instanceOf(jsx3.gui.ColorPicker)) {
-      newValue = com.intalio.ria.colorPickerValue(objGui, value);
+    if (objGui.isType('jsx3.gui.Slider')) {
+      newValue = ria.sliderValue(objGui, value);
+    } else if (objGui.isType('jsx3.gui.ColorPicker')) {
+      newValue = ria.colorPickerValue(objGui, value);
     }
     
     if (newValue == null) return;
@@ -128,88 +131,16 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
     return str.substring(0, 2) + " " + 
            str.substring(2, 4) + " " + 
            str.substring(4, 6);
-  };  
+  };
   
-  /**
-   * Custom function to fill out default values for empty data cells.
-   * This is only invoked on adding a new row to a matrix.
-   */
-  jsx3.gui.Matrix.customSetAutoRowDefaults = function(objMatrix, jis) {
-    var columns = objMatrix.getDescendantsOfType(jsx3.gui.Matrix.Column, true); // array
-      
-    for (var z = 0; z < columns.length; z++) {
-      var column = columns[z]; 
-      var id = column.getPath();
-        
-      if (id == null || id == undefined || id.trim() == "" || id.toLowerCase() == "jsxid") {
-        continue;    
-      }
-        
-      var mask = column.getEditMask();
-      if (mask == null) {
-        continue;   
-      }
-
-      var val = column.getDefaultValue();
-            
-      if (mask.instanceOf(jsx3.gui.TextBox)) {
-        if (val == null || val == undefined) val = "";
-      }
-      else if (mask.instanceOf(jsx3.gui.Select)) {
-        if (val == null || val == undefined) continue;
-      }
-      else if (mask.instanceOf(jsx3.gui.DatePicker)) {
-        if (val == null || val == undefined || val.trim() == "") continue;
-          
-        var format = mask.getFormat();
-        if (format == null || format == undefined || format.trim() == "") continue;
-          
-        // try to parse the date with the given format, then get the int value
-        try {
-          val = new jsx3.util.DateFormat(format).parse(val).valueOf();
-        } catch (e) {
-          try {
-            jsx3.log(jsx3.NativeError.wrap(e).printStackTrace());
-          } catch (ex) {;}
-            
-          continue;
-        }
-      }
-      else if (mask.instanceOf(jsx3.gui.TimePicker)) {
-        if (val == null || val == undefined || val.trim() == "") continue;
-          
-        // try to create a date with the given time, then get the int value
-        try {
-          val = new Date("1/1/1970 " + val).valueOf();
-        } catch (e) {
-          try {
-            jsx3.log(jsx3.NativeError.wrap(e).printStackTrace());
-          } catch (ex) {;}
-          
-          continue;
-        }        
-      }
-      else if (mask.instanceOf(jsx3.gui.CheckBox)) {
-        if (val == null || val == undefined || val.trim() == "") continue;
-          
-        if (Number(val) == jsx3.gui.CheckBox.CHECKED || val.trim().toLowerCase() == "true") {
-          val = jsx3.gui.CheckBox.CHECKED;
-        } else {
-          val = jsx3.gui.CheckBox.UNCHECKED;
-        }
-      }
-        
-      // if this column has no value then set the default
-      if (jis[id] == null) {
-          jis[id] = val;
-      }
-    }
-  };  
   
   /**
    * Customizations only used in the IDE.
    */
   if (jsx3.IDE) {
+  	
+	jsx3.require("com.intalio.ria.Field");
+			   
     jsx3.ide.loadTemplateCatalog("prop", "properties/catalog.xml", com.intalio.ria.ADDIN);
     
     /**
@@ -247,7 +178,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
           var objGui = (bInsertBefore ? objJSXParent.getParent() : objJSXParent);
           
           // check to see if its within another Field object
-          if (objGui.instanceOf(com.intalio.ria.Field) || objGui.getAncestorOfType(com.intalio.ria.Field)) {
+          if (objGui.isType("com.intalio.ria.Field") || objGui.getAncestorOfType(com.intalio.ria.Field)) {
             if (baseName == "List.xml"          || baseName == "MatrixTable.xml" || 
                 baseName == "MatrixTree.xml"    || baseName == "Multiselect.xml" ||
                 baseName == "PaginatedList.xml") {
@@ -260,7 +191,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
           }
 
           // the path might change if they are dropping it onto a matrix?
-          if (objJSXParent.instanceOf(jsx3.gui.Matrix)) {
+          if (objJSXParent.isType("jsx3.gui.Matrix")) {
             // slider and color picker dont work for matrix columns
             // password is not fully functional either (password text is displayed normally)
             if (baseName != "Slider.xml" && baseName != "ColorPicker.xml" && baseName != "Password.xml") {
@@ -300,14 +231,14 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
       }
       
       // checkbox  
-      if (objChild.instanceOf(jsx3.gui.CheckBox)) {
+      if (objChild.isType("jsx3.gui.CheckBox")) {
         objChild.removeEvent(jsx3.gui.Interactive.EXECUTE);
         if (inField) {
           objChild.setEvent('com.intalio.ria.validate(this, objEVENT, intCHECKED);', jsx3.gui.Interactive.TOGGLE);          
         }
       }   
       // color picker 
-      else if (objChild.instanceOf(jsx3.gui.ColorPicker)) {
+      else if (objChild.isType("jsx3.gui.ColorPicker")) {
         objChild.setHeight(100);
         objChild.setWidth(125);        
         if (inField) {
@@ -315,14 +246,14 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         }
       }       
       // date picker 
-      else if (objChild.instanceOf(jsx3.gui.DatePicker)) {
+      else if (objChild.isType("jsx3.gui.DatePicker")) {
         objChild.setFormat("yyyy-MM-dd"); 
         if (inField) {
           objChild.setEvent('com.intalio.ria.validate(this);', jsx3.gui.Interactive.HIDE);          
         }
       }       
       // radio button
-      else if (objChild.instanceOf(jsx3.gui.RadioButton)) {
+      else if (objChild.isType("jsx3.gui.RadioButton")) {
         var radioChildren = parent.getDescendantsOfType(jsx3.gui.RadioButton);
         var max = 0;
         var baseStr = "radio-";
@@ -342,7 +273,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         }
       }       
       // select and combo
-      else if (objChild.instanceOf(jsx3.gui.Select)) {
+      else if (objChild.isType("jsx3.gui.Select")) {
         objChild.setXMLURL(null);
         objChild.setXMLString('<data><record jsxid="Automobile" jsxtext="Automobile"/><record jsxid="Boat" jsxtext="Boat"/><record jsxid="Bus" jsxtext="Bus"/><record jsxid="Helicopter" jsxtext="Helicopter"/><record jsxid="Motorcycle" jsxtext="Motorcycle"/><record jsxid="Plane" jsxtext="Plane"/><record jsxid="Spaceship" jsxtext="Spaceship"/><record jsxid="Train" jsxtext="Train"/></data>');
         if (objChild.getType() == jsx3.gui.Select.TYPECOMBO) {
@@ -356,14 +287,14 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         }
       }
       // slider
-      else if (objChild.instanceOf(jsx3.gui.Slider)) {
+      else if (objChild.isType("jsx3.gui.Slider")) {
         if (inField) {
           objChild.setEvent('com.intalio.ria.setValue(this, fpVALUE);', jsx3.gui.Interactive.JSXCHANGE);
           objChild.setEvent('com.intalio.ria.setValue(this, fpVALUE);', jsx3.gui.Interactive.INCR_CHANGE);           
         }
       }
       // textbox, text area, password      
-      else if (objChild.instanceOf(jsx3.gui.TextBox)) {
+      else if (objChild.isType("jsx3.gui.TextBox")) {
         objChild.setHeight(null);
         objChild.setWidth(null);
         objChild.setEvent('com.intalio.ria.highlightTextInput(this, false);', jsx3.gui.Interactive.JSXFOCUS);
@@ -375,7 +306,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         }
       }
       // matrix column
-      else if (objChild.instanceOf(jsx3.gui.Matrix.Column)) {
+      else if (objChild.isType("jsx3.gui.Matrix.Column")) {
         var matrix = objChild.getParent();
         var path = objChild.getPath();
         
@@ -401,7 +332,7 @@ jsx3.Package.definePackage("com.intalio.ria", function(ria) {
         var grandChild = objChild.getFirstChild();
         if (grandChild != null) {
           // datepicker needs to have format set
-          if (grandChild.instanceOf(jsx3.gui.DatePicker)) {
+          if (grandChild.isType("jsx3.gui.DatePicker")) {
             grandChild.setFormat("yyyy-MM-dd");                
             objChild.setFormatHandler("@date, yyyy-MM-dd");
           }
