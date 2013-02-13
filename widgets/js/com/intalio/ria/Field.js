@@ -231,9 +231,10 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   };  
   
   Field_prototype.validate = function(objGui, objEVENT, intCHECKED) {
-    if (this.getShowValidation() == Field.SHOW_VALIDATION_NO) {
+  // Fix for EDGE-3737, we should do validation even if show property is set to no
+    /*if (this.getShowValidation() == Field.SHOW_VALIDATION_NO) {
       return;
-    }
+    }*/
     
     var radioGroupName = null;
     
