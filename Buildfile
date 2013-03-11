@@ -7,12 +7,7 @@ VERSION_NUMBER = "6.0.0.33"
 
 require "find"
 require "buildr"
-
-repositories.remote = [ "http://release.intalio.com/m2repo", "http://www.intalio.org/public/maven2", "http://mirrors.ibiblio.org/pub/mirrors/maven2" ]
-
-repositories.release_to[:username] ||= "release"
-repositories.release_to[:url] ||= "sftp://release.intalio.com/home/release/m2repo"
-
+require "install.rb"
 # Disable tests
 ENV['TEST'] = "no"
 
