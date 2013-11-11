@@ -165,13 +165,13 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
   FileUpload_prototype.doValidate = function() {
 	this.setValidationState(1);
 	var objGUI = this.getRendered();
-    if (objGUI != null) {
+    //if (objGUI != null) { Fix for EDGE-4002
 		if(this.getRequired()){
 			if(!this.getFileInputFieldValue()){
 				this.setValidationState(0);
 			}		
 		}
-	}
+	//} Fix for EDGE-4002
 	return this.getValidationState();
   };
   
