@@ -110,7 +110,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
   }
   
   FileUpload_prototype.getURL = function(){
-  	return (this.URL)? this.URL : null; 
+  	return (this.URL)? this.URL : ""; // Fix for EDGE-4010 need to send empty string instead of null.
   }
   
   FileUpload_prototype.setURL = function(strURL){
