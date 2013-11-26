@@ -26,7 +26,8 @@
       <object type="jsx3.gui.Matrix">
         <variants jsxpagingmodel="1" jsxselectionmodel="0" jsxjsxxmlasync="1" jsxautorow="1"/>
         <strings jsxname="matrix1" jsxbodyborder="1px solid #dfdfef" jsxheaderborder="1px solid #dfdfef" jsxbgcolor="#efefff"/>
-        <events jsxaftercommit="this.getParent().getParent().validate(this, objEVENT);"/>
+        <!--<events jsxaftercommit="this.getParent().getParent().validate(this, objEVENT);"/>-->
+        <events jsxaftercommit="var _ancestor = this.getParent().getParent(); if(_ancestor.isType('com.intalio.ria.Field')){_ancestor.validate(this, objEVENT);}"/>
         <xslparameters jsx_rowbg1="#ffffff" jsx_rowbg2="#efefff"/>
         <object type="jsx3.gui.Matrix.Column">
           <variants jsxwidth="50"/>
@@ -35,7 +36,8 @@
           <object type="jsx3.gui.ImageButton">
             <variants jsxwidth="16" jsxheight="16" jsxenabled="1" jsxstate="0" jsxprefetch="1" jsxtype="0"/>
             <strings jsxname="deleteButtonMask" jsximage="jsx:///images/list/delete.gif"/>
-            <events jsxexecute="var _recordId = this.emGetSession().recordId; var _deletedNode = this.getParent().getParent().deleteRecord(this.emGetSession().recordId, true);if(_deletedNode){this.getParent().getParent().doEvent('recordDeleted',{objNode:_deletedNode,strRECORDID:_recordId});};this.getParent().getParent().getParent().getParent().validate(this, objEVENT);"/>
+            <!--<events jsxexecute="var _recordId = this.emGetSession().recordId; var _deletedNode = this.getParent().getParent().deleteRecord(this.emGetSession().recordId, true);if(_deletedNode){this.getParent().getParent().doEvent('recordDeleted',{objNode:_deletedNode,strRECORDID:_recordId});};this.getParent().getParent().getParent().getParent().validate(this, objEVENT);"/>-->
+            <events jsxexecute="var _recordId = this.emGetSession().recordId; var _deletedNode = this.getParent().getParent().deleteRecord(this.emGetSession().recordId, true);if(_deletedNode){this.getParent().getParent().doEvent('recordDeleted',{objNode:_deletedNode,strRECORDID:_recordId});}; var _ancestor = this.getParent().getParent().getParent().getParent(); if(_ancestor.isType('com.intalio.ria.Field')){_ancestor.validate(this, objEVENT);}"/>
           </object>
         </object>
         <object type="jsx3.gui.Matrix.Column">
