@@ -38,7 +38,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
 	   'style="padding:0;margin:0;">' +
 	 '<input name="attachmentFile" type="file" ' +
 	     'id="IntalioInternal_FileUploadInput_' + id + '" ' +
-	     this.paintInputSize() + '/>' +
+	     this.paintInputSize() + ' onchange="jsx3._eb(event,this.parentNode.parentNode.parentNode,'+"'_ebChange'"+",0);"+'"/>' +
 	 '<label name="attachmentFileLabel" id="IntalioInternal_FileUploadInputLabel_' +
 	     id + '" ' + '>' + ((this.fileName)? this.fileName : "") + '</label>' +
 	 '<input type="hidden" name="participantToken" value="" ' +
@@ -87,7 +87,13 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
     b1.setStyles(this.paintFontSize() + this.paintBackgroundColor() + this.paintBackground() + this.paintColor() + this.paintOverflow() + this.paintFontName() + this.paintZIndex() + this.paintFontWeight() + this.paintTextAlign() + this.paintCursor() + this.paintVisibility() + this.paintBlockDisplay() + this.paintCSSOverride());
     return b1.paint().join(html + this.paintChildren());
   };
-  
+
+  //Added to fix EDGE-3704
+  FileUpload_prototype._ebChange = function(objEvent, objGUI) {
+    this.setValue(this.getFileInputFieldValue());
+    com.intalio.ria.validate(this, objEvent);
+  };
+
   FileUpload_prototype.isCandidateForUpload = function(){
   	var parent, column, matrix, recordId;
 	parent = this.getParent();
