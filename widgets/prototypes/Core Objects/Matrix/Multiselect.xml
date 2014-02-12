@@ -33,6 +33,7 @@
               &lt;record jsxid=&quot;Train&quot; jsxtext=&quot;Train&quot;/&gt; 
             &lt;/data&gt;
         "/>
+		<events jsxselect="this.getParent().getParent().getParent().validate(this, objEVENT);"/>
         <object type="jsx3.gui.Matrix.Column">
           <strings jsxname="column-map" jsxcellpadding="2" jsxpath="jsxtext"/>
         </object>
