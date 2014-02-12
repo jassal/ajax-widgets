@@ -304,7 +304,20 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     var columns = child.getDescendantsOfTypeNew("jsx3.gui.Matrix.Column"); // array
     var nodes = child.getXML().getChildNodes(); // list    
     var radios = new Object(); // radio button state array
-    
+
+    // Fix for EDGE-4161 multiselect validation
+    var col = columns[0];
+    var colChild = col.getFirstChild();
+    // if colChild is null assume its multiselect
+    if (colChild == null) {
+        if (child.getRequired()) {
+            var selectedIds = child.getSelectedIds();
+            if (selectedIds == 0) {
+                return false;
+            }
+        }
+    }
+
     for (var y = 0; y < nodes.size(); y++) {
       var node = nodes.get(y);
           
