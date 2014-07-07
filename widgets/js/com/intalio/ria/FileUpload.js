@@ -34,7 +34,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.FileUpload", jsx3.gui.Block, [jsx3.
 	 '<form name="IntalioInternal_FileUploadForm_' + id + '" ' +
 	   'id="IntalioInternal_FileUploadForm_' + id + '" ' +
 	   'target="' + com.intalio.ria.FileUpload.jsxiframe.getIFrameId() + '" ' +
-	   'action="/gi/fileupload" method="post" enctype="multipart/form-data" '+
+	   'action="/intalio/gi/fileupload" method="post" enctype="multipart/form-data" '+
 	   'style="padding:0;margin:0;">' +
 	 '<input name="attachmentFile" type="file" ' +
 	     'id="IntalioInternal_FileUploadInput_' + id + '" ' +
