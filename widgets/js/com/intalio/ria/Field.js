@@ -27,7 +27,10 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   
   Field.LAYOUT_VERTICAL = "vertical";
   Field.LAYOUT_HORIZONTAL = "horizontal";
-      
+
+  Field.HELP_IMG_POS_BF = "Before Field";
+  Field.HELP_IMG_POS_AF = "After Field";
+
   /**
    * main method
    */
@@ -48,12 +51,15 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     }
     
     var html = '<table cellpadding="0" cellspacing="0" class="field">' +
-               '<tr>' + 
-                   this.paintLabelColumn() +
-                   this.paintRequired() +
-                   this.paintInput() +
-               '</tr>' + 
-               '</table>';
+               '<tr>' + this.paintLabelColumn() + this.paintRequired();
+    if(this.getHelpImagePos() == Field.HELP_IMG_POS_AF)
+        html += this.paintInput() +
+                '<td>' + this.paintHelpImage() +
+                '</td></tr></table>';
+    else if(this.getHelpImagePos() == Field.HELP_IMG_POS_BF)
+        html += '<td>' + this.paintHelpImage() +
+                '</td>' + this.paintInput() +
+                '</tr></table>';
     return this.paintBlock(html);
   };
   
@@ -439,7 +445,7 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
     return '<td class="label-column">' + 
                '<span class="label-images">' + 
                    this.paintErrorImage(isRequired) + 
-                   this.paintHelpImage() +
+                   //this.paintHelpImage() +
                '</span>' +
                '<label' + forStr + '>' + 
                    this.getLabelText() + 
@@ -498,6 +504,22 @@ jsx3.lang.Class.defineClass("com.intalio.ria.Field", jsx3.gui.Block, [], functio
   Field_prototype.getHelpImageTip = function() {
     return this.riaHelpImageTip;
   };    
+
+  Field_prototype.setHelpImagePos = function(strPos, bRepaint) {
+    this.riaHelpImagePos = strPos;
+    if (bRepaint) {
+      this.repaint();   
+    }    
+    return this;
+  };
+  
+  Field_prototype.getHelpImagePos = function() {
+    if (this.riaHelpImagePos == Field.HELP_IMG_POS_BF) {
+      return Field.HELP_IMG_POS_BF;
+    }
+    
+    return Field.HELP_IMG_POS_AF;
+  };
 
   /**
    * error image

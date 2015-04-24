@@ -37,6 +37,18 @@
         docdefault="Empty"
         jsxexecute="objJSX.setHelpImageTip(vntValue, true);"
         jsxmask="jsxtextarea"/>                
+	<record jsxid="riaHelpImagePos"
+        jsxtext="Position"
+        eval="0"
+        jsxtip="Sets the Position of help image."
+        docgetter="getHelpImagePos"
+        docsetter="setHelpImagePos"
+		docdefault="After Field"
+        jsxexecute="objJSX.setHelpImagePos(vntValue, true);"
+        jsxmask="jsxselect">
+      <enum jsxid="com.intalio.ria.Field.HELP_IMG_POS_BF" jsxtext="Before Field"/>
+      <enum jsxid="com.intalio.ria.Field.HELP_IMG_POS_AF" jsxtext="After Field"/>
+	</record>
   </record>
     
   <record jsxid="riaValidation" group="1" jsxtext="Validation">

@@ -12,6 +12,7 @@
   <record include="ria-master.xml" group="riaLabel"/>
   <record include="ria-master.xml" group="riaHelpImage"/>
   <record include="ria-master.xml" group="riaValidation"/>
+  <record include="master.xml" group="fieldfont"/>
   <record include="ria-master.xml" group="riaLayout"/>
   <record include="ria-master.xml" group="riaRoles"/>  
   <record include="master.xml" group="position"/>
