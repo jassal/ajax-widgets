@@ -246,6 +246,23 @@
         jsxmask="jsxcolor"/>
   </record>
 
+  <record jsxid="fieldfont" group="1" jsxtext="Font">
+    <record jsxid="jsxfontname" jsxtext="Font Name"
+        eval="0"
+        jsxtip="Sets the name of the font family."
+        docgetter="getFontName" docsetter="setFontName"
+        docdefault="&lt;code&gt;jsx3.gui.Block.DEFAULTFONTNAME&lt;/code&gt;"
+        disallow="'"
+        jsxmask="jsxtext"/>
+    <record jsxid="jsxfontsize" jsxtext="Font Size"
+        eval="1"
+        jsxtip="Sets the point size of the font."
+        docgetter="getFontSize" docsetter="setFontSize"
+        docdefault="&lt;code&gt;jsx3.gui.Block.DEFAULTFONTSIZE&lt;/code&gt;"
+        disallow="[^0-9]"
+        jsxmask="jsxtext"/>
+  </record>
+
   <record jsxid="box" group="1" jsxtext="Box">
     <record jsxid="jsxbgcolor" jsxtext="BG Color"
         eval="0"
